@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - KrishiMandi</title>
+    <link rel="stylesheet" href="card.css">
+</head>
+<body class="auth-bg">
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <a href="index.html" class="logo">KrishiMandi Welcomes You</a>
+            </div>
+
+            <form action="details.html" method="GET">
+
+                <!-- Section labels row -->
+                <div class="onboard-grid">
+                    <span class="section-label">Language / भाषा</span>
+                    <span class="section-label">Account Details</span>
+                    <hr class="divider">
+                    <hr class="divider">
+
+                    <!-- Language column spans both phone & OTP rows -->
+                    <div class="lang-col">
+                        <label class="lang-radio">
+                            <input type="radio" name="language" value="english" checked>
+                            <span class="lang-label">English</span>
+                        </label>
+                        <label class="lang-radio">
+                            <input type="radio" name="language" value="hindi">
+                            <span class="lang-label">हिन्दी</span>
+                        </label>
+                    </div>
+
+                    <!-- Phone field auto-places to row 3, col 2 -->
+                    <div class="field mobile-field">
+                        <label>Mobile Number</label>
+                        <div class="error-toast" id="mobile-error"></div>
+                        <div class="mobile-input">
+                            <span class="prefix">+91</span>
+                            <input type="tel" id="mobile-field" name="mobile" placeholder="10 digit number" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
+                        </div>
+                    </div>
+
+                    <!-- OTP field auto-places to row 4, col 2 -->
+                    <div class="field">
+                        <label>OTP</label>
+                        <div class="otp-wrapper">
+                            <input type="checkbox" id="otp-toggle" class="otp-toggle-checkbox">
+                            <label for="otp-toggle" class="get-otp-btn">Get OTP</label>
+                            <div class="otp-input-wrapper">
+                                <input type="text" name="otp" placeholder="Enter OTP">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password-field" name="password" placeholder="Enter password" required>
+                            <button type="button" class="eye-toggle" id="eye-btn" aria-label="Toggle password visibility">
+                                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg id="eye-off-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+                                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Continue button spanning both columns -->
+                    <div class="btn-submit span-two">
+                        <button type="submit" class="btn-full">Continue →</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        const mobileInput = document.getElementById('mobile-field');
+        const mobileError = document.getElementById('mobile-error');
+        let errorTimer = null;
+
+        function showError(message) {
+            mobileError.textContent = message;
+            mobileError.classList.add('visible');
+            clearTimeout(errorTimer);
+            errorTimer = setTimeout(() => {
+                mobileError.classList.remove('visible');
+            }, 5000);
+        }
+
+        mobileInput.addEventListener('input', function () {
+            const cleaned = this.value.replace(/\D/g, '');
+            if (cleaned !== this.value) {
+                showError('Only numbers are allowed.');
+            }
+            this.value = cleaned.slice(0, 10);
+        });
+
+        mobileInput.addEventListener('blur', function () {
+            if (this.value.length > 0 && this.value.length < 10) {
+                showError('Mobile number must be exactly 10 digits.');
+            }
+        });
+
+        const eyeBtn = document.getElementById('eye-btn');
+        const passwordField = document.getElementById('password-field');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeOffIcon = document.getElementById('eye-off-icon');
+
+        eyeBtn.addEventListener('click', function () {
+            const isHidden = passwordField.type === 'password';
+            passwordField.type = isHidden ? 'text' : 'password';
+            eyeIcon.style.display = isHidden ? 'none' : 'block';
+            eyeOffIcon.style.display = isHidden ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
