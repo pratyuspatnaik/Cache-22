@@ -1,0 +1,300 @@
+﻿/* ==========================================================================
+   KrishiMandi - Onboarding Stylesheet (style/onboarding.css)
+   Contains page-specific styles for language selection, mobile/OTP inputs,
+   and password visibility toggle. (Shared styles inherited from style.css)
+   ========================================================================== */
+
+.onboard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Two column side-by-side layout */
+.onboard-columns {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.onboard-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* =========================================
+   COLUMN 1: LANGUAGE SELECTION
+   ========================================= */
+.lang-options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.lang-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.lang-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.lang-card-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background-color: #faf8f4;
+    border: 2px solid #e7e2d8;
+    border-radius: var(--radius-md);
+    transition: all 0.25s ease;
+}
+
+.lang-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background-color: #eee9de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--soil-accent);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.lang-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lang-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.lang-sub {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.radio-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    position: relative;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.radio-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: transform 0.2s ease;
+}
+
+.lang-card:hover .lang-card-content {
+    border-color: #c4d8bc;
+    background-color: #f7faf4;
+}
+
+.lang-card input:checked ~ .lang-card-content {
+    border-color: var(--primary-color);
+    background-color: #edf5e9;
+    box-shadow: 0 4px 14px rgba(76, 122, 59, 0.12);
+}
+
+.lang-card input:checked ~ .lang-card-content .lang-badge {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.lang-card input:checked ~ .lang-card-content .radio-indicator {
+    border-color: var(--primary-color);
+}
+
+.lang-card input:checked ~ .lang-card-content .radio-indicator::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* =========================================
+   COLUMN 2: MOBILE & OTP INPUTS
+   ========================================= */
+.mobile-wrapper .input-prefix {
+    background-color: #f0ebe1;
+    padding: 12px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-right: 1.5px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.flag-icon {
+    font-size: 1rem;
+}
+
+/* Error Toast Notification */
+.error-toast {
+    display: none;
+    font-size: 0.8rem;
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    border-left: 3px solid #d32f2f;
+}
+
+.error-toast.visible {
+    display: block;
+}
+
+/* OTP Toggle & Input */
+.otp-box {
+    position: relative;
+}
+
+.otp-toggle-checkbox {
+    display: none;
+}
+
+.get-otp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 16px;
+    background-color: #f0ebe1;
+    border: 1.5px dashed #c8c0b2;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.get-otp-btn:hover {
+    background-color: #e6edd9;
+    border-color: var(--primary-color);
+}
+
+.get-otp-btn .btn-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.get-otp-btn:hover .btn-arrow {
+    transform: translateX(3px);
+}
+
+.otp-input-box {
+    display: none;
+}
+
+.otp-toggle-checkbox:checked + .get-otp-btn {
+    display: none;
+}
+
+.otp-toggle-checkbox:checked ~ .otp-input-box {
+    display: block;
+}
+
+.resend-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--soil-accent);
+    padding: 0 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: underline;
+}
+
+.resend-link:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   PASSWORD FIELD STYLING
+   ========================================= */
+.password-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    letter-spacing: 0.5px;
+}
+
+.eye-toggle {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #8c857b;
+    transition: all 0.2s ease;
+}
+
+.eye-toggle:hover {
+    background-color: #f0f4ed;
+    color: var(--primary-color);
+}
+
+.eye-toggle svg {
+    display: block;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (ONBOARDING)
+   ========================================= */
+@media (max-width: 768px) {
+    .onboard-columns {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .lang-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lang-options {
+        grid-template-columns: 1fr;
+    }
+}

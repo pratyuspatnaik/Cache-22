@@ -1,20 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address & Payment - KrishiMandi</title>
-    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/details.css">
 </head>
 <body class="auth-bg">
     <div class="auth-container">
         <div class="auth-card">
 
             <div class="auth-header">
-                <a href="index.html" class="logo">Complete your Profile</a>
+                <a href="../index.html" class="logo">Complete your Profile</a>
+                <p>Provide your location and payout information</p>
             </div>
 
-            <form action="index.html" method="GET">
+            <form action="../index.html" method="GET">
                 <div class="form-grid">
 
                     <!-- Left column: Address -->
@@ -39,7 +41,7 @@
                             </div>
                             <div class="field">
                                 <label>Pincode</label>
-                                <input type="text" name="pincode" pattern="[0-9]{6}" placeholder="400001" required>
+                                <input type="text" name="pincode" pattern="[0-9]{6}" placeholder="400001" maxlength="6" inputmode="numeric" required>
                             </div>
                         </div>
                     </div>
@@ -105,23 +107,12 @@
                     <circle cx="50" cy="50" r="44" class="tick-circle"/>
                     <path d="M27 52 L42 67 L73 33" class="tick-mark"/>
                 </svg>
-                <p class="success-text">Account Created!</p>
+                <p class="success-text">Account Created Successfully!</p>
             </div>
 
         </div>
     </div>
 
-    <script>
-        document.getElementById('complete-btn').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const overlay = document.getElementById('success-overlay');
-            overlay.classList.add('active');
-
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2800);
-        });
-    </script>
+    <script src="../script/details.js"></script>
 </body>
 </html>

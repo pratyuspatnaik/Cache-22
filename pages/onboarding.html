@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - KrishiMandi</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/onboarding.css">
+</head>
+<body class="auth-bg">
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <a href="../index.html" class="logo">KrishiMandi</a>
+                <h2>Create Your Account</h2>
+                <p>Join India's trusted direct agricultural marketplace</p>
+            </div>
+
+            <form action="details.html" method="GET" class="onboard-form">
+
+                <!-- Two separate column containers side by side -->
+                <div class="onboard-columns">
+
+                    <!-- Column 1: Language Selection -->
+                    <div class="onboard-col language-col">
+                        <div class="col-header">
+                            <span class="section-label">Language / भाषा</span>
+                            <span class="section-hint">Select preferred language</span>
+                        </div>
+                        <hr class="col-divider">
+
+                        <div class="lang-options">
+                            <label class="lang-card">
+                                <input type="radio" name="language" value="english" checked>
+                                <div class="lang-card-content">
+                                    <div class="lang-badge">Aa</div>
+                                    <div class="lang-info">
+                                        <span class="lang-title">English</span>
+                                        <span class="lang-sub">Continue in English</span>
+                                    </div>
+                                    <span class="radio-indicator"></span>
+                                </div>
+                            </label>
+
+                            <label class="lang-card">
+                                <input type="radio" name="language" value="hindi">
+                                <div class="lang-card-content">
+                                    <div class="lang-badge">अ</div>
+                                    <div class="lang-info">
+                                        <span class="lang-title">हिन्दी</span>
+                                        <span class="lang-sub">हिंदी में जारी रखें</span>
+                                    </div>
+                                    <span class="radio-indicator"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: User Account Details -->
+                    <div class="onboard-col details-col">
+                        <div class="col-header">
+                            <span class="section-label">Account Details</span>
+                            <span class="section-hint">Enter your credentials</span>
+                        </div>
+                        <hr class="col-divider">
+
+                        <!-- Mobile Number Field -->
+                        <div class="form-field">
+                            <label for="mobile-field">Mobile Number</label>
+                            <div class="error-toast" id="mobile-error"></div>
+                            <div class="input-wrapper mobile-wrapper">
+                                <span class="input-prefix">
+                                    <span class="flag-icon">🇮🇳</span> +91
+                                </span>
+                                <input type="tel" id="mobile-field" name="mobile" placeholder="10 digit mobile number" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
+                            </div>
+                        </div>
+
+                        <!-- OTP Field -->
+                        <div class="form-field">
+                            <label>Verification (OTP)</label>
+                            <div class="otp-box">
+                                <input type="checkbox" id="otp-toggle" class="otp-toggle-checkbox">
+                                <label for="otp-toggle" class="get-otp-btn">
+                                    <span>Get OTP via SMS</span>
+                                    <span class="btn-arrow">→</span>
+                                </label>
+                                <div class="otp-input-box">
+                                    <div class="input-wrapper">
+                                        <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                                        <input type="text" name="otp" placeholder="Enter OTP code" maxlength="6" inputmode="numeric">
+                                        <label for="otp-toggle" class="resend-link">Resend</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Password Field (Redesigned) -->
+                        <div class="form-field">
+                            <label for="password-field">Password</label>
+                            <div class="input-wrapper password-wrapper">
+                                <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input type="password" id="password-field" name="password" placeholder="Enter your password" required>
+                                <button type="button" class="eye-toggle" id="eye-btn" aria-label="Toggle password visibility" title="Show / Hide Password">
+                                    <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <svg id="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+                                        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+                                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Bottom Continue Button -->
+                <div class="form-submit-row">
+                    <button type="submit" class="btn btn-primary btn-submit-full">Continue to Profile Details →</button>
+                    <p class="terms-text">By continuing, you agree to KrishiMandi's <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.</p>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="../script/onboarding.js"></script>
+</body>
+</html>
