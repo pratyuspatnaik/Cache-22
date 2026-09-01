@@ -1,0 +1,143 @@
+﻿/* ==========================================================================
+   KrishiMandi - Profile Details Stylesheet (style/details.css)
+   Contains page-specific styles for address/payment fields and success overlay.
+   (Shared styles inherited from style.css)
+   ========================================================================== */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field input[type="text"],
+.field select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #fcfbf8;
+    color: var(--text-dark);
+    font-family: inherit;
+    transition: all 0.25s ease;
+}
+
+.field input[type="text"]::placeholder {
+    color: #a8a39a;
+    font-size: 0.9rem;
+}
+
+.field input[type="text"]:focus,
+.field select:focus {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(76, 122, 59, 0.15);
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 12px;
+}
+
+.span-two {
+    grid-column: 1 / -1;
+}
+
+.btn-submit {
+    margin-top: 10px;
+}
+
+/* =========================================
+   SUCCESS OVERLAY & ANIMATION
+   ========================================= */
+.success-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 50;
+    border-radius: var(--radius-lg);
+}
+
+.success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-tick {
+    width: 80px;
+    height: 80px;
+}
+
+.tick-circle {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 4;
+    stroke-dasharray: 280;
+    stroke-dashoffset: 280;
+    animation: drawCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.tick-mark {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: drawCheck 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-text {
+    margin-top: 18px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (DETAILS)
+   ========================================= */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
