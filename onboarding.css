@@ -1,0 +1,251 @@
+/* onboarding.css */
+.auth-bg {
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 820px;
+}
+
+.auth-card {
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    padding: 40px;
+    border-top: 6px solid var(--primary-color);
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.auth-header .logo {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.auth-header h2 {
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.auth-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Two section labels side by side */
+.section-label-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 12px;
+}
+
+.section-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--soil-accent);
+}
+
+/* Each row aligns left cell (language) with right cell (form field) */
+.aligned-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: end;
+    margin-bottom: 16px;
+}
+
+.aligned-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+/* Language radio cards */
+.lang-radio {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.lang-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.lang-label {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: all 0.25s;
+}
+
+.lang-radio input:checked ~ .lang-label {
+    border-color: var(--primary-color);
+    background-color: #eef5ea;
+    color: var(--primary-color);
+}
+
+/* Mobile input */
+.mobile-input {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.mobile-input:focus-within {
+    border-color: var(--primary-color);
+}
+
+.mobile-input .prefix {
+    background-color: #f0f0f0;
+    padding: 12px 14px;
+    color: var(--text-dark);
+    font-weight: 600;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+.mobile-input input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 1rem;
+}
+
+/* Password input */
+.aligned-cell input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.aligned-cell input[type="password"]:focus {
+    border-color: var(--primary-color);
+}
+
+/* OTP toggle */
+.otp-toggle-checkbox {
+    display: none;
+}
+
+.get-otp-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.otp-input-wrapper {
+    display: none;
+}
+
+.otp-input-wrapper input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.otp-input-wrapper input:focus {
+    border-color: var(--primary-color);
+}
+
+.otp-toggle-checkbox:checked + .get-otp-btn {
+    display: none;
+}
+
+.otp-toggle-checkbox:checked ~ .otp-input-wrapper {
+    display: block;
+}
+
+/* Bot verification */
+.bot-verify {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .section-label-row,
+    .aligned-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .auth-card {
+        padding: 25px 20px;
+        min-height: unset;
+    }
+}
