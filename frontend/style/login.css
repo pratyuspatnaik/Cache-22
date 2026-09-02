@@ -1,0 +1,544 @@
+/* ==========================================================================
+   KrishiMandi - Login Stylesheet (style/login.css)
+   Contains page-specific styles for Login page: auth mode tabs,
+   login credentials, language selection, trust highlights, and success overlay.
+   ========================================================================== */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Two column side-by-side layout matching onboarding */
+.login-columns {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.login-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* =========================================
+   COLUMN 1: LANGUAGE SELECTION & HIGHLIGHTS
+   ========================================= */
+.lang-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.lang-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.lang-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.lang-card-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    background-color: #faf8f4;
+    border: 2px solid #e7e2d8;
+    border-radius: var(--radius-md);
+    transition: all 0.25s ease;
+}
+
+.lang-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background-color: #eee9de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--soil-accent);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.lang-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lang-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.lang-sub {
+    font-size: 0.78rem;
+    color: var(--text-light);
+}
+
+.radio-indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    position: relative;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.radio-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: transform 0.2s ease;
+}
+
+.lang-card:hover .lang-card-content {
+    border-color: #c4d8bc;
+    background-color: #f7faf4;
+}
+
+.lang-card input:checked ~ .lang-card-content {
+    border-color: var(--primary-color);
+    background-color: #edf5e9;
+    box-shadow: 0 4px 14px rgba(76, 122, 59, 0.12);
+}
+
+.lang-card input:checked ~ .lang-card-content .lang-badge {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.lang-card input:checked ~ .lang-card-content .radio-indicator {
+    border-color: var(--primary-color);
+}
+
+.lang-card input:checked ~ .lang-card-content .radio-indicator::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Trust highlights on Left Column */
+.login-highlights {
+    background: linear-gradient(135deg, #f4f8f0 0%, #edf5e9 100%);
+    border: 1px solid #dbe8d4;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.highlight-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary-color);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.highlight-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   COLUMN 2: LOGIN CREDENTIALS
+   ========================================= */
+
+/* Auth Mode Tab Switcher */
+.auth-mode-tabs {
+    display: flex;
+    background-color: #eeeae0;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+    gap: 4px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tab-btn.active {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--text-dark);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile Input Styling */
+.mobile-wrapper .input-prefix {
+    background-color: #f0ebe1;
+    padding: 12px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-right: 1.5px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.flag-icon {
+    font-size: 1rem;
+}
+
+/* Error Toast Notification */
+.error-toast {
+    display: none;
+    font-size: 0.8rem;
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    border-left: 3px solid #d32f2f;
+}
+
+.error-toast.visible {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-3px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Auth Dynamic Panels */
+.auth-panel {
+    display: none;
+}
+
+.auth-panel.active {
+    display: block;
+}
+
+/* Password Toggle & Utilities */
+.password-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    letter-spacing: 0.5px;
+}
+
+.eye-toggle {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px 12px;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #8c857b;
+    transition: all 0.2s ease;
+}
+
+.eye-toggle:hover {
+    background-color: #f0f4ed;
+    color: var(--primary-color);
+}
+
+.field-helper-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 0.82rem;
+}
+
+.forgot-password-link {
+    color: var(--soil-accent);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-left: auto;
+}
+
+.forgot-password-link:hover {
+    color: var(--primary-color);
+}
+
+/* OTP Mode Box */
+.otp-panel-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.otp-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 11px 16px;
+    background-color: #f0ebe1;
+    border: 1.5px dashed #c8c0b2;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.otp-action-btn:hover {
+    background-color: #e6edd9;
+    border-color: var(--primary-color);
+}
+
+.otp-action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #eeeae0;
+}
+
+.otp-code-container {
+    display: none;
+}
+
+.otp-code-container.active {
+    display: block;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--soil-accent);
+    padding: 0 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: underline;
+    font-family: inherit;
+}
+
+.resend-btn:hover:not(:disabled) {
+    color: var(--primary-color);
+}
+
+.resend-btn:disabled {
+    color: #a8a39a;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+/* Remember me & Extras */
+.remember-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.remember-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.remember-row span {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+
+/* Bottom Actions & Switch to Register */
+.form-submit-row {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+}
+
+.auth-switch-prompt {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    padding-top: 10px;
+    border-top: 1px dashed #e2dcd2;
+}
+
+.auth-switch-prompt a {
+    color: var(--soil-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.auth-switch-prompt a:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   SUCCESS OVERLAY & ANIMATION
+   ========================================= */
+.login-success-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 50;
+    border-radius: var(--radius-lg);
+}
+
+.login-success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.login-success-overlay .success-tick {
+    width: 80px;
+    height: 80px;
+}
+
+.login-success-overlay .tick-circle {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 4;
+    stroke-dasharray: 280;
+    stroke-dashoffset: 280;
+    animation: drawCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.login-success-overlay .tick-mark {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: drawCheck 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-message-box {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.success-message-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.success-message-box p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (LOGIN)
+   ========================================= */
+@media (max-width: 768px) {
+    .login-columns {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .lang-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .login-highlights {
+        display: none; /* Hide highlight badges on small mobile screens to keep card compact */
+    }
+}
+
+@media (max-width: 480px) {
+    .lang-options {
+        grid-template-columns: 1fr;
+    }
+}
