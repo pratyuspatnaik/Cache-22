@@ -1,33 +1,8 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    KrishiMandi - Onboarding Stylesheet (style/onboarding.css)
    Contains page-specific styles for language selection, mobile/OTP inputs,
-   and password visibility toggle. (Shared styles inherited from style.css)
+   and password visibility toggle. (Shared layout inherited from style.css)
    ========================================================================== */
-
-.onboard-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-/* Two column side-by-side layout */
-.onboard-columns {
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    gap: 36px;
-    align-items: start;
-}
-
-.onboard-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.col-header {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
 
 /* =========================================
    COLUMN 1: LANGUAGE SELECTION
@@ -35,7 +10,9 @@
 .lang-options {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
+    flex: 1;
+    justify-content: center;
 }
 
 .lang-card {
@@ -54,7 +31,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 16px;
+    padding: 18px 20px;
     background-color: #faf8f4;
     border: 2px solid #e7e2d8;
     border-radius: var(--radius-md);
@@ -281,11 +258,6 @@
    RESPONSIVE DESIGN (ONBOARDING)
    ========================================= */
 @media (max-width: 768px) {
-    .onboard-columns {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
     .lang-options {
         display: grid;
         grid-template-columns: 1fr 1fr;

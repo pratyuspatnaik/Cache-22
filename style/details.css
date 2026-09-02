@@ -1,25 +1,9 @@
 ﻿/* ==========================================================================
    KrishiMandi - Profile Details Stylesheet (style/details.css)
    Contains page-specific styles for address/payment fields and success overlay.
-   (Shared styles inherited from style.css)
+   (Shared layout inherited from style.css)
    ========================================================================== */
 
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-}
-
-.form-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.field {
-    margin-bottom: 16px;
-}
-
-.field input[type="text"],
 .field select {
     width: 100%;
     padding: 12px 14px;
@@ -31,14 +15,9 @@
     color: var(--text-dark);
     font-family: inherit;
     transition: all 0.25s ease;
+    cursor: pointer;
 }
 
-.field input[type="text"]::placeholder {
-    color: #a8a39a;
-    font-size: 0.9rem;
-}
-
-.field input[type="text"]:focus,
 .field select:focus {
     border-color: var(--primary-color);
     background-color: #ffffff;
@@ -49,14 +28,6 @@
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 12px;
-}
-
-.span-two {
-    grid-column: 1 / -1;
-}
-
-.btn-submit {
-    margin-top: 10px;
 }
 
 /* =========================================
@@ -131,11 +102,6 @@
    RESPONSIVE DESIGN (DETAILS)
    ========================================= */
 @media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
     .field-row {
         grid-template-columns: 1fr;
         gap: 0;

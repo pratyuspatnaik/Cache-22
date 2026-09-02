@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    KrishiMandi - Global Stylesheet (style.css)
    Contains shared variables, typography, reset, buttons, auth base layouts,
    and landing page components.
@@ -111,6 +111,7 @@ h1, h2, h3, h4 {
     font-size: 0.9rem;
 }
 
+.btn-submit-full,
 .btn-full {
     width: 100%;
     padding: 14px 24px;
@@ -125,6 +126,7 @@ h1, h2, h3, h4 {
     transition: all 0.25s ease;
 }
 
+.btn-submit-full:hover,
 .btn-full:hover {
     background-color: var(--primary-hover);
     box-shadow: 0 6px 16px rgba(76, 122, 59, 0.3);
@@ -132,7 +134,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   Shared Auth & Card Layouts
+   Shared Auth & Card Layouts (Uniform Across Pages)
    ========================================================================== */
 .auth-bg {
     background-color: var(--bg-light);
@@ -152,23 +154,24 @@ h1, h2, h3, h4 {
     background-color: var(--bg-white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    padding: 40px 45px;
+    padding: 38px 45px;
     border-top: 6px solid var(--primary-color);
-    min-height: 520px;
+    min-height: min(640px, 90vh);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: relative;
     overflow: hidden;
 }
 
 .auth-header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
 }
 
 .auth-header .logo {
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-size: 1.9rem;
     font-weight: 800;
     color: var(--primary-color);
@@ -178,7 +181,7 @@ h1, h2, h3, h4 {
 .auth-header h2 {
     font-size: 1.4rem;
     color: var(--text-dark);
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .auth-header p {
@@ -186,19 +189,33 @@ h1, h2, h3, h4 {
     font-size: 0.95rem;
 }
 
-/* Shared Form Field Structure */
-.form-field {
-    margin-bottom: 16px;
-    position: relative;
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 16px;
 }
 
-.form-field label,
-.field label {
-    display: block;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 6px;
+/* Symmetrical Two-Column Grid for Auth Pages */
+.auth-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+    align-items: stretch;
+    flex: 1;
+}
+
+.auth-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.col-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .section-label {
@@ -218,7 +235,23 @@ h1, h2, h3, h4 {
     border: none;
     height: 1px;
     background: linear-gradient(to right, #e2dcd2, transparent);
-    margin: 10px 0 18px;
+    margin: 8px 0 14px;
+}
+
+/* Shared Form Field Structure */
+.form-field,
+.field {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.form-field label,
+.field label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
 }
 
 .input-wrapper {
@@ -242,11 +275,44 @@ h1, h2, h3, h4 {
     border: none;
     outline: none;
     background: transparent;
-    padding: 12px 14px;
+    padding: 11px 14px;
     font-size: 0.95rem;
     color: var(--text-dark);
     width: 100%;
     font-family: inherit;
+}
+
+.input-wrapper select {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 11px 36px 11px 14px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    width: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #8c857b;
+    transition: color 0.2s ease;
+}
+
+.input-wrapper:focus-within .select-chevron {
+    color: var(--primary-color);
 }
 
 .input-wrapper input::placeholder {
@@ -266,10 +332,10 @@ h1, h2, h3, h4 {
 }
 
 .form-submit-row {
-    margin-top: 8px;
+    margin-top: 4px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     text-align: center;
 }
 
@@ -507,5 +573,10 @@ h1, h2, h3, h4 {
 
     .auth-card {
         padding: 28px 20px;
+    }
+
+    .auth-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 }
