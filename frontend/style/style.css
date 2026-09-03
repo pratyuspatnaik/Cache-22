@@ -353,6 +353,24 @@ h1, h2, h3, h4 {
     color: var(--primary-color);
 }
 
+.auth-switch-prompt {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    padding-top: 10px;
+    border-top: 1px dashed #e2dcd2;
+}
+
+.auth-switch-prompt a {
+    color: var(--soil-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.auth-switch-prompt a:hover {
+    color: var(--primary-color);
+}
+
 /* ==========================================================================
    Landing Page Components (Header, Hero, Features, Footer)
    ========================================================================== */

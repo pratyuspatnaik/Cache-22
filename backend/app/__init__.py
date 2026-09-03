@@ -1,0 +1,3 @@
+"""
+KrishiMandi Backend Package
+"""
