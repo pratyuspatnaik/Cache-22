@@ -1,0 +1,18 @@
+{
+    "dataset": "Potato - Ajuha - Desi - FAQ",
+    "observations": 652,
+    "single_split": {
+        "naive_mae": 17.82608695652174,
+        "linear_mae": 16.128259170304613,
+        "ridge_mae": 16.21652962199211,
+        "random_forest_mae": 21.23310619370742,
+        "xgboost_mae": 19.978954984941556,
+        "change_model_mae": 16.47351137502035
+    },
+    "walk_forward": {
+        "naive_average_mae": 20.02777777777778,
+        "full_linear_average_mae": 25.91329751880206,
+        "improved_linear_average_mae": 20.834998901713956,
+        "change_model_average_mae": 25.65147600885834
+    }
+}
