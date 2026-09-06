@@ -206,7 +206,7 @@
 
 /* ── Right Column (Summary) ── */
 .checkout-sidebar {
-    background-color: #faf9f6; /* Soft tinted bg */
+    background-color: #faf9f6;
     border-left: 1px solid #eaeaea;
     padding: 50px 10%;
     position: sticky;
@@ -215,14 +215,84 @@
     overflow-y: auto;
 }
 
-.summary-product-card {
+.tear-line {
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    border-bottom: 2px dashed #ccc;
+    position: relative;
+}
+
+.support-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f7ed;
+    border: 1px solid #d4ebd0;
+    border-radius: 8px;
     display: flex;
-    gap: 18px;
-    padding: 16px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #eaeaea;
-    margin-bottom: 30px;
+    gap: 16px;
+    align-items: center;
+}
+.support-icon {
+    font-size: 1.8rem;
+}
+.support-text {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+.support-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-top: 4px;
+}
+
+.summary-title {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.summary-product-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.download-bill-wrapper {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-download-bill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-download-bill:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.bill-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 12px;
 }
 
 .product-img {
@@ -312,6 +382,10 @@
 .total-row.final span:first-child {
     font-size: 1.1rem;
     font-weight: 600;
+}
+.total-row.final span:last-child {
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 /* ── Error Toasts ── */
