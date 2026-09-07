@@ -44,11 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('No active registration session found. User should register first.');
     }
 
+    // Pre-fill full name if available
+    try {
+        const storedUser = JSON.parse(localStorage.getItem('km_user') || '{}');
+        const nameInput = document.getElementById('fullname');
+        if (nameInput && storedUser.full_name && storedUser.full_name !== 'Farmer User') {
+            nameInput.value = storedUser.full_name;
+        }
+    } catch (e) {}
+
     if (detailsForm) {
         detailsForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             clearError();
 
+            const fullname = detailsForm.querySelector('input[name="fullname"]')?.value.trim() || '';
             const address1 = detailsForm.querySelector('input[name="address1"]')?.value.trim() || '';
             const address2 = detailsForm.querySelector('input[name="address2"]')?.value.trim() || '';
             const city = detailsForm.querySelector('input[name="city"]')?.value.trim() || '';
@@ -96,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: headers,
                     body: JSON.stringify({
                         user_id: currentUserId ? parseInt(currentUserId) : null,
+                        full_name: fullname || undefined,
                         address_line1: address1,
                         address_line2: address2 || null,
                         city: city,

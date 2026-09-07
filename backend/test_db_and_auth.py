@@ -52,6 +52,16 @@ def test_imports_and_schemas():
     assert prof_data.pincode == "411001"
     assert prof_data.aadhar_number == "1234 5678 9012"
 
+    update_data = schemas.UserProfileUpdateRequest(
+        full_name="Subham Sahoo",
+        language_preference="hindi",
+        city="Nagpur",
+        upi_id="subham@okhdfcbank"
+    )
+    assert update_data.full_name == "Subham Sahoo"
+    assert update_data.city == "Nagpur"
+    print("[OK] UserProfileUpdateRequest schema validation passed.")
+
     # 4. Test Database Table Initialization
     from app.database import init_db
     init_db()

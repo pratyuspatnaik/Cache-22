@@ -42,6 +42,7 @@ def register_user(
 
     # Create new user record
     new_user = models.User(
+        full_name=(payload.full_name or "Farmer User").strip(),
         mobile_number=payload.mobile,
         hashed_password=hashed_pwd,
         language_preference=payload.language or "english",
@@ -89,7 +90,9 @@ def complete_user_profile(
             detail="User not found or session expired. Please log in or register again."
         )
 
-    # Update address & payment fields
+    # Update name, address & payment fields
+    if payload.full_name:
+        user.full_name = payload.full_name.strip()
     user.address_line1 = payload.address_line1
     user.address_line2 = payload.address_line2
     user.city = payload.city
@@ -231,6 +234,7 @@ def login_with_otp(
     user = db.query(models.User).filter(models.User.mobile_number == payload.mobile).first()
     if not user:
         user = models.User(
+            full_name=f"Farmer ({payload.mobile[-4:]})",
             mobile_number=payload.mobile,
             language_preference="english",
             role="farmer",
@@ -261,4 +265,65 @@ def get_current_user_profile(
     """
     Retrieve the current logged-in user profile details.
     """
+    return current_user
+
+
+# --------------------------------------------------------------------------
+# 7. Update User Profile (Inline or Dialog updates from profile.html)
+# --------------------------------------------------------------------------
+@router.put("/profile", response_model=schemas.UserResponse)
+@router.patch("/profile", response_model=schemas.UserResponse)
+def update_user_profile(
+    payload: schemas.UserProfileUpdateRequest,
+    current_user: models.User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Update profile details for the authenticated user.
+    """
+    if payload.full_name is not None:
+        current_user.full_name = payload.full_name.strip()
+    
+    if payload.language_preference is not None:
+        current_user.language_preference = payload.language_preference.strip().lower()
+
+    if payload.mobile_number is not None and payload.mobile_number != current_user.mobile_number:
+        exists = db.query(models.User).filter(
+            models.User.mobile_number == payload.mobile_number,
+            models.User.id != current_user.id
+        ).first()
+        if exists:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Mobile number is already registered by another user"
+            )
+        current_user.mobile_number = payload.mobile_number
+
+    if payload.password:
+        current_user.hashed_password = get_password_hash(payload.password)
+
+    if payload.address_line1 is not None:
+        current_user.address_line1 = payload.address_line1.strip()
+
+    if payload.address_line2 is not None:
+        current_user.address_line2 = payload.address_line2.strip()
+
+    if payload.city is not None:
+        current_user.city = payload.city.strip()
+
+    if payload.pincode is not None:
+        current_user.pincode = payload.pincode.strip()
+
+    if payload.state is not None:
+        current_user.state = payload.state.strip()
+
+    if payload.upi_id is not None:
+        current_user.upi_id = payload.upi_id.strip()
+
+    if payload.aadhar_number is not None:
+        current_user.aadhar_number = payload.aadhar_number.strip()
+
+    current_user.updated_at = datetime.utcnow()
+    db.commit()
+    db.refresh(current_user)
     return current_user

@@ -44,12 +44,21 @@ def get_db():
         db.close()
 
 
+from sqlalchemy import text
+
+
 def init_db():
     """
-    Creates all database tables based on SQLAlchemy models.
+    Creates all database tables based on SQLAlchemy models and ensures required columns exist.
     """
     try:
         Base.metadata.create_all(bind=engine)
+        # Ensure full_name column exists if database table was created previously
+        with engine.begin() as conn:
+            try:
+                conn.execute(text("ALTER TABLE users ADD COLUMN IF NOT EXISTS full_name VARCHAR(100) DEFAULT 'Farmer User';"))
+            except Exception as col_err:
+                logger.debug(f"Column check/migration notice: {col_err}")
         logger.info("Database tables verified and initialized successfully.")
     except Exception as e:
         logger.error(f"Error creating database tables: {e}")
