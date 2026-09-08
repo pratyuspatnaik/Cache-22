@@ -409,6 +409,51 @@
     opacity: 1;
 }
 
+/* ── Tooltip ── */
+.tooltip-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: help;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 240px;
+    background-color: var(--text-dark);
+    color: #fff;
+    text-align: center;
+    border-radius: var(--radius-sm, 6px);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.4;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: var(--shadow-md);
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--text-dark) transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* ── Submit Button ── */
 .btn-pay {
     width: 100%;
@@ -516,16 +561,12 @@
         grid-template-columns: 1fr;
     }
     
-    .checkout-main, .checkout-sidebar {
+    .checkout-main {
         padding: 40px 6%;
     }
     
     .checkout-sidebar {
-        border-left: none;
-        border-bottom: 1px solid #eaeaea;
-        order: -1;
-        position: relative;
-        height: auto;
+        display: none; /* Sidebar not necessary on mobile as order summary is present in payment details */
     }
     
     .two-col-row {

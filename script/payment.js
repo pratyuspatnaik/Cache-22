@@ -93,7 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
     
     function updatePaymentBoxes() {
-        const selectedValue = document.querySelector('input[name="payment_method"]:checked').value;
+        const checkedRadio = document.querySelector('input[name="payment_method"]:checked');
+        if (!checkedRadio) return; // Exit if no payment radios exist (they were removed)
+
+        const selectedValue = checkedRadio.value;
         
         const boxes = ['upi', 'netbanking', 'card', 'cash'];
         
@@ -103,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (method === selectedValue) {
                 box.style.display = 'block';
-                // Add required to inputs in this box if they shouldn't be empty
-                // For simplicity, we just look for inputs we care about
                 const inputs = box.querySelectorAll('input, select');
                 inputs.forEach(i => {
                     if(i.id !== '') {
@@ -116,18 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const inputs = box.querySelectorAll('input, select');
                 inputs.forEach(i => {
                     i.removeAttribute('required');
-                    removeError(i.id); // clear errors from hidden boxes
+                    removeError(i.id);
                 });
             }
         });
     }
 
-    paymentRadios.forEach(radio => {
-        radio.addEventListener('change', updatePaymentBoxes);
-    });
-    
-    // Initialize correct box on load
-    updatePaymentBoxes();
+    if (paymentRadios.length > 0) {
+        paymentRadios.forEach(radio => {
+            radio.addEventListener('change', updatePaymentBoxes);
+        });
+        updatePaymentBoxes();
+    }
 
     // Validate on blur
     function attachBlurValidation() {
@@ -162,10 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     attachBlurValidation();
 
-    // --- Form Submission & Success Overlay ---
-    document.getElementById('pay-btn').addEventListener('click', function (e) {
+    // --- Form Submission & Razorpay Integration ---
+    document.getElementById('pay-btn').addEventListener('click', async function (e) {
         e.preventDefault();
         
+        const messageContainer = document.getElementById('payment-message-container');
+        messageContainer.style.display = 'none';
+
         let isValid = true;
         const currentRequiredInputs = form.querySelectorAll('input[required], select[required]');
 
@@ -174,26 +178,96 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!val) {
                 showError(input.id, 'This field is required');
                 isValid = false;
-            } else if (input.id === 'pincode' && val.length < 6) {
-                showError(input.id, 'Pincode must be 6 digits');
-                isValid = false;
-            } else if (input.id === 'card_number' && val.replace(/\s/g, '').length < 16) {
-                showError(input.id, 'Enter a valid 16-digit card number');
-                isValid = false;
-            } else if (input.id === 'expiry' && val.length < 5) {
-                showError(input.id, 'Format MM/YY');
-                isValid = false;
             }
         });
 
-        if (isValid) {
-            const overlay = document.getElementById('success-overlay');
-            overlay.classList.add('active');
+        if (!isValid) return;
 
-            setTimeout(() => {
-                // Redirect back to homepage after animation
-                window.location.href = '../index.html';
-            }, 3000);
+        try {
+            // Step 1: Create Order by calling Backend
+            const response = await fetch('http://localhost:8000/api/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 1250 })
+            });
+
+            if (!response.ok) throw new Error('Failed to create order');
+
+            const order = await response.json();
+
+            // Step 2: Open Razorpay checkout
+            const options = {
+                key: "rzp_test_TZcFs1Xf3UjUzo", // Will be replaced by user
+                amount: order.amount,
+                currency: order.currency,
+                name: "KrishiMandi",
+                description: "Crop Payment",
+                order_id: order.id,
+                handler: async function (response) {
+                    try {
+                        // Step 3: Verify Payment
+                        const verifyRes = await fetch('http://localhost:8000/api/verify-payment', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+                        
+                        if (verifyRes.ok) {
+                            messageContainer.style.display = 'block';
+                            messageContainer.style.color = '#4C7A3B'; // Success color
+                            messageContainer.innerHTML = 'Payment successful! <br><a href="#" id="download-receipt" style="text-decoration: underline; color: #4C7A3B;">Download Fee Receipt</a>';
+                            
+                            // Setup receipt download
+                            document.getElementById('download-receipt').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const receiptContent = `KrishiMandi Payment Receipt\n\nOrder ID: ${order.id}\nPayment ID: ${response.razorpay_payment_id}\nAmount Paid: Rs. 1250\nDate: ${new Date().toLocaleString()}\n\nThank you for choosing KrishiMandi!`;
+                                const blob = new Blob([receiptContent], { type: 'text/plain' });
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = 'KrishiMandi_Receipt.txt';
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                            });
+                            
+                            // Show success overlay optionally
+                            const overlay = document.getElementById('success-overlay');
+                            overlay.classList.add('active');
+                            setTimeout(() => overlay.classList.remove('active'), 2000);
+                        } else {
+                            throw new Error('Verification failed');
+                        }
+                    } catch (err) {
+                        messageContainer.style.display = 'block';
+                        messageContainer.style.color = 'red';
+                        messageContainer.textContent = 'Payment failed, Please try again.';
+                    }
+                },
+                theme: {
+                    color: "#4C7A3B"
+                }
+            };
+            
+            const rzp = new Razorpay(options);
+            
+            rzp.on('payment.failed', function (response){
+                messageContainer.style.display = 'block';
+                messageContainer.style.color = 'red';
+                messageContainer.textContent = 'Payment failed, Please try again.';
+            });
+            
+            rzp.open();
+            
+        } catch (error) {
+            console.error(error);
+            messageContainer.style.display = 'block';
+            messageContainer.style.color = 'red';
+            messageContainer.textContent = 'Failed to initiate payment. Ensure backend is running.';
         }
     });
 });

@@ -100,101 +100,56 @@
                     
                     <div class="payment-methods">
                         
-                        <!-- UPI -->
-                        <label class="payment-method-option">
-                            <input type="radio" name="payment_method" value="upi">
-                            <span class="payment-method-label">UPI (Google Pay, PhonePe)</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="var(--primary-color)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </label>
-                        <div id="upi-details-box" class="payment-details-box" style="display: none;">
-                            <div class="form-field">
-                                <label for="upi_id">Enter UPI ID</label>
-                                <div class="error-toast" id="upi_id-error"></div>
-                                <div class="input-wrapper">
-                                    <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                                    <input type="text" id="upi_id" name="upi_id" placeholder="e.g. 9876543210@ybl">
+                        <!-- ORDER SUMMARY -->
+                        <div class="payment-details-box" style="display: block; margin-top: 0;">
+                            <div class="summary-product-item">
+                                <div class="product-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                    <span class="product-qty">1</span>
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-name">Organic Basmati Rice (A-Grade)</div>
+                                    <div class="product-seller">Sold by: Ramesh Farmer FPO</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- NET BANKING -->
-                        <label class="payment-method-option">
-                            <input type="radio" name="payment_method" value="netbanking">
-                            <span class="payment-method-label">Net Banking</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="var(--primary-color)"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </label>
-                        <div id="netbanking-details-box" class="payment-details-box" style="display: none;">
-                            <div class="form-field">
-                                <label for="bank">Select Bank</label>
-                                <div class="error-toast" id="bank-error"></div>
-                                <div class="input-wrapper">
-                                    <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect></svg>
-                                    <select id="bank" name="bank">
-                                        <option value="">Choose a bank...</option>
-                                        <option value="sbi">State Bank of India</option>
-                                        <option value="hdfc">HDFC Bank</option>
-                                        <option value="icici">ICICI Bank</option>
-                                        <option value="axis">Axis Bank</option>
-                                        <option value="kotak">Kotak Mahindra Bank</option>
-                                    </select>
+                            <div class="summary-totals">
+                                <div class="total-row">
+                                    <span>Subtotal (20 kg)</span>
+                                    <span>₹1,200</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Logistics & Delivery</span>
+                                    <span>₹50</span>
+                                </div>
+                                <div class="total-row">
+                                    <span style="display: flex; align-items: center; gap: 6px;">
+                                        Security Charges (20%)
+                                        <div class="tooltip-container">
+                                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--text-light); color: white; font-size: 0.7rem; font-weight: bold;">?</span>
+                                            <span class="tooltip-text">The security fee is for security purposes. It will be refunded once the order is received.</span>
+                                        </div>
+                                    </span>
+                                    <span>₹240</span>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- CREDIT / DEBIT CARD -->
-                        <label class="payment-method-option">
-                            <input type="radio" name="payment_method" value="card" checked>
-                            <span class="payment-method-label">Credit / Debit Card</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="var(--primary-color)"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                        </label>
-                        <div id="card-details-box" class="payment-details-box" style="display: block;">
-                            <div class="form-field">
-                                <label for="card_number">Card Number</label>
-                                <div class="error-toast" id="card_number-error"></div>
-                                <div class="input-wrapper">
-                                    <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect></svg>
-                                    <input type="text" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" inputmode="numeric" required>
-                                </div>
+                            <div class="total-row final">
+                                <span>Total</span>
+                                <span>₹1,250</span>
                             </div>
-                            <div class="two-col-row">
-                                <div class="form-field">
-                                    <label for="expiry">Valid Thru</label>
-                                    <div class="error-toast" id="expiry-error"></div>
-                                    <div class="input-wrapper">
-                                        <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect></svg>
-                                        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required>
-                                    </div>
-                                </div>
-                                <div class="form-field">
-                                    <label for="cvv">CVV</label>
-                                    <div class="error-toast" id="cvv-error"></div>
-                                    <div class="input-wrapper">
-                                        <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect></svg>
-                                        <input type="password" id="cvv" name="cvv" placeholder="•••" maxlength="4" inputmode="numeric" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- CASH ON DELIVERY -->
-                        <label class="payment-method-option">
-                            <input type="radio" name="payment_method" value="cash">
-                            <span class="payment-method-label">Cash on Delivery</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="var(--primary-color)"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v12"></path><path d="M15 9.5c0-1.5-1.5-2.5-3-2.5-2 0-3 1-3 2.5s1 2.5 3 2.5 3 1 3 2.5-1.5 2.5-3 2.5-2 0-3-1"></path></svg>
-                        </label>
-                        <div id="cash-details-box" class="payment-details-box" style="display: none;">
-                            <p class="payment-details-text">You will pay securely with cash when your order is delivered to you.</p>
                         </div>
 
                     </div>
                 </section>
 
                 <div style="margin-top: 30px;">
-                    <button type="submit" id="pay-btn" class="btn-pay">Pay ₹1,250</button>
+                    <button type="submit" id="pay-btn" class="btn-pay">Pay Now to accept the bid</button>
                     <p class="secure-badge">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                         Secure 256-bit encrypted transfer
                     </p>
+                    <div id="payment-message-container" style="margin-top: 15px; font-weight: bold; text-align: center; display: none;"></div>
                 </div>
 
             </form>
@@ -266,6 +221,7 @@
         <p class="success-text">Order Placed Successfully!</p>
     </div>
 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="../script/payment.js"></script>
 </body>
 </html>
