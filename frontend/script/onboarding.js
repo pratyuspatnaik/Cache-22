@@ -124,11 +124,19 @@ document.addEventListener('DOMContentLoaded', () => {
         onboardForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
+            const nameInput = document.getElementById('name-field');
+            const fullName = nameInput ? nameInput.value.trim() : '';
             const mobile = mobileInput ? mobileInput.value.trim() : '';
             const password = passwordField ? passwordField.value : '';
             const selectedLang = document.querySelector('input[name="language"]:checked');
             const language = selectedLang ? selectedLang.value : 'english';
             const otp = otpInput ? otpInput.value.trim() : null;
+
+            if (!fullName || fullName.length < 2) {
+                showError('Please enter your full name (at least 2 characters).');
+                if (nameInput) nameInput.focus();
+                return;
+            }
 
             if (!mobile || mobile.length !== 10) {
                 showError('Mobile number must be exactly 10 digits.');
@@ -154,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        full_name: fullName,
                         mobile: mobile,
                         password: password,
                         language: language,
