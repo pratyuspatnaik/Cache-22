@@ -6,7 +6,7 @@
 
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://127.0.0.1:8000/api' 
-    : 'http://127.0.0.1:8000/api';
+    : '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     const detailsForm = document.getElementById('details-form') || document.querySelector('.auth-form') || document.querySelector('form');
