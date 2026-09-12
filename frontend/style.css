@@ -67,6 +67,10 @@ ul {
     color: var(--color-white);
 }
 
+.btn-dark:hover {
+    background-color: var(--color-green);
+}
+
 .btn-green {
     background-color: var(--color-green);
     color: var(--color-white);
@@ -94,7 +98,7 @@ ul {
     background: var(--color-white);
     border-radius: 50px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    padding: 12px 30px;
+    padding: 12px 16px 12px 24px;
     width: 100%;
     max-width: 1100px;
     display: flex;
@@ -115,6 +119,7 @@ ul {
     gap: 8px;
     font-size: 1.5rem;
     font-weight: 600;
+    cursor: pointer;
 }
 .logo strong.text-dark-blue { color: var(--color-dark-blue); }
 .logo strong.text-green { color: var(--color-green); font-weight: 600; }
@@ -127,6 +132,16 @@ ul {
     font-size: 0.95rem;
 }
 
+.nav-links a {
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+    color: var(--color-green);
+}
+
 .nav-actions {
     display: flex;
     align-items: center;
@@ -136,6 +151,7 @@ ul {
 .icon-badge {
     position: relative;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
 .icon-badge .badge {
@@ -153,11 +169,28 @@ ul {
     color: var(--color-white);
 }
 
+.cart-icon:hover,
+.cart-icon:active,
+.cart-icon.active {
+    color: var(--color-green);
+}
+
+.bell-icon:hover,
+.bell-icon:active,
+.bell-icon.active {
+    color: var(--color-yellow);
+}
+
 .green-badge { background-color: var(--color-green); }
 .yellow-badge { background-color: var(--color-yellow); }
 
 .login-link {
     font-weight: 600;
+    transition: color 0.3s;
+}
+
+.login-link:hover {
+    color: var(--color-green);
 }
 
 /* Hero Section */
@@ -273,6 +306,10 @@ ul {
     color: var(--color-white);
 }
 
+.hero-stats .stat {
+    white-space: nowrap;
+}
+
 .hero-stats .stat h3 {
     font-size: 2.5rem;
     margin-bottom: 4px;
@@ -307,6 +344,11 @@ ul {
     flex: 1;
     max-width: 500px;
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
 }
 
 .after-card {
@@ -402,6 +444,11 @@ ul {
     padding: 50px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.03);
 }
 
 .white-card {
@@ -448,6 +495,13 @@ ul {
     align-items: center;
     gap: 8px;
     font-weight: 600;
+    transition: all 0.3s ease;
+    transform-origin: left center;
+}
+
+.link:hover {
+    color: var(--color-yellow) !important;
+    transform: scale(1.05);
 }
 
 /* Steps */
@@ -544,20 +598,44 @@ ul {
     font-weight: 600;
 }
 
-.testimonials {
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
     display: flex;
     gap: 30px;
-    justify-content: center;
+    width: max-content;
+    animation: scroll-left 40s linear infinite;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); }
 }
 
 .testimonial {
     background: var(--color-white);
     padding: 40px;
     border-radius: 12px;
-    flex: 1;
-    max-width: 500px;
+    width: 400px;
+    flex-shrink: 0;
     border-left: 4px solid;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.testimonial:hover {
+    transform: scale(1.05);
 }
 
 .left-border-green { border-color: var(--color-green); }
@@ -622,6 +700,24 @@ ul {
     justify-content: center;
 }
 
+.cta-buttons .btn {
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-buttons .btn-green:hover {
+    background-color: var(--color-yellow);
+    transform: scale(1.05);
+}
+
+.cta-buttons .btn-outline-yellow:hover {
+    background-color: var(--color-white);
+    color: var(--color-green);
+    border-color: var(--color-green);
+    transform: scale(1.05);
+}
+
 /* Footer */
 footer {
     padding: 80px 0 20px;
@@ -648,6 +744,11 @@ footer {
 .footer-col ul a {
     color: #ccc;
     font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.footer-col ul a:hover {
+    color: var(--color-yellow);
 }
 
 .brand-col p {

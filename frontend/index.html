@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriLink - Farm Fresh, Direct to You</title>
+    <title>AgriLink</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -18,16 +18,17 @@
                 <span><strong class="text-dark-blue">Agri</strong><strong class="text-green">Link</strong></span>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Marketplace</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="#" class="nav-link">Marketplace</a></li>
+                <li><a href="#" class="nav-link">Delivery</a></li>
+                <li><a href="#" class="nav-link">Orders</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
             </ul>
             <div class="nav-actions">
-                <div class="icon-badge">
+                <div class="icon-badge cart-icon">
                     <i data-lucide="shopping-cart"></i>
                     <span class="badge green-badge">2</span>
                 </div>
-                <div class="icon-badge">
+                <div class="icon-badge bell-icon">
                     <i data-lucide="bell"></i>
                     <span class="badge yellow-badge">3</span>
                 </div>
@@ -134,7 +135,7 @@
                     <a href="#" class="link text-green">Start Selling <i data-lucide="arrow-right"></i></a>
                 </div>
                 <div class="feature-card green-card text-left">
-                    <div class="feature-label text-yellow">
+                    <div class="feature-label text-dark-blue">
                         <i data-lucide="shopping-cart"></i> BUILT FOR BUYERS WHO DEMAND BETTER
                     </div>
                     <h3 class="text-white">Consistent supply, full traceability</h3>
@@ -144,7 +145,7 @@
                         <li><i data-lucide="check-circle-2"></i> Full farm-to-door traceability and batch tracking</li>
                         <li><i data-lucide="check-circle-2"></i> Dedicated account support for recurring sourcing</li>
                     </ul>
-                    <a href="#" class="link text-yellow">Start Sourcing <i data-lucide="arrow-right"></i></a>
+                    <a href="#" class="link text-dark-blue">Start Sourcing <i data-lucide="arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -191,24 +192,108 @@
                 <span><i data-lucide="database" class="text-green"></i> Data Protected</span>
                 <span><i data-lucide="check-circle" class="text-green"></i> ISO-aligned Standards</span>
             </div>
-            <div class="testimonials">
-                <div class="testimonial text-left left-border-green">
-                    <p class="quote">"For the first time I sell direct to a supermarket chain and get paid in two days. My margin went up 28% in one season."</p>
-                    <div class="author">
-                        <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
-                        <div>
-                            <strong>Grace Wanjiku</strong>
-                            <span>Maize Farmer, Nakuru</span>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <!-- Original 5 -->
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"For the first time I sell direct to a supermarket chain and get paid in two days. My margin went up 28% in one season."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Grace Wanjiku</strong>
+                                <span>Maize Farmer, Nakuru</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial text-left left-border-blue">
-                    <p class="quote">"We source 80% of our fresh produce through AgriLink now. Consistent quality, full traceability, and no middleman markups."</p>
-                    <div class="author">
-                        <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
-                        <div>
-                            <strong>Daniel Omondi</strong>
-                            <span>Head of Procurement, FreshMart Supermarkets</span>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"We source 80% of our fresh produce through AgriLink now. Consistent quality, full traceability, and no middleman markups."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Daniel Omondi</strong>
+                                <span>Head of Procurement, FreshMart</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"The pricing is always transparent. I know exactly what I'm paying for and the farmers get exactly what they deserve."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Amina Hassan</strong>
+                                <span>Organic Retailer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"Getting consistent orders every week means I can finally plan my harvests without worrying about waste."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Samuel Kamau</strong>
+                                <span>Tomato Farmer, Kajiado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"AgriLink’s logistics integration is seamless. Produce arrives on time and fresh, every single morning."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>John Doe</strong>
+                                <span>Restaurant Owner, Mombasa</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicated 5 for seamless scroll -->
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"For the first time I sell direct to a supermarket chain and get paid in two days. My margin went up 28% in one season."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Grace Wanjiku</strong>
+                                <span>Maize Farmer, Nakuru</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"We source 80% of our fresh produce through AgriLink now. Consistent quality, full traceability, and no middleman markups."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Daniel Omondi</strong>
+                                <span>Head of Procurement, FreshMart</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"The pricing is always transparent. I know exactly what I'm paying for and the farmers get exactly what they deserve."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Amina Hassan</strong>
+                                <span>Organic Retailer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"Getting consistent orders every week means I can finally plan my harvests without worrying about waste."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Samuel Kamau</strong>
+                                <span>Tomato Farmer, Kajiado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"AgriLink’s logistics integration is seamless. Produce arrives on time and fresh, every single morning."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>John Doe</strong>
+                                <span>Restaurant Owner, Mombasa</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,7 +331,7 @@
                 <h4>Legal</h4>
                 <ul>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Terms of Use</a></li>
                 </ul>
                 <div class="social-links">
                     <a href="#"><i data-lucide="facebook"></i></a>
