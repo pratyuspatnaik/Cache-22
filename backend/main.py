@@ -1,7 +1,18 @@
+import sys
+from pathlib import Path
 from contextlib import asynccontextmanager
 import logging
+
+# Ensure backend directory is in sys.path so 'app.*' imports work from anywhere
+BACKEND_DIR = Path(__file__).resolve().parent
+ROOT_DIR = BACKEND_DIR.parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.config import settings
 from app.database import init_db
 from app.routers import auth
@@ -48,11 +59,29 @@ app.add_middleware(
 app.include_router(auth.router, prefix=settings.API_V1_STR)
 
 
-@app.get("/", tags=["Health Check"])
+# Mount static frontend directories if available
+FRONTEND_DIR = ROOT_DIR / "frontend"
+if FRONTEND_DIR.exists():
+    pages_dir = FRONTEND_DIR / "pages"
+    style_dir = FRONTEND_DIR / "style"
+    script_dir = FRONTEND_DIR / "script"
+    if pages_dir.exists():
+        app.mount("/pages", StaticFiles(directory=str(pages_dir)), name="pages")
+    if style_dir.exists():
+        app.mount("/style", StaticFiles(directory=str(style_dir)), name="style")
+    if script_dir.exists():
+        app.mount("/script", StaticFiles(directory=str(script_dir)), name="script")
+
+
+@app.get("/", tags=["Frontend"])
+@app.get("/index.html", tags=["Frontend"])
 def root():
     """
-    Root API health check and platform welcome.
+    Serve frontend index.html if present, otherwise API health status.
     """
+    index_file = FRONTEND_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(str(index_file))
     return {
         "project": settings.PROJECT_NAME,
         "version": settings.VERSION,
