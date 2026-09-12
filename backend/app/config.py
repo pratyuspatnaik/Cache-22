@@ -14,10 +14,11 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api"
 
-    # Database settings
-    DATABASE_URL: str = os.getenv(
-        "DATABASE_URL",
-        "postgresql://postgres:password@localhost:5432/krishimandi_db"
+    # Database settings (reads custom DATABASE_URL or Vercel Supabase integration POSTGRES_URL)
+    DATABASE_URL: str = (
+        os.getenv("DATABASE_URL")
+        or os.getenv("POSTGRES_URL")
+        or "postgresql://postgres:password@localhost:5432/krishimandi_db"
     )
 
     # JWT Authentication settings

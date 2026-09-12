@@ -1,26 +1,33 @@
 import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.pool import NullPool
 from app.config import settings
 
 logger = logging.getLogger(__name__)
 
-# Configure SQLAlchemy engine for PostgreSQL
+# Configure SQLAlchemy engine for PostgreSQL / Serverless
 db_url = settings.DATABASE_URL
+if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
 
-# Handle special connection arguments (e.g., SQLite if used for fallback/testing)
+# Handle special connection arguments
 connect_args = {}
 if db_url.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 
 try:
-    engine = create_engine(
-        db_url,
-        pool_pre_ping=True,
-        pool_size=10,
-        max_overflow=20,
-        connect_args=connect_args
-    )
+    if db_url.startswith("sqlite"):
+        engine = create_engine(db_url, connect_args=connect_args)
+    else:
+        # NullPool is the recommended pattern for Vercel Serverless + Supabase PgBouncer (Port 6543)
+        # It lets Supabase manage pooling and prevents connection exhaustion across lambda instances
+        engine = create_engine(
+            db_url,
+            poolclass=NullPool,
+            pool_pre_ping=True,
+            connect_args=connect_args
+        )
 except Exception as e:
     logger.error(f"Failed to initialize database engine with URL {db_url}: {e}")
     # Fallback to local SQLite if PostgreSQL is unavailable during development

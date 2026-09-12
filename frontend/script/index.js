@@ -8,7 +8,7 @@
 
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://127.0.0.1:8000/api' 
-    : 'http://127.0.0.1:8000/api';
+    : '/api';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const headerActionsContainer = document.getElementById('header-actions');
