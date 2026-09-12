@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     # Database settings
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",
-        "postgresql://abhishek:root@localhost:5432/krishimandi_db"
+        "postgresql://postgres:password@localhost:5432/krishimandi_db"
     )
 
     # JWT Authentication settings
