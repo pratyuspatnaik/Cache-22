@@ -1,0 +1,157 @@
+/* KisanSetu Modern Agricultural Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #15803d; /* Emerald 700 */
+  --primary-light: #22c55e; /* Green 500 */
+  --primary-dark: #166534; /* Green 800 */
+  --secondary: #d97706; /* Amber 600 */
+  --secondary-light: #f59e0b; /* Amber 500 */
+  --accent: #0284c7; /* Sky 600 */
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism & Header */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.gradient-badge {
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
+}
+
+.gold-gradient-badge {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+/* Tab Pills */
+.role-pill {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.role-pill.active {
+  background-color: #15803d;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px -2px rgba(21, 128, 61, 0.35);
+}
+
+.role-pill.active svg {
+  stroke: #ffffff;
+}
+
+/* Live Marquee */
+.mandi-ticker {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker-slide 32s linear infinite;
+}
+
+@keyframes ticker-slide {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Cards & Hover Effects */
+.agri-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.agri-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+/* Pulse Animation for Live alerts */
+.pulse-indicator {
+  position: relative;
+}
+
+.pulse-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9999px;
+  background-color: #ef4444;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Map Container */
+#routeMap {
+  height: 480px;
+  width: 100%;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+/* Leaflet Custom Popup Styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+}
+
+/* Voice assistant wave */
+.voice-wave {
+  animation: pulse-bar 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse-bar {
+  0%, 100% { height: 8px; }
+  50% { height: 24px; }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
