@@ -152,16 +152,23 @@ ul {
     position: relative;
     cursor: pointer;
     transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.icon-badge i, .icon-badge svg {
+    width: 20px;
+    height: 20px;
 }
 
 .icon-badge .badge {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    font-size: 0.7rem;
+    top: -6px;
+    right: -6px;
+    font-size: 0.65rem;
     font-weight: 600;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -996,10 +1003,7 @@ button, input, textarea, select { font: inherit; }
     .btn, .hero-btn, .nav-links a, .login-link, .social-links a { min-height: 44px; display: inline-flex; align-items: center; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-}
+
 /* Footer left alignment */
 footer {
     text-align: left;
