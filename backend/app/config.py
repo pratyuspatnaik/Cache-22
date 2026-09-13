@@ -45,9 +45,13 @@ class Settings(BaseSettings):
     ]
 
     # Speech-to-Text (STT) Provider abstraction settings
-    # Options: bhashini | google | sarvam | mock
-    STT_PROVIDER: str = os.getenv("STT_PROVIDER", "bhashini")
+    # Options: sarvam | bhashini | google | mock
+    STT_PROVIDER: str = os.getenv("STT_PROVIDER", "sarvam")
     
+    # Sarvam AI configuration (Primary STT Provider)
+    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY", "")
+    SARVAM_MODEL: str = os.getenv("SARVAM_MODEL", "saarika:v2")
+
     # Bhashini ULCA configuration
     BHASHINI_USER_ID: str = os.getenv("BHASHINI_USER_ID", "")
     BHASHINI_API_KEY: str = os.getenv("BHASHINI_API_KEY", "")
@@ -59,9 +63,6 @@ class Settings(BaseSettings):
 
     # Google Cloud Speech-to-Text configuration
     GOOGLE_CLOUD_API_KEY: str = os.getenv("GOOGLE_CLOUD_API_KEY") or os.getenv("GOOGLE_API_KEY", "")
-
-    # Sarvam AI configuration
-    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY", "")
 
     class Config:
         case_sensitive = True

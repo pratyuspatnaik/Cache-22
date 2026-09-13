@@ -164,12 +164,13 @@ class GoogleCloudSTT:
 
 class SarvamSTT:
     """
-    Sarvam AI Speech-to-Text provider (Saaras model, highly optimized for Indian languages).
-    Priority 3 fallback.
+    Sarvam AI Speech-to-Text provider (Saarika model, highly optimized for Indian languages).
+    Primary STT provider for KrishiMandi.
     """
-    def __init__(self, api_key: Optional[str] = None, endpoint: Optional[str] = None):
-        self.api_key = api_key or settings.SARVAM_API_KEY or os.getenv("SARVAM_API_KEY", "")
+    def __init__(self, api_key: Optional[str] = None, endpoint: Optional[str] = None, model: Optional[str] = None):
+        self.api_key = api_key or os.getenv("SARVAM_API_KEY", "") or getattr(settings, "SARVAM_API_KEY", "")
         self.endpoint = endpoint or "https://api.sarvam.ai/speech-to-text"
+        self.model = model or os.getenv("SARVAM_MODEL") or getattr(settings, "SARVAM_MODEL", None) or "saaras:v3"
 
     async def transcribe(self, audio_bytes: bytes, language: str = "or-IN") -> str:
         if not self.api_key:
@@ -180,30 +181,44 @@ class SarvamSTT:
         if not audio_bytes or len(audio_bytes) < 100:
             raise ValueError("Audio recording is empty or too short.")
 
-        lang_code = language if "-" in language else f"{language}-IN"
+        # Map language code to Sarvam AI supported standards (Odia -> 'od-IN')
+        clean_lang = language.strip().lower()
+        if clean_lang.startswith("or") or clean_lang.startswith("od"):
+            lang_code = "od-IN"
+        elif clean_lang.startswith("hi"):
+            lang_code = "hi-IN"
+        elif clean_lang.startswith("en"):
+            lang_code = "en-IN"
+        elif "-" in language:
+            lang_code = language
+        else:
+            lang_code = f"{language}-IN"
+
+        # Detect WebM vs WAV header
+        is_webm = audio_bytes.startswith(b"\x1a\x45\xdf\xa3")
+        content_type = "audio/webm" if is_webm else "audio/wav"
+        filename = "recording.webm" if is_webm else "recording.wav"
+
         headers = {
             "api-subscription-key": self.api_key
         }
         files = {
-            "file": ("audio.wav", audio_bytes, "audio/wav")
+            "file": (filename, audio_bytes, content_type)
         }
         data = {
-            "model": "saaras:v1",
+            "model": self.model,
             "language_code": lang_code
         }
 
-        async with httpx.AsyncClient(timeout=15.0) as client:
+        async with httpx.AsyncClient(timeout=30.0) as client:
             resp = await client.post(self.endpoint, headers=headers, data=data, files=files)
             if resp.status_code != 200:
                 logger.error(f"Sarvam AI error ({resp.status_code}): {resp.text}")
                 raise RuntimeError(f"Sarvam AI returned status {resp.status_code}: {resp.text}")
 
             res_json = resp.json()
-            transcript = res_json.get("transcript")
-            if transcript:
-                return transcript.strip()
-
-            raise RuntimeError("No transcription returned by Sarvam AI.")
+            transcript = res_json.get("transcript", "")
+            return transcript.strip()
 
 
 class MockSTT:
@@ -227,17 +242,18 @@ def get_stt_provider(provider_name: Optional[str] = None) -> STTProvider:
     """
     Factory function resolving the active STT provider instance based on
     parameter or `settings.STT_PROVIDER` (or `STT_PROVIDER` environment variable).
+    Defaults to 'sarvam'.
     """
-    name = (provider_name or os.getenv("STT_PROVIDER") or settings.STT_PROVIDER or "bhashini").strip().lower()
+    name = (provider_name or os.getenv("STT_PROVIDER") or settings.STT_PROVIDER or "sarvam").strip().lower()
 
-    if name == "bhashini":
+    if name == "sarvam":
+        return SarvamSTT()
+    elif name == "bhashini":
         return BhashiniSTT()
     elif name in ("google", "googlecloud", "google_cloud"):
         return GoogleCloudSTT()
-    elif name == "sarvam":
-        return SarvamSTT()
     elif name in ("mock", "test", "demo"):
         return MockSTT()
     else:
-        logger.warning(f"Unknown STT_PROVIDER '{name}', defaulting to BhashiniSTT.")
-        return BhashiniSTT()
+        logger.warning(f"Unknown STT_PROVIDER '{name}', defaulting to SarvamSTT.")
+        return SarvamSTT()
