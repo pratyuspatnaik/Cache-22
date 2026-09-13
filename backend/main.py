@@ -103,6 +103,18 @@ def health_check():
     }
 
 
+@app.get("/{filename}", tags=["Frontend"])
+def serve_root_static_files(filename: str):
+    """
+    Catch-all route to serve static files (like style.css) from the root of frontend dir.
+    """
+    file_path = FRONTEND_DIR / filename
+    if file_path.exists() and file_path.is_file():
+        return FileResponse(str(file_path))
+    from fastapi import HTTPException
+    raise HTTPException(status_code=404, detail="File not found")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
