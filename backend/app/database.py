@@ -1,4 +1,11 @@
+import sys
+from pathlib import Path
 import logging
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.pool import NullPool
@@ -60,12 +67,45 @@ def init_db():
     """
     try:
         Base.metadata.create_all(bind=engine)
-        # Ensure full_name column exists if database table was created previously
+        # Ensure role-specific columns exist if users table was created previously
         with engine.begin() as conn:
-            try:
-                conn.execute(text("ALTER TABLE users ADD COLUMN IF NOT EXISTS full_name VARCHAR(100) DEFAULT 'Farmer User';"))
-            except Exception as col_err:
-                logger.debug(f"Column check/migration notice: {col_err}")
-        logger.info("Database tables verified and initialized successfully.")
+            if engine.dialect.name == "sqlite":
+                # SQLite dialect: inspect existing columns via PRAGMA table_info
+                result = conn.execute(text("PRAGMA table_info(users)"))
+                existing_cols = {row[1] for row in result.fetchall()}
+                sqlite_columns = [
+                    ("full_name", "VARCHAR(100) DEFAULT 'Farmer User'"),
+                    ("buyer_type", "VARCHAR(50)"),
+                    ("gstin", "VARCHAR(50)"),
+                    ("farm_location", "VARCHAR(255)"),
+                    ("primary_crops", "VARCHAR(255)"),
+                    ("vehicle_details", "VARCHAR(255)"),
+                    ("service_area", "VARCHAR(255)"),
+                    ("capacity", "VARCHAR(100)")
+                ]
+                for col_name, col_type in sqlite_columns:
+                    if col_name not in existing_cols:
+                        try:
+                            conn.execute(text(f"ALTER TABLE users ADD COLUMN {col_name} {col_type};"))
+                        except Exception as e:
+                            logger.debug(f"SQLite migration notice ({col_name}): {e}")
+            else:
+                # PostgreSQL dialect
+                columns_to_add = [
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS full_name VARCHAR(100) DEFAULT 'Farmer User';",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS buyer_type VARCHAR(50);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS gstin VARCHAR(50);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS farm_location VARCHAR(255);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS primary_crops VARCHAR(255);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS vehicle_details VARCHAR(255);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS service_area VARCHAR(255);",
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS capacity VARCHAR(100);"
+                ]
+                for col_stmt in columns_to_add:
+                    try:
+                        conn.execute(text(col_stmt))
+                    except Exception as col_err:
+                        logger.debug(f"Column migration notice ({col_stmt}): {col_err}")
+        logger.info("Database tables and columns verified and initialized successfully.")
     except Exception as e:
         logger.error(f"Error creating database tables: {e}")

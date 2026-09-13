@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMandi - Crop Marketplace & Discovery</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/discovery.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container header-content">
+            <a href="../index.html" class="logo">KrishiMandi</a>
+            <div class="header-right">
+                <nav class="nav-links" id="main-nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="discovery.html" class="active">Marketplace</a>
+                    <a href="../index.html#logistics">Logistics</a>
+                    <a href="../index.html#about">About</a>
+                </nav>
+                <div class="header-actions" id="header-actions">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="onboarding.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Marketplace Hero & Filter Header -->
+        <section class="discovery-hero">
+            <div class="discovery-hero-inner">
+                <div class="discovery-title-row">
+                    <div class="discovery-headline">
+                        <h1>Direct Farmer Marketplace</h1>
+                        <p>Discover fresh harvest directly from verified Indian farmers at transparent mandi rates.</p>
+                    </div>
+                    <div id="farmer-post-btn-container" style="display: none;">
+                        <button type="button" class="btn-post-crop" id="open-post-modal-btn">
+                            <span>🌱</span> Post Crop Listing
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & Filters Toolbar -->
+                <div class="search-filter-box">
+                    <!-- Main Search Input -->
+                    <div class="search-main-input-wrap">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="search-crop-input" class="search-main-input" placeholder="Search crops (e.g. Wheat, Tomato, Onion) or Mandi City...">
+                    </div>
+
+                    <!-- Voice Assistant Button -->
+                    <button type="button" class="btn-voice-search" id="start-voice-btn" title="Speak in English, Hindi, or Odia">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                        <span>Voice Search (🎙️)</span>
+                    </button>
+
+                    <!-- Secondary Filters -->
+                    <div class="filter-controls-row">
+                        <!-- Quality Grade Filter -->
+                        <select id="filter-grade" class="filter-select">
+                            <option value="">All Grades</option>
+                            <option value="Grade A">Grade A (Premium)</option>
+                            <option value="Grade B">Grade B (Standard)</option>
+                            <option value="Grade C">Grade C (Commercial)</option>
+                        </select>
+
+                        <!-- Price Range Filters -->
+                        <div class="price-inputs">
+                            <input type="number" id="filter-min-price" class="price-input" placeholder="Min ₹" min="0">
+                            <span style="color: #9ca3af;">–</span>
+                            <input type="number" id="filter-max-price" class="price-input" placeholder="Max ₹" min="0">
+                        </div>
+
+                        <!-- Sort Order -->
+                        <select id="filter-sort" class="filter-select">
+                            <option value="newest">Newest First</option>
+                            <option value="price_asc">Price: Low to High</option>
+                            <option value="price_desc">Price: High to Low</option>
+                        </select>
+
+                        <button type="button" class="btn-filter-apply" id="apply-filters-btn">Apply</button>
+                        <button type="button" class="btn-filter-reset" id="reset-filters-btn">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Voice / Filter Tags Bar -->
+        <div class="active-filters-bar" id="active-filters-bar" style="display: none;">
+            <!-- Populated via discovery.js -->
+        </div>
+
+        <!-- Marketplace Listings Container -->
+        <section class="marketplace-container">
+            <div class="marketplace-header-bar">
+                <span class="results-count" id="results-count-text">Loading fresh produce listings...</span>
+            </div>
+
+            <!-- Dynamic Crop Cards Grid -->
+            <div class="listings-grid" id="listings-grid">
+                <!-- Populated dynamically via discovery.js -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Post Crop Listing Modal (Farmers Only) -->
+    <div class="post-modal-backdrop" id="post-listing-modal">
+        <div class="post-modal-card">
+            <h2>Post Fresh Crop Listing</h2>
+            <p class="sub">Directly reach wholesale buyers, supermarkets, and consumer cooperatives.</p>
+            <div id="post-modal-error" style="color: #dc2626; font-size: 0.86rem; margin-bottom: 12px; display: none;"></div>
+
+            <form id="post-listing-form">
+                <div class="post-form-grid">
+                    <div class="form-field full-width">
+                        <label for="post-crop-name">Crop Name *</label>
+                        <input type="text" id="post-crop-name" name="crop_name" placeholder="e.g. Sharbati Wheat, Red Onion, Tomato" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-variety">Variety</label>
+                        <input type="text" id="post-variety" name="variety" placeholder="e.g. Desi, Hybrid, Golden">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-quality">Quality Grade</label>
+                        <select id="post-quality" name="quality_grade">
+                            <option value="Grade A">Grade A (Premium Export)</option>
+                            <option value="Grade B">Grade B (Mandi Standard)</option>
+                            <option value="Grade C">Grade C (Processing)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-quantity">Quantity Available *</label>
+                        <input type="number" id="post-quantity" name="quantity" min="0.1" step="0.1" placeholder="e.g. 50" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-unit">Unit *</label>
+                        <select id="post-unit" name="unit" required>
+                            <option value="quintal">Quintal (100 kg)</option>
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="ton">Metric Ton (1000 kg)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="post-price">Price Per Unit (₹ INR) *</label>
+                        <input type="number" id="post-price" name="price_per_unit" min="1" step="0.5" placeholder="e.g. 2400" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-city">City / Mandi</label>
+                        <input type="text" id="post-city" name="location_city" placeholder="e.g. Nashik">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="post-state">State</label>
+                        <input type="text" id="post-state" name="location_state" placeholder="e.g. Maharashtra">
+                    </div>
+                </div>
+
+                <div class="post-modal-actions">
+                    <button type="button" class="btn btn-outline" id="close-post-modal-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submit-listing-btn">Publish Listing →</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Farmer Modal -->
+    <div class="post-modal-backdrop" id="contact-farmer-modal">
+        <div class="post-modal-card" style="max-width: 420px; text-align: center;">
+            <div style="font-size: 2.4rem; margin-bottom: 8px;">👨‍🌾</div>
+            <h2 id="contact-farmer-name">Farmer Name</h2>
+            <p class="sub" id="contact-farmer-loc">Mandi Location</p>
+            <div id="contact-auth-notice" style="display: none; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px; margin-bottom: 14px; font-size: 0.84rem; color: #92400e; text-align: center;">
+                🔒 <strong>Sign in required:</strong> Log in with your buyer or farmer account to unlock direct contact numbers.
+            </div>
+            <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                <span style="font-size: 0.8rem; color: #166534; font-weight: 700; text-transform: uppercase;">Direct Contact / सीधा संपर्क</span>
+                <div id="contact-farmer-phone" style="font-size: 1.3rem; font-weight: 800; color: #1b6b3e; margin-top: 6px;">+91-XXXXXXXXXX</div>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a id="btn-call-farmer" href="#" class="btn btn-primary" style="flex: 1; text-align: center;">Call Now</a>
+                <button type="button" class="btn btn-outline" id="close-contact-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../script/voice-search.js"></script>
+    <script src="../script/discovery.js"></script>
+</body>
+</html>

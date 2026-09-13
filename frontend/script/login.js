@@ -333,9 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Store authentication tokens
+                    // Store authentication tokens & role
                     localStorage.setItem('km_access_token', data.access_token);
                     localStorage.setItem('km_user', JSON.stringify(data.user));
+                    localStorage.setItem('km_role', data.user.role || 'farmer');
 
                     // Display success feedback
                     if (successOverlay) {
@@ -343,8 +344,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     setTimeout(() => {
-                        window.location.href = '../index.html';
-                    }, 2200);
+                        // Check if Step 2 profile completion was finished
+                        if (!data.user.is_profile_completed) {
+                            sessionStorage.setItem('km_current_user_id', data.user.id);
+                            window.location.href = 'details.html';
+                            return;
+                        }
+
+                        // Role-aware post-login routing
+                        if (data.user.role === 'buyer') {
+                            window.location.href = 'discovery.html';
+                        } else {
+                            window.location.href = '../index.html';
+                        }
+                    }, 2000);
                 } else {
                     showError(data.detail || 'Login failed. Please verify your credentials.');
                     if (submitBtn) {

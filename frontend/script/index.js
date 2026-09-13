@@ -60,10 +60,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             ? (parts[0][0] + parts[1][0]).toUpperCase() 
             : displayName.slice(0, 2).toUpperCase();
 
+        const isFarmer = role.toLowerCase() === 'farmer';
+        const actionBtn = isFarmer
+            ? `<a href="pages/post-crop.html" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;" title="Put Up Crops for Sale">🌱 Put Up Crops</a>`
+            : `<a href="pages/discovery.html" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;" title="Browse Produce Marketplace">🛒 Marketplace</a>`;
+
         headerActionsContainer.innerHTML = `
-            <a href="pages/payment.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;" title="Go to Payment & Orders">
-                🛒 Checkout
-            </a>
+            ${actionBtn}
             <div class="user-menu-wrapper" id="user-menu-wrapper">
                 <button class="user-profile-btn" id="user-profile-toggle" aria-expanded="false" title="Account Menu">
                     <div class="user-avatar-small" id="header-avatar-initials">${initials}</div>
@@ -88,13 +91,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </svg>
                         Edit Profile & Addresses
                     </a>
-                    <a href="pages/payment.html" class="dropdown-item">
+                    ${isFarmer ? `
+                    <a href="pages/post-crop.html" class="dropdown-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
                         </svg>
-                        Payment & Checkout
-                    </a>
+                        Put Up Crops Portal
+                    </a>` : `
+                    <a href="pages/discovery.html" class="dropdown-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        Marketplace
+                    </a>`}
                     <div class="dropdown-divider"></div>
                     <button type="button" class="dropdown-item logout-item" id="header-logout-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -108,14 +118,41 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
-        // Add Cart to nav-links when logged in
+        // Update nav links based on role
         const mainNav = document.getElementById('main-nav-links');
-        if (mainNav && !document.getElementById('nav-cart-link')) {
-            const cartNavA = document.createElement('a');
-            cartNavA.href = 'pages/payment.html';
-            cartNavA.id = 'nav-cart-link';
-            cartNavA.textContent = 'Cart';
-            mainNav.appendChild(cartNavA);
+        if (mainNav) {
+            if (isFarmer) {
+                mainNav.innerHTML = `
+                    <a href="#home">Home</a>
+                    <a href="pages/post-crop.html">Put Up Crops</a>
+                    <a href="#features">Features</a>
+                    <a href="#logistics">Logistics</a>
+                    <a href="#about">About</a>
+                `;
+            } else {
+                mainNav.innerHTML = `
+                    <a href="#home">Home</a>
+                    <a href="pages/discovery.html">Marketplace</a>
+                    <a href="pages/payment.html">Cart</a>
+                    <a href="#features">Features</a>
+                    <a href="#logistics">Logistics</a>
+                    <a href="#about">About</a>
+                `;
+            }
+        }
+
+        // Update hero buttons based on role
+        const heroBtns = document.querySelector('.hero-buttons');
+        if (heroBtns) {
+            if (isFarmer) {
+                heroBtns.innerHTML = `
+                    <a href="pages/post-crop.html" class="btn btn-primary btn-large">🌱 Put Up Crops (Farmer Portal)</a>
+                `;
+            } else {
+                heroBtns.innerHTML = `
+                    <a href="pages/discovery.html" class="btn btn-primary btn-large">🛒 Explore Marketplace</a>
+                `;
+            }
         }
 
         const wrapper = document.getElementById('user-menu-wrapper');

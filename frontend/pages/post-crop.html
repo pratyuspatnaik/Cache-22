@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Portal - Put Up Crops | KrishiMandi</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/discovery.css">
+    <style>
+        .farmer-portal-hero {
+            background: linear-gradient(135deg, #166534 0%, #15803d 50%, #22c55e 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+        .portal-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+        @media (max-width: 860px) {
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .portal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1.5px solid #e5e7eb;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            padding: 26px;
+        }
+        .portal-card h2 {
+            font-size: 1.35rem;
+            color: #1f2937;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .portal-card p.sub {
+            color: #6b7280;
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+        }
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .farmer-listing-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+        .farmer-listing-item:hover {
+            background: #ffffff;
+            border-color: #22c55e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .btn-delete-listing {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-delete-listing:hover {
+            background: #ef4444;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container header-content">
+            <a href="../index.html" class="logo">KrishiMandi</a>
+            <div class="header-right">
+                <nav class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="post-crop.html" class="active">Farmer Portal</a>
+                    <a href="profile.html">My Profile</a>
+                </nav>
+                <div class="header-actions" id="header-actions">
+                    <button type="button" class="btn btn-outline" id="farmer-logout-btn">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="farmer-portal-hero">
+            <div class="portal-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                    <div>
+                        <h1 style="font-size: 2.1rem; font-weight: 800; margin-bottom: 6px;">Farmer Crop Portal 🌱</h1>
+                        <p style="color: #dcfce7; font-size: 1.05rem; margin: 0;">Put up fresh produce directly for wholesale buyers across India.</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.9rem;">
+                        👨‍🌾 <span id="farmer-display-name">Farmer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Portal Container -->
+        <section class="portal-container">
+            <div class="portal-grid">
+                
+                <!-- Left Column: Put Up New Crop Form -->
+                <div class="portal-card">
+                    <h2>🌱 Put Up Crop Listing</h2>
+                    <p class="sub">Publish your harvested crops at your desired mandi price.</p>
+                    
+                    <div id="post-status-alert" style="display:none; padding: 12px; border-radius: 8px; margin-bottom: 14px; font-size: 0.88rem;"></div>
+
+                    <form id="farmer-post-form">
+                        <div class="form-grid-2">
+                            <div class="form-field full-width">
+                                <label for="crop_name">Crop Name *</label>
+                                <input type="text" id="crop_name" name="crop_name" placeholder="e.g. Sharbati Wheat, Red Onion, Tomato" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="variety">Variety / किस्म</label>
+                                <input type="text" id="variety" name="variety" placeholder="e.g. Desi, Hybrid, Golden">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="quality_grade">Quality Grade</label>
+                                <select id="quality_grade" name="quality_grade">
+                                    <option value="Grade A">Grade A (Premium)</option>
+                                    <option value="Grade B">Grade B (Standard)</option>
+                                    <option value="Grade C">Grade C (Processing)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="quantity">Quantity Available *</label>
+                                <input type="number" id="quantity" name="quantity" min="0.1" step="0.1" placeholder="e.g. 100" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="unit">Unit *</label>
+                                <select id="unit" name="unit" required>
+                                    <option value="quintal">Quintal (100 kg)</option>
+                                    <option value="kg">Kilogram (kg)</option>
+                                    <option value="ton">Metric Ton (1000 kg)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="price_per_unit">Price Per Unit (₹ INR) *</label>
+                                <input type="number" id="price_per_unit" name="price_per_unit" min="1" step="1" placeholder="e.g. 2450" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="location_city">Mandi City</label>
+                                <input type="text" id="location_city" name="location_city" placeholder="e.g. Nashik">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="location_state">State</label>
+                                <input type="text" id="location_state" name="location_state" placeholder="e.g. Maharashtra">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 22px;">
+                            <button type="submit" class="btn btn-primary" id="publish-crop-btn" style="width: 100%; padding: 13px; font-size: 0.98rem; font-weight: 700;">
+                                Put Up Crop for Sale →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Column: My Active Crop Listings -->
+                <div class="portal-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <h2>📦 My Active Crops</h2>
+                        <span id="farmer-listings-count" style="font-size: 0.82rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px;">0 Listings</span>
+                    </div>
+                    <p class="sub">These crops are currently live and visible to wholesale buyers.</p>
+
+                    <div id="my-listings-container">
+                        <div style="text-align: center; padding: 40px 10px; color: #9ca3af;">
+                            Loading your crop listings...
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/post-crop.js"></script>
+</body>
+</html>

@@ -11,11 +11,17 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
 
 document.addEventListener('DOMContentLoaded', async function() {
     
-    // Auth Guard: cart / payment is only accessible after login
+    // Auth Guard: cart / payment is only accessible to authenticated Buyers
     const token = localStorage.getItem('km_access_token');
+    const role = localStorage.getItem('km_role');
     if (!token) {
-        alert('Please log in first to view your cart and checkout.');
-        window.location.href = 'login.html';
+        alert('Please log in with a Buyer account to purchase produce.');
+        window.location.href = 'login.html?role=buyer';
+        return;
+    }
+    if (role === 'farmer') {
+        alert('Access Restricted: Farmer accounts can only put up crops for sale, not purchase from the marketplace. Redirecting to your Farmer Portal.');
+        window.location.href = 'post-crop.html';
         return;
     }
 

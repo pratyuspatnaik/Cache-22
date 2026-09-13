@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from app.config import settings
 from app.database import init_db
-from app.routers import auth
+from app.routers import auth, listings, voice
 
 logging.basicConfig(
     level=logging.INFO,
@@ -57,6 +57,8 @@ app.add_middleware(
 
 # Register API Routers
 app.include_router(auth.router, prefix=settings.API_V1_STR)
+app.include_router(listings.router, prefix=settings.API_V1_STR)
+app.include_router(voice.router, prefix=settings.API_V1_STR)
 
 
 # Mount static frontend directories if available

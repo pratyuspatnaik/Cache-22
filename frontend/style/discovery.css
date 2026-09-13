@@ -1,0 +1,667 @@
+/* ==========================================================================
+   KrishiMandi - Discovery Marketplace Stylesheet (style/discovery.css)
+   ========================================================================== */
+
+/* Marketplace Hero & Search Banner */
+.discovery-hero {
+    background: linear-gradient(135deg, #1b6b3e 0%, #2e8b57 100%);
+    color: #ffffff;
+    padding: 44px 20px 36px 20px;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 8px 24px rgba(27, 107, 62, 0.18);
+    margin-bottom: 30px;
+}
+
+.discovery-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.discovery-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.discovery-headline h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.discovery-headline p {
+    font-size: 1.05rem;
+    color: #d1fae5;
+    margin: 0;
+}
+
+/* Post Crop Button for Farmers */
+.btn-post-crop {
+    background: #ffffff;
+    color: #1b6b3e;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 22px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease;
+}
+
+.btn-post-crop:hover {
+    background: #f0fdf4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Search Bar & Voice Assistant Container */
+.search-filter-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.search-main-input-wrap {
+    flex: 1 1 320px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-main-input-wrap svg.search-icon {
+    position: absolute;
+    left: 14px;
+    color: #8c857b;
+    pointer-events: none;
+}
+
+.search-main-input {
+    width: 100%;
+    padding: 12px 42px 12px 42px;
+    border: 1.5px solid #e2ddd3;
+    border-radius: 10px;
+    font-size: 0.96rem;
+    background: #faf8f5;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-main-input:focus {
+    border-color: #2e8b57;
+    background: #ffffff;
+}
+
+/* Voice Search Button */
+.btn-voice-search {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    flex-shrink: 0;
+}
+
+.btn-voice-search:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    transform: scale(1.03);
+}
+
+.btn-voice-search svg {
+    display: block;
+}
+
+/* Secondary Filter Controls */
+.filter-controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 11px 14px;
+    border: 1.5px solid #e2ddd3;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    background: #faf8f5;
+    color: #2c2724;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.filter-select:focus {
+    border-color: #2e8b57;
+    background: #ffffff;
+}
+
+.price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.price-input {
+    width: 95px;
+    padding: 11px 10px;
+    border: 1.5px solid #e2ddd3;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    background: #faf8f5;
+    outline: none;
+}
+
+.price-input:focus {
+    border-color: #2e8b57;
+    background: #ffffff;
+}
+
+.btn-filter-apply {
+    background: #2e8b57;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-filter-apply:hover {
+    background: #1b6b3e;
+}
+
+.btn-filter-reset {
+    background: transparent;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-filter-reset:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Active Filter Pills Bar */
+.active-filters-bar {
+    max-width: 1200px;
+    margin: 0 auto 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.active-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #1b6b3e;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #c8e6c9;
+}
+
+.active-filter-pill button {
+    background: none;
+    border: none;
+    color: #1b6b3e;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Main Listings Grid */
+.marketplace-container {
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+
+.marketplace-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.results-count {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Crop Card Design */
+.crop-card {
+    background: #ffffff;
+    border: 1.5px solid #eae5db;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.28s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.crop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+    border-color: #2e8b57;
+}
+
+.crop-card-top {
+    padding: 20px 20px 14px 20px;
+    background: #faf8f5;
+    border-bottom: 1px solid #f0ece2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.crop-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1.5px solid #e6e0d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.grade-pill {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    text-transform: uppercase;
+}
+
+.grade-pill.grade-a {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.crop-card-body {
+    padding: 18px 20px;
+    flex: 1;
+}
+
+.crop-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.crop-variety {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 14px;
+}
+
+.crop-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.price-val {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1b6b3e;
+}
+
+.price-unit {
+    font-size: 0.88rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.crop-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.84rem;
+    color: #4b5563;
+    padding: 10px 0;
+    border-top: 1px dashed #e5e7eb;
+    border-bottom: 1px dashed #e5e7eb;
+    margin-bottom: 16px;
+}
+
+.farmer-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    color: #374151;
+    margin-bottom: 18px;
+}
+
+.farmer-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0369a1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.78rem;
+}
+
+.crop-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-buy-crop {
+    background: #1b6b3e;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-buy-crop:hover {
+    background: #14532d;
+}
+
+.btn-contact-farmer {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.btn-contact-farmer:hover {
+    background: #e5e7eb;
+}
+
+/* Empty State */
+.empty-listings {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1.5px dashed #d1d5db;
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.empty-listings h3 {
+    font-size: 1.25rem;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.empty-listings p {
+    color: #6b7280;
+    font-size: 0.92rem;
+    margin-bottom: 18px;
+}
+
+/* Voice Search Modal Backdrop */
+.voice-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.voice-modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: popIn 0.25s ease-out;
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.voice-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 1.6rem;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.voice-lang-selector-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.86rem;
+    color: #4b5563;
+    margin-bottom: 24px;
+}
+
+.voice-lang-dropdown {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 0.85rem;
+}
+
+.voice-mic-circle {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1b6b3e 0%, #2e8b57 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(27, 107, 62, 0.35);
+}
+
+.voice-mic-circle.pulsing .voice-wave-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(46, 139, 87, 0.5);
+    animation: wavePulse 1.8s infinite ease-out;
+}
+
+.voice-mic-circle.pulsing .voice-wave-ring.second {
+    animation-delay: 0.9s;
+}
+
+@keyframes wavePulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+.voice-modal-status {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.voice-transcript-preview {
+    font-size: 0.95rem;
+    color: #4b5563;
+    background: #f3f4f6;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.voice-sample-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.sample-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.voice-chip {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: #374151;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.voice-chip:hover {
+    background: #f0fdf4;
+    border-color: #86efac;
+    color: #166534;
+}
+
+/* Post Crop Modal */
+.post-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.post-modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 520px;
+    width: 100%;
+    padding: 28px 30px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.post-modal-card h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.post-modal-card p.sub {
+    font-size: 0.88rem;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.post-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.post-modal-actions {
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}

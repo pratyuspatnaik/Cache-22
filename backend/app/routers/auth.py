@@ -1,4 +1,5 @@
 import random
+import re
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -40,14 +41,39 @@ def register_user(
     # Hash the password securely
     hashed_pwd = get_password_hash(payload.password)
 
+    user_role = payload.role or "farmer"
+    cleaned_aadhar = None
+    if payload.aadhar_number:
+        digits = re.sub(r"\D", "", payload.aadhar_number)
+        if len(digits) == 12:
+            cleaned_aadhar = digits
+
+    is_complete = bool(payload.address_line1 and payload.city and payload.upi_id)
+    if user_role == "farmer" and not cleaned_aadhar:
+        is_complete = False
+
     # Create new user record
     new_user = models.User(
         full_name=(payload.full_name or "Farmer User").strip(),
         mobile_number=payload.mobile,
         hashed_password=hashed_pwd,
         language_preference=payload.language or "english",
-        role=payload.role or "farmer",
-        is_profile_completed=False,
+        role=user_role,
+        address_line1=payload.address_line1,
+        address_line2=payload.address_line2,
+        city=payload.city,
+        pincode=payload.pincode,
+        state=payload.state,
+        upi_id=payload.upi_id,
+        aadhar_number=cleaned_aadhar if user_role == "farmer" else None,
+        farm_location=payload.farm_location if user_role == "farmer" else None,
+        primary_crops=payload.primary_crops if user_role == "farmer" else None,
+        buyer_type=payload.buyer_type if user_role == "buyer" else None,
+        gstin=payload.gstin.strip().upper() if (payload.gstin and user_role == "buyer") else None,
+        vehicle_details=payload.vehicle_details if user_role == "partner" else None,
+        service_area=payload.service_area if user_role == "partner" else None,
+        capacity=payload.capacity if user_role == "partner" else None,
+        is_profile_completed=is_complete,
         is_verified=True,
         is_active=True
     )
@@ -90,7 +116,7 @@ def complete_user_profile(
             detail="User not found or session expired. Please log in or register again."
         )
 
-    # Update name, address & payment fields
+    # Update common name, address & payment fields
     if payload.full_name:
         user.full_name = payload.full_name.strip()
     user.address_line1 = payload.address_line1
@@ -99,10 +125,36 @@ def complete_user_profile(
     user.pincode = payload.pincode
     user.state = payload.state
     user.upi_id = payload.upi_id
-    if payload.aadhar_number:
-        user.aadhar_number = payload.aadhar_number
-    elif payload.aadhar:
-        user.aadhar_number = payload.aadhar
+
+    # Role-based conditional requirements
+    aadhar_val = payload.aadhar_number or payload.aadhar
+    if user.role == "farmer":
+        if not aadhar_val or len(re.sub(r"\D", "", aadhar_val)) != 12:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Aadhaar number (12 digits) is required for farmer profile verification."
+            )
+        user.aadhar_number = re.sub(r"\D", "", aadhar_val)
+        if payload.farm_location:
+            user.farm_location = payload.farm_location.strip()
+        if payload.primary_crops:
+            user.primary_crops = payload.primary_crops.strip()
+    elif user.role == "buyer":
+        # Buyers do not provide Aadhaar
+        user.aadhar_number = None
+        user.buyer_type = payload.buyer_type or "individual"
+        if payload.gstin:
+            user.gstin = payload.gstin.strip().upper()
+    elif user.role == "partner":
+        # Logistics partners do not provide Aadhaar
+        user.aadhar_number = None
+        if payload.vehicle_details:
+            user.vehicle_details = payload.vehicle_details.strip()
+        if payload.service_area:
+            user.service_area = payload.service_area.strip()
+        if payload.capacity:
+            user.capacity = payload.capacity.strip()
+
     user.is_profile_completed = True
     user.updated_at = datetime.utcnow()
 
