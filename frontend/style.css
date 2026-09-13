@@ -243,7 +243,7 @@ ul {
 .hero-text {
     flex: 1;
     max-width: 1440px;
-    transform: translateX(-80px);
+    transform: translateX(-35px);
 }
 
 .hero-label {
@@ -336,7 +336,7 @@ ul {
     overflow: hidden;
     border: none;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    transform: translateX(+80px);
+    transform: translateX(+35px);
 }
 
 .hero-image img {
@@ -842,7 +842,7 @@ button, input, textarea, select { font: inherit; }
     .hero-content { align-items: center; gap: 30px; }
     .hero-text { max-width: 52%; }
     .hero h1 { font-size: 3.5rem; margin-bottom: 30px; }
-    .hero-image { width: min(360px, 100%); height: auto; aspect-ratio: 1 / 1; }
+    .hero-image { width: min(360px, 100%); height: auto; aspect-ratio: 1 / 1; transform: translateX(-5px); }
     .hero-stats { gap: 32px; }
     .hero-stats .stat h3 { font-size: 2rem; }
 
