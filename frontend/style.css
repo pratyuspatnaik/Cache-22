@@ -1011,3 +1011,189 @@ footer {
 .copyright {
     text-align: left;
 }
+/* =========================================
+   MOBILE NAVBAR / HAMBURGER MENU
+   ========================================= */
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--color-dark-blue);
+    cursor: pointer;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* =========================================
+   BUYER BUTTON - FIX VISIBILITY
+   ========================================= */
+
+.btn-buyer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    border: 2px solid var(--color-dark-blue);
+}
+
+.btn-buyer:hover {
+    background-color: var(--color-yellow);
+    color: var(--color-dark-blue);
+    border-color: var(--color-yellow);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    /* Show hamburger */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Keep actions on the right */
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    /* Hide navigation links initially */
+    .nav-links {
+        display: none;
+        width: 100%;
+        order: 10;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        margin-top: 10px;
+        padding: 10px 0 0;
+
+        border-top: 1px solid #eeeeee;
+    }
+
+    /* Show menu when opened */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 12px 10px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+        background-color: var(--color-off-white);
+    }
+
+    /* Hide login on mobile */
+    .nav-actions .login-link {
+        display: none;
+    }
+
+    /* Farmer + Buyer buttons */
+    .hero-buttons {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero-btn {
+        flex: 1;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 10px 12px;
+        border-radius: 20px;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .menu-toggle {
+        padding: 6px;
+    }
+
+    .menu-toggle svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Stack Farmer and Buyer buttons */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+/* =========================================
+   MOBILE HERO STATS VISIBILITY FIX
+   ========================================= */
+
+@media (max-width: 768px) {
+    .hero-stats {
+        color: var(--color-dark-blue);
+        background: rgba(255, 255, 255, 0.92);
+        padding: 18px 14px;
+        border-radius: 16px;
+        width: 100%;
+        gap: 18px 24px;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-stats .stat h3 {
+        color: var(--color-dark-blue);
+        font-size: 1.7rem;
+    }
+
+    .hero-stats .stat p {
+        color: #555;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+    .hero-stats {
+        padding: 16px 10px;
+        gap: 16px 20px;
+    }
+
+    .hero-stats .stat h3 {
+        font-size: 1.45rem;
+    }
+
+    .hero-stats .stat p {
+        font-size: 0.8rem;
+    }
+}
