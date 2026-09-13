@@ -1,97 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishi Mandi - Direct Farmer Marketplace</title>
-    <link rel="stylesheet" href="style/style.css">
+    <title>AgriLink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="hero-bg.jpg">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
-
 <body>
-    <header class="header">
-        <div class="header-container header-content">
-            <a href="index.html" class="logo">KrishiMandi</a>
-            <div class="header-right">
-                <nav class="nav-links" id="main-nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#features">Features</a>
-                    <a href="#logistics">Logistics</a>
-                    <a href="#about">About</a>
-                </nav>
-                <div class="header-actions" id="header-actions">
-                    <a href="pages/login.html" class="btn btn-outline">Log In</a>
-                    <a href="pages/onboarding.html" class="btn btn-primary">Sign Up</a>
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="logo">
+                <i data-lucide="leaf" class="text-green"></i>
+                <span><strong class="text-dark-blue">Agri</strong><strong class="text-green">Link</strong></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Marketplace</a></li>
+                <li><a href="#" class="nav-link">Delivery</a></li>
+                <li><a href="#" class="nav-link">Orders</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="icon-badge cart-icon">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="badge green-badge">2</span>
+                </div>
+                <div class="icon-badge bell-icon">
+                    <i data-lucide="bell"></i>
+                    <span class="badge yellow-badge">3</span>
+                </div>
+                <div class="nav-divider"></div>
+                <a href="#" class="login-link">Log In</a>
+                <a href="#" class="btn btn-dark">Sign Up</a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-label">
+                    <span class="dot"></span> No commissions. No middlemen. Ever.
+                </div>
+                <h1>Farm Fresh,<br><span class="text-green">Direct to You.</span></h1>
+                <div class="hero-buttons">
+                    <div class="hero-btn btn-farmer">
+                        <i data-lucide="sprout"></i>
+                        <div class="btn-text">I'm a<br><strong>Seller</strong></div>
+                    </div>
+                    <div class="hero-btn btn-buyer">
+                        <i data-lucide="truck"></i>
+                        <div class="btn-text">I'm a<br><strong>Buyer</strong></div>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>3,200+</h3>
+                        <p>Farmers earning more</p>
+                    </div>
+                    <div class="stat">
+                        <h3>48h</h3>
+                        <p>Average payout time</p>
+                    </div>
+                    <div class="stat">
+                        <h3>28 States</h3>
+                        <p>Pan-country coverage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" alt="Farm field">
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container hero-inner">
-                <div class="hero-text">
-                    <h1>Fair Prices for Farmers, Fresh Produce for You</h1>
-                    <p>Connect directly with buyers and bulk consumers. Skip the middlemen, maximize your earnings, and
-                        leverage AI for better demand forecasting.</p>
-                    <div class="hero-buttons">
-                        <a href="pages/onboarding.html" class="btn btn-primary btn-large">I am a Farmer</a>
-                        <a href="pages/onboarding.html" class="btn btn-secondary btn-large">I am a Buyer</a>
-                    </div>
+    <section class="old-way container text-center">
+        <h2>The Old Way Was Broken.</h2>
+        <p class="section-desc">Every extra hand in the chain adds cost, delay, and distance from<br>the truth. We cut it out.</p>
+        
+        <div class="comparison-cards">
+            <div class="card before-card">
+                <div class="card-label red">BEFORE</div>
+                <div class="chain">
+                    <div class="chain-item"><i data-lucide="sprout"></i><span>Farm</span></div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item"><i data-lucide="users"></i><span>Middleman</span></div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item"><i data-lucide="truck"></i><span>Distributor</span></div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item"><i data-lucide="store"></i><span>Retailer</span></div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item"><i data-lucide="shopping-cart"></i><span>Buyer</span></div>
                 </div>
-                <div class="hero-image-placeholder">
-                    <div class="placeholder-box">Marketplace Illustration</div>
+                <div class="value-lost">-30% value lost</div>
+            </div>
+            
+            <div class="card after-card">
+                <div class="card-label green">AFTER</div>
+                <div class="chain after-chain">
+                    <div class="chain-item"><i data-lucide="sprout"></i><span>Farm</span></div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item agrilink-node">
+                        <i data-lucide="link"></i>
+                        <span>AgriLink</span>
+                    </div>
+                    <i data-lucide="arrow-right" class="arrow"></i>
+                    <div class="chain-item"><i data-lucide="shopping-cart"></i><span>Buyer</span></div>
                 </div>
-            </div>
-        </section>
-
-        <section id="features" class="features section-light">
-            <div class="container">
-                <h2 class="section-title">How It Works</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="icon">🌾</div>
-                        <h3>Direct Connection</h3>
-                        <p>Farmers and FPOs deal directly with consumers and bulk buyers, removing intermediaries.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">🚚</div>
-                        <h3>Logistics Support</h3>
-                        <p>Integrated transport solutions ensure timely pickup and delivery of fresh produce.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">📈</div>
-                        <h3>AI Forecasting</h3>
-                        <p>Smart demand prediction and route optimization to reduce wastage and costs.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <h3>KrishiMandi</h3>
-                <p>Empowering farmers through technology.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="#">Support</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-            </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p>Email: support@krishimandi.in</p>
-                <p>Phone: 1800-123-4567</p>
+                <div class="value-gained">+30% more value, 100% traceable</div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 KrishiMandi. All rights reserved.</p>
+    </section>
+
+    <section class="why-choose bg-off-white">
+        <div class="container text-center">
+            <h2>Why They Choose AgriLink</h2>
+            <div class="features">
+                <div class="feature-card white-card text-left">
+                    <div class="feature-label text-green">
+                        <i data-lucide="sprout"></i> BUILT FOR FARMERS WHO DESERVE BETTER
+                    </div>
+                    <h3>Fair prices, fast payouts, zero hassle</h3>
+                    <ul class="check-list green-checks">
+                        <li><i data-lucide="check-circle-2"></i> Fair, transparent prices set by real demand — no hidden deductions</li>
+                        <li><i data-lucide="check-circle-2"></i> Fast payouts within 48 hours, straight to mobile money or bank</li>
+                        <li><i data-lucide="check-circle-2"></i> List your harvest in under 2 minutes from any phone</li>
+                        <li><i data-lucide="check-circle-2"></i> Direct relationships with repeat institutional buyers</li>
+                    </ul>
+                    <a href="#" class="link text-green">Start Selling <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="feature-card green-card text-left">
+                    <div class="feature-label text-dark-blue">
+                        <i data-lucide="shopping-cart"></i> BUILT FOR BUYERS WHO DEMAND BETTER
+                    </div>
+                    <h3 class="text-white">Consistent supply, full traceability</h3>
+                    <ul class="check-list yellow-checks text-white">
+                        <li><i data-lucide="check-circle-2"></i> Verified quality and food-safety standards on every lot</li>
+                        <li><i data-lucide="check-circle-2"></i> Bulk ordering with consistent, scheduled supply</li>
+                        <li><i data-lucide="check-circle-2"></i> Full farm-to-door traceability and batch tracking</li>
+                        <li><i data-lucide="check-circle-2"></i> Dedicated account support for recurring sourcing</li>
+                    </ul>
+                    <a href="#" class="link text-dark-blue">Start Sourcing <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps container text-center">
+        <h2>From Farm to Business in 3 Simple Steps</h2>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-icon step-1">
+                    <i data-lucide="list"></i>
+                </div>
+                <div class="step-badge badge-1">Step 1</div>
+                <h4>List or Browse</h4>
+                <p>Farmers list their harvest with photos and price. Buyers browse verified listings by crop, volume, and location.</p>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-icon step-2">
+                    <i data-lucide="handshake"></i>
+                </div>
+                <div class="step-badge badge-2">Step 2</div>
+                <h4>Connect & Agree</h4>
+                <p>Chat, negotiate, and confirm order terms directly in-app. No brokers, no side deals, everything recorded.</p>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-icon step-3">
+                    <i data-lucide="truck"></i>
+                </div>
+                <div class="step-badge badge-3">Step 3</div>
+                <h4>Deliver, Track & Get Paid</h4>
+                <p>Logistics tracked end-to-end. Farmer gets paid automatically on delivery confirmation. Buyer gets full traceability.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted bg-off-white">
+        <div class="container text-center">
+            <h2>Trusted on Both Sides of the Table</h2>
+            <div class="trust-badges">
+                <span><i data-lucide="shield-check" class="text-green"></i> Quality Verified</span>
+                <span><i data-lucide="lock" class="text-green"></i> Secure Payments</span>
+                <span><i data-lucide="database" class="text-green"></i> Data Protected</span>
+                <span><i data-lucide="check-circle" class="text-green"></i> ISO Standards</span>
+            </div>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <!-- Original 5 -->
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"For the first time I sell direct to a supermarket chain and get paid in two days. My margin went up 28% in one season."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Pratyush Kanungo</strong>
+                                <span>Maize Farmer, Nakuru</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"We source 80% of our fresh produce through AgriLink now. Consistent quality, full traceability, and no middleman markups."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Om Debadutta</strong>
+                                <span>Head of Procurement, FreshMart</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"The pricing is always transparent. I know exactly what I'm paying for and the farmers get exactly what they deserve."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Suchismita Singh</strong>
+                                <span>Organic Retailer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"Getting consistent orders every week means I can finally plan my harvests without worrying about waste."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Pratikshya Rath</strong>
+                                <span>Tomato Farmer, Kajiado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"AgriLink’s logistics integration is seamless. Produce arrives on time and fresh, every single morning."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Abhishek Mishra</strong>
+                                <span>Restaurant Owner, Mombasa</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicated 5 for seamless scroll -->
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"For the first time I sell direct to a supermarket chain and get paid in two days. My margin went up 28% in one season."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Pratyush Kanungo</strong>
+                                <span>Maize Farmer, Nakuru</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"We source 80% of our fresh produce through AgriLink now. Consistent quality, full traceability, and no middleman markups."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Om Debadutta</strong>
+                                <span>Head of Procurement, FreshMart</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"The pricing is always transparent. I know exactly what I'm paying for and the farmers get exactly what they deserve."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Suchismita Singh</strong>
+                                <span>Organic Retailer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-blue">
+                        <p class="quote">"Getting consistent orders every week means I can finally plan my harvests without worrying about waste."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Pratikshya Rath</strong>
+                                <span>Tomato Farmer, Kajiado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial text-left left-border-green">
+                        <p class="quote">"AgriLink’s logistics integration is seamless. Produce arrives on time and fresh, every single morning."</p>
+                        <div class="author">
+                            <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
+                            <div>
+                                <strong>Abhishek Mishra</strong>
+                                <span>Restaurant Owner, Mombasa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta container text-center">
+        <h2>Ready to Trade Direct?</h2>
+        <p>Join thousands of farmers and buyers already cutting out the middleman.</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-green">Start Selling</a>
+            <a href="#" class="btn btn-outline-yellow">Start Buying</a>
+        </div>
+    </section>
+
+    <footer class="bg-dark-blue text-white">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <div class="logo text-white">
+                    <i data-lucide="leaf" class="text-green"></i>
+                    <span>Agri<strong>Link</strong></span>
+                </div>
+                <p>Connecting farmers directly with buyers for fairer, faster, and more transparent agricultural trade.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; 2026 AgriLink. All rights reserved.</p>
         </div>
     </footer>
-    <script src="script/index.js"></script>
-</body>
 
+    <script src="script.js"></script>
+</body>
 </html>
