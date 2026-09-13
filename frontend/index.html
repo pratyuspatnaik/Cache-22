@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="hero-bg.jpg">
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 <body>
     <div class="navbar-wrapper">
@@ -34,7 +35,7 @@
                 </div>
                 <div class="nav-divider"></div>
                 <a href="#" class="login-link">Log In</a>
-                <a href="#" class="btn btn-dark">Get Started</a>
+                <a href="#" class="btn btn-dark">Sign Up</a>
             </div>
         </nav>
     </div>
@@ -49,7 +50,7 @@
                 <div class="hero-buttons">
                     <div class="hero-btn btn-farmer">
                         <i data-lucide="sprout"></i>
-                        <div class="btn-text">I'm a<br><strong>Farmer</strong></div>
+                        <div class="btn-text">I'm a<br><strong>Seller</strong></div>
                     </div>
                     <div class="hero-btn btn-buyer">
                         <i data-lucide="truck"></i>
@@ -190,7 +191,7 @@
                 <span><i data-lucide="shield-check" class="text-green"></i> Quality Verified</span>
                 <span><i data-lucide="lock" class="text-green"></i> Secure Payments</span>
                 <span><i data-lucide="database" class="text-green"></i> Data Protected</span>
-                <span><i data-lucide="check-circle" class="text-green"></i> ISO-aligned Standards</span>
+                <span><i data-lucide="check-circle" class="text-green"></i> ISO Standards</span>
             </div>
             <div class="marquee-container">
                 <div class="marquee-content">
@@ -200,7 +201,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Grace Wanjiku</strong>
+                                <strong>Pratyush Kanungo</strong>
                                 <span>Maize Farmer, Nakuru</span>
                             </div>
                         </div>
@@ -210,7 +211,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Daniel Omondi</strong>
+                                <strong>Om Debadutta</strong>
                                 <span>Head of Procurement, FreshMart</span>
                             </div>
                         </div>
@@ -220,7 +221,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Amina Hassan</strong>
+                                <strong>Suchismita Singh</strong>
                                 <span>Organic Retailer, Nairobi</span>
                             </div>
                         </div>
@@ -230,7 +231,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Samuel Kamau</strong>
+                                <strong>Pratikshya Rath</strong>
                                 <span>Tomato Farmer, Kajiado</span>
                             </div>
                         </div>
@@ -240,7 +241,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>John Doe</strong>
+                                <strong>Abhishek Mishra</strong>
                                 <span>Restaurant Owner, Mombasa</span>
                             </div>
                         </div>
@@ -251,7 +252,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Grace Wanjiku</strong>
+                                <strong>Pratyush Kanungo</strong>
                                 <span>Maize Farmer, Nakuru</span>
                             </div>
                         </div>
@@ -261,7 +262,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Daniel Omondi</strong>
+                                <strong>Om Debadutta</strong>
                                 <span>Head of Procurement, FreshMart</span>
                             </div>
                         </div>
@@ -271,7 +272,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Amina Hassan</strong>
+                                <strong>Suchismita Singh</strong>
                                 <span>Organic Retailer, Nairobi</span>
                             </div>
                         </div>
@@ -281,7 +282,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>Samuel Kamau</strong>
+                                <strong>Pratikshya Rath</strong>
                                 <span>Tomato Farmer, Kajiado</span>
                             </div>
                         </div>
@@ -291,7 +292,7 @@
                         <div class="author">
                             <div class="avatar bg-blue-light"><i data-lucide="user"></i></div>
                             <div>
-                                <strong>John Doe</strong>
+                                <strong>Abhishek Mishra</strong>
                                 <span>Restaurant Owner, Mombasa</span>
                             </div>
                         </div>
@@ -306,7 +307,7 @@
         <p>Join thousands of farmers and buyers already cutting out the middleman.</p>
         <div class="cta-buttons">
             <a href="#" class="btn btn-green">Start Selling</a>
-            <a href="#" class="btn btn-outline-yellow">Start Sourcing</a>
+            <a href="#" class="btn btn-outline-yellow">Start Buying</a>
         </div>
     </section>
 
@@ -322,9 +323,9 @@
             <div class="footer-col">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#">About Us</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -333,11 +334,6 @@
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Use</a></li>
                 </ul>
-                <div class="social-links">
-                    <a href="#"><i data-lucide="facebook"></i></a>
-                    <a href="#"><i data-lucide="twitter"></i></a>
-                    <a href="#"><i data-lucide="linkedin"></i></a>
-                </div>
             </div>
         </div>
         <div class="container copyright">
