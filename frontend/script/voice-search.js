@@ -275,7 +275,10 @@ class VoiceSearchAssistant {
             minPrice: null,
             maxPrice: null,
             location: null,
-            qualityGrade: null
+            qualityGrade: null,
+            // Language the query was spoken/typed in (e.g. 'or-IN', 'hi-IN',
+            // 'en-IN'), so callers can localize the results they render back.
+            language: this.activeLang || 'en-IN'
         };
 
         // 1. Crop dictionary in English, Hindi, and Odia

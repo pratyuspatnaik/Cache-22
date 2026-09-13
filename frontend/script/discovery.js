@@ -67,6 +67,113 @@ function getCropEmoji(cropName) {
     return '🌿';
 }
 
+// --- Listing display localization -----------------------------------------
+// When a search was spoken (via VoiceSearchAssistant), extracted.language
+// tells us which language the person used (en-IN / hi-IN / or-IN). We reuse
+// that same language to localize the listing cards & page chrome that get
+// rendered back, so a person searching in Odia sees Odia results and a
+// person searching in Hindi sees Hindi results. Falls back to English for
+// typed/default searches, or any language we don't have strings for.
+
+const UI_STRINGS = {
+    'en-IN': {
+        buyProduce: 'Buy Produce',
+        contact: 'Contact',
+        yourListing: 'Your Listing 🌱',
+        sellerView: 'Seller View',
+        directMandi: 'Direct Mandi',
+        standardGrade: 'Standard',
+        avail: 'avail.',
+        clearFilters: 'Clear All Filters',
+        noCropsTitle: 'No crops found',
+        noCropsDesc: 'No listings match your current filters. Try relaxing your price bounds, searching for broader crops like "Wheat" or "Tomato", or speak with the Voice Search assistant.',
+        fetching: 'Fetching verified farmer produce...',
+        searching: 'Searching fresh mandi listings...',
+        resultsCount: (n) => `Showing ${n} fresh crop listing${n === 1 ? '' : 's'} across Indian mandis`
+    },
+    'hi-IN': {
+        buyProduce: 'फसल खरीदें',
+        contact: 'संपर्क करें',
+        yourListing: 'आपकी लिस्टिंग 🌱',
+        sellerView: 'विक्रेता दृश्य',
+        directMandi: 'सीधी मंडी',
+        standardGrade: 'मानक',
+        avail: 'उपलब्ध',
+        clearFilters: 'सभी फ़िल्टर हटाएं',
+        noCropsTitle: 'कोई फसल नहीं मिली',
+        noCropsDesc: 'आपके मौजूदा फ़िल्टर से कोई लिस्टिंग मेल नहीं खाती। अपनी कीमत सीमा बढ़ाएं, "गेहूं" या "टमाटर" जैसी सामान्य फसल खोजें, या वॉइस सर्च का उपयोग करें।',
+        fetching: 'सत्यापित किसान उपज लाई जा रही है...',
+        searching: 'ताज़ा मंडी लिस्टिंग खोजी जा रही है...',
+        resultsCount: (n) => `भारतीय मंडियों में ${n} ताज़ा फसल लिस्टिंग दिख रही ${n === 1 ? 'है' : 'हैं'}`
+    },
+    'or-IN': {
+        buyProduce: 'ଫସଲ କିଣନ୍ତୁ',
+        contact: 'ଯୋଗାଯୋଗ',
+        yourListing: 'ଆପଣଙ୍କ ତାଲିକା 🌱',
+        sellerView: 'ବିକ୍ରେତା ଦୃଶ୍ୟ',
+        directMandi: 'ସିଧା ମଣ୍ଡି',
+        standardGrade: 'ମାନକ',
+        avail: 'ଉପଲବ୍ଧ',
+        clearFilters: 'ସବୁ ଫିଲ୍ଟର ହଟାନ୍ତୁ',
+        noCropsTitle: 'କୌଣସି ଫସଲ ମିଳିଲା ନାହିଁ',
+        noCropsDesc: 'ଆପଣଙ୍କର ବର୍ତ୍ତମାନ ଫିଲ୍ଟର ସହିତ କୌଣସି ତାଲିକା ମେଳ ଖାଉନାହିଁ। ମୂଲ୍ୟ ସୀମା ବଢାନ୍ତୁ, "ଗହମ" କିମ୍ବା "ଟମାଟୋ" ପରି ବ୍ୟାପକ ଫସଲ ଖୋଜନ୍ତୁ, କିମ୍ବା ଭଏସ୍ ସର୍ଚ୍ଚ ବ୍ୟବହାର କରନ୍ତୁ।',
+        fetching: 'ପ୍ରମାଣିତ କୃଷକ ଉତ୍ପାଦ ଆଣୁଛି...',
+        searching: 'ତାଜା ମଣ୍ଡି ତାଲିକା ଖୋଜୁଛି...',
+        resultsCount: (n) => `ଭାରତୀୟ ମଣ୍ଡିରେ ${n} ତାଜା ଫସଲ ତାଲିକା ଦେଖାଉଛି`
+    }
+};
+
+// Canonical crop key -> display name per language, for translating a
+// listing's (English, farmer-entered) crop_name in the card title only.
+// The underlying item.crop_name is never mutated - it's still what's sent
+// to the backend, used in the emoji lookup, and used in the payment URL.
+const CROP_NAME_TRANSLATIONS = {
+    wheat: { 'hi-IN': 'गेहूं', 'or-IN': 'ଗହମ' },
+    rice: { 'hi-IN': 'चावल', 'or-IN': 'ଚାଉଳ' },
+    tomato: { 'hi-IN': 'टमाटर', 'or-IN': 'ଟମାଟୋ' },
+    onion: { 'hi-IN': 'प्याज', 'or-IN': 'ପିଆଜ' },
+    potato: { 'hi-IN': 'आलू', 'or-IN': 'ଆଳୁ' },
+    cotton: { 'hi-IN': 'कपास', 'or-IN': 'କପା' },
+    mustard: { 'hi-IN': 'सरसों', 'or-IN': 'ସୋରିଷ' },
+    soybean: { 'hi-IN': 'सोयाबीन', 'or-IN': 'ସୋୟାବିନ୍' },
+    chili: { 'hi-IN': 'मिर्च', 'or-IN': 'ଲଙ୍କା' },
+    corn: { 'hi-IN': 'मक्का', 'or-IN': 'ମକା' },
+    garlic: { 'hi-IN': 'लहसुन', 'or-IN': 'ରସୁଣ' },
+    ginger: { 'hi-IN': 'अदरक', 'or-IN': 'ଅଦା' },
+    pulses: { 'hi-IN': 'दाल', 'or-IN': 'ଡାଲି' }
+};
+
+// English/Latin keywords that identify each canonical crop key inside a
+// free-text crop_name, mirroring the alias groupings already used for
+// CROP_ICONS / VoiceSearchAssistant's crop dictionary.
+const CROP_NAME_KEYWORDS = {
+    wheat: ['wheat', 'gehun', 'gohama', 'sharbati'],
+    rice: ['rice', 'paddy', 'basmati', 'chawal', 'chaula', 'dhan', 'swarna'],
+    tomato: ['tomato', 'tamatar', 'bilati'],
+    onion: ['onion', 'pyaz', 'piaja'],
+    potato: ['potato', 'aloo', 'alu'],
+    cotton: ['cotton', 'kapas'],
+    mustard: ['mustard', 'sarson', 'sorisa'],
+    soybean: ['soybean', 'soya'],
+    chili: ['chili', 'chilli', 'mirchi', 'lanka', 'mirch'],
+    corn: ['corn', 'maize', 'makka', 'makai'],
+    garlic: ['garlic', 'lahsun', 'rasuna'],
+    ginger: ['ginger', 'adrak', 'ada'],
+    pulses: ['dal', 'pulse', 'chana', 'gram', 'harada']
+};
+
+function translateCropName(cropName, lang) {
+    if (!cropName || !lang || lang === 'en-IN') return cropName;
+    const clean = cropName.toLowerCase();
+    for (const [key, keywords] of Object.entries(CROP_NAME_KEYWORDS)) {
+        if (keywords.some((kw) => clean.includes(kw))) {
+            const translated = CROP_NAME_TRANSLATIONS[key] && CROP_NAME_TRANSLATIONS[key][lang];
+            return translated || cropName;
+        }
+    }
+    return cropName;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Role Guard: Marketplace is strictly for Buyers
     let userRole = (localStorage.getItem('km_role') || '').toLowerCase();
@@ -93,6 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
         limit: 30,
         voiceMeta: null // { text: '', lang: '' }
     };
+
+    // Active display language follows the language of the last spoken
+    // search (filterState.voiceMeta.lang), falling back to English for
+    // typed searches or once voiceMeta is cleared.
+    function getUIStrings() {
+        const lang = (filterState.voiceMeta && filterState.voiceMeta.lang) || 'en-IN';
+        return UI_STRINGS[lang] || UI_STRINGS['en-IN'];
+    }
+
+    function getDisplayLang() {
+        return (filterState.voiceMeta && filterState.voiceMeta.lang) || 'en-IN';
+    }
 
     // DOM Elements
     const searchInput = document.getElementById('search-crop-input');
@@ -310,15 +429,17 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchListings() {
         if (!listingsGrid) return;
 
+        const t = getUIStrings();
+
         if (resultsCountText) {
-            resultsCountText.textContent = 'Searching fresh mandi listings...';
+            resultsCountText.textContent = t.searching;
         }
 
         // Show loading skeleton / spinner
         listingsGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 40px 0; color: #6b7280;">
                 <div style="font-size: 2rem; margin-bottom: 8px;">🌾</div>
-                <p>Fetching verified farmer produce...</p>
+                <p>${t.fetching}</p>
             </div>
         `;
 
@@ -360,20 +481,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderListings(items, totalCount) {
         renderActiveFilterPills();
 
+        const t = getUIStrings();
+        const lang = getDisplayLang();
+
         if (resultsCountText) {
             const count = totalCount !== undefined ? totalCount : items.length;
-            resultsCountText.textContent = `Showing ${count} fresh crop listing${count === 1 ? '' : 's'} across Indian mandis`;
+            resultsCountText.textContent = t.resultsCount(count);
         }
 
         if (!items || items.length === 0) {
             listingsGrid.innerHTML = `
                 <div class="empty-listings">
                     <div class="empty-icon" style="font-size: 3rem; margin-bottom: 14px;">🧺</div>
-                    <h3 style="font-size: 1.3rem; color: #1f2937; margin-bottom: 6px;">No crops found</h3>
+                    <h3 style="font-size: 1.3rem; color: #1f2937; margin-bottom: 6px;">${t.noCropsTitle}</h3>
                     <p style="color: #6b7280; max-width: 440px; margin: 0 auto 18px auto; font-size: 0.94rem;">
-                        No listings match your current filters. Try relaxing your price bounds, searching for broader crops like "Wheat" or "Tomato", or speak with the Voice Search assistant.
+                        ${t.noCropsDesc}
                     </p>
-                    <button type="button" class="btn btn-outline" id="empty-reset-btn">Clear All Filters</button>
+                    <button type="button" class="btn btn-outline" id="empty-reset-btn">${t.clearFilters}</button>
                 </div>
             `;
             const emptyReset = document.getElementById('empty-reset-btn');
@@ -392,37 +516,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         listingsGrid.innerHTML = items.map(item => {
             const emoji = getCropEmoji(item.crop_name);
+            const displayCropName = translateCropName(item.crop_name, lang);
             const gradeClass = (item.quality_grade || '').toLowerCase().includes('grade a') ? 'grade-a' : '';
-            const location = [item.location_city, item.location_state].filter(Boolean).join(', ') || 'Direct Mandi';
+            const location = [item.location_city, item.location_state].filter(Boolean).join(', ') || t.directMandi;
             const farmerName = item.farmer?.full_name || 'Verified Farmer';
             const farmerInitials = farmerName.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase() || 'FR';
             const farmerMobile = item.farmer?.mobile_number || '9876543210';
             const price = Number(item.price_per_unit).toLocaleString('en-IN');
             const unit = item.unit || 'quintal';
 
-            // Direct checkout link with pre-filled query parameters
+            // Direct checkout link with pre-filled query parameters. Note this
+            // always uses item.crop_name (the original, backend-stored value),
+            // never the translated display label, so downstream pages/APIs
+            // keep receiving the canonical crop name.
             const paymentUrl = `payment.html?crop=${encodeURIComponent(item.crop_name)}&price=${item.price_per_unit}&quantity=1&unit=${encodeURIComponent(unit)}&listing_id=${item.id}&farmer_name=${encodeURIComponent(farmerName)}`;
 
             // Role-Conditional Buy Action: Farmers cannot buy produce
             let buyButtonHtml = '';
             if (currentUserRole === 'farmer') {
                 if (currentUserId && currentUserId === item.farmer_id) {
-                    buyButtonHtml = `<span style="background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.82rem; padding: 10px 10px; border-radius: 8px; text-align: center; border: 1px solid #bae6fd;">Your Listing 🌱</span>`;
+                    buyButtonHtml = `<span style="background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.82rem; padding: 10px 10px; border-radius: 8px; text-align: center; border: 1px solid #bae6fd;">${t.yourListing}</span>`;
                 } else {
-                    buyButtonHtml = `<span style="background: #f3f4f6; color: #6b7280; font-weight: 600; font-size: 0.78rem; padding: 10px 8px; border-radius: 8px; text-align: center; border: 1px solid #e5e7eb;" title="Farmer accounts can sell produce, not buy crops.">Seller View</span>`;
+                    buyButtonHtml = `<span style="background: #f3f4f6; color: #6b7280; font-weight: 600; font-size: 0.78rem; padding: 10px 8px; border-radius: 8px; text-align: center; border: 1px solid #e5e7eb;" title="Farmer accounts can sell produce, not buy crops.">${t.sellerView}</span>`;
                 }
             } else {
-                buyButtonHtml = `<a href="${paymentUrl}" class="btn-buy-crop" data-listing-id="${item.id}">Buy Produce</a>`;
+                buyButtonHtml = `<a href="${paymentUrl}" class="btn-buy-crop" data-listing-id="${item.id}">${t.buyProduce}</a>`;
             }
 
             return `
                 <div class="crop-card" data-id="${item.id}">
                     <div class="crop-card-top">
                         <div class="crop-icon-badge">${emoji}</div>
-                        <span class="grade-pill ${gradeClass}">${escapeHtml(item.quality_grade || 'Standard')}</span>
+                        <span class="grade-pill ${gradeClass}">${escapeHtml(item.quality_grade || t.standardGrade)}</span>
                     </div>
                     <div class="crop-card-body">
-                        <h3 class="crop-title">${escapeHtml(item.crop_name)}</h3>
+                        <h3 class="crop-title">${escapeHtml(displayCropName)}</h3>
                         <div class="crop-variety">${escapeHtml(item.variety || 'Desi High-Yield')}</div>
                         
                         <div class="crop-price-row">
@@ -431,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <div class="crop-meta-row">
-                            <span>📦 <strong>${item.quantity} ${escapeHtml(unit)}s</strong> avail.</span>
+                            <span>📦 <strong>${item.quantity} ${escapeHtml(unit)}s</strong> ${t.avail}</span>
                             <span>📍 <strong>${escapeHtml(location)}</strong></span>
                         </div>
 
@@ -447,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 data-farmer-name="${escapeHtml(farmerName)}"
                                 data-farmer-location="${escapeHtml(location)}"
                                 data-farmer-mobile="${escapeHtml(farmerMobile)}">
-                                Contact
+                                ${t.contact}
                             </button>
                         </div>
                     </div>
@@ -741,3 +869,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 });
+
+// CommonJS export guard for Node-based tests only (see frontend/test_*.js).
+// `module` doesn't exist in the browser, so this block never runs there and
+// has no effect on the page.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { translateCropName, UI_STRINGS, CROP_NAME_TRANSLATIONS, CROP_NAME_KEYWORDS };
+}
