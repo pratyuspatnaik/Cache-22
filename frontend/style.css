@@ -133,13 +133,34 @@ ul {
 }
 
 .nav-links a {
+    position: relative;
     transition: color 0.3s;
+    text-decoration: none; /* Just in case */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-green);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
     color: var(--color-green);
+}
+
+.nav-links a:hover::after,
+.nav-links a:active::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 
 .nav-actions {
@@ -247,6 +268,7 @@ ul {
 
 .hero h1 {
     font-size: 4.5rem;
+    font-weight: 800;
     margin-bottom: 40px;
 }
 
