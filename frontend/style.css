@@ -931,3 +931,19 @@ button, input, textarea, select { font: inherit; }
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+/* Footer left alignment */
+footer {
+    text-align: left;
+}
+
+.footer-grid {
+    text-align: left;
+}
+
+.footer-col {
+    text-align: left;
+}
+
+.copyright {
+    text-align: left;
+}
