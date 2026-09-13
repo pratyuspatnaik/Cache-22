@@ -228,8 +228,47 @@ class VoiceSearchAssistant {
         }, 700);
     }
 
+    // --- Odia numeral & number-word normalization -------------------------
+    // JavaScript's \d regex class only ever matches ASCII 0-9, so the price
+    // regexes below (see maxPricePatterns / minPricePatterns) silently fail
+    // to match Odia Unicode digits like "୫୦୦୦" (U+0B66-U+0B6F) even though
+    // the crop word matches fine. We normalize the transcript to ASCII
+    // digits *before* it reaches those regexes so all existing parsing
+    // logic (crop dict, price patterns, location, grade) keeps working
+    // unchanged for English/Hindi/Odia alike.
+
+    // "୫୦୦୦" -> "5000"
+    convertOdiaDigits(str) {
+        if (!str) return str;
+        const odiaDigitMap = {
+            '୦': '0', '୧': '1', '୨': '2', '୩': '3', '୪': '4',
+            '୫': '5', '୬': '6', '୭': '7', '୮': '8', '୯': '9'
+        };
+        return str.replace(/[୦-୯]/g, (ch) => odiaDigitMap[ch]);
+    }
+
+    // "ପାଞ୍ଚ ହଜାର" -> "5000", "ଦୁଇ ହଜାର" -> "2000", "ଦଶ ହଜାର" -> "10000"
+    convertOdiaNumberWords(str) {
+        if (!str) return str;
+        const odiaOnes = {
+            'ଏକ': 1, 'ଦୁଇ': 2, 'ତିନି': 3, 'ଚାରି': 4, 'ପାଞ୍ଚ': 5,
+            'ଛଅ': 6, 'ସାତ': 7, 'ଆଠ': 8, 'ନଅ': 9, 'ଦଶ': 10
+        };
+        const onesPattern = Object.keys(odiaOnes).join('|');
+        const thousandPattern = new RegExp(`(${onesPattern})\\s+ହଜାର`, 'g');
+        return str.replace(thousandPattern, (match, word) => String(odiaOnes[word] * 1000));
+    }
+
+    normalizeSpokenNumbers(str) {
+        if (!str) return str;
+        // Word conversion first ("ପାଞ୍ଚ ହଜାର" -> "5000"), then any remaining
+        // raw Odia digit glyphs ("୫୦୦୦" -> "5000").
+        return this.convertOdiaDigits(this.convertOdiaNumberWords(str));
+    }
+
     parseSpeechText(rawText) {
-        const text = rawText.toLowerCase().trim();
+        const normalizedText = this.normalizeSpokenNumbers(rawText);
+        const text = normalizedText.toLowerCase().trim();
         const result = {
             rawText: rawText,
             crop: null,
