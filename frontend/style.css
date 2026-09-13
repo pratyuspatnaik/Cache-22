@@ -775,3 +775,159 @@ footer {
     color: #888;
     font-size: 0.9rem;
 }
+/* Prevent horizontal overflow and make media fluid */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+button, input, textarea, select { font: inherit; }
+
+/* Tablets / smaller laptops */
+@media (max-width: 992px) {
+    .container { padding-left: 24px; padding-right: 24px; }
+
+    .navbar-wrapper { top: 20px; padding: 0 16px; }
+    .navbar { padding: 10px 14px 10px 18px; }
+    .nav-links { gap: 18px; font-size: 0.9rem; }
+    .nav-actions { gap: 14px; }
+
+    .hero { min-height: auto; padding: 170px 0 70px; }
+    .hero-content { align-items: center; gap: 30px; }
+    .hero-text { max-width: 52%; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 30px; }
+    .hero-image { width: min(360px, 100%); height: auto; aspect-ratio: 1 / 1; }
+    .hero-stats { gap: 32px; }
+    .hero-stats .stat h3 { font-size: 2rem; }
+
+    .old-way, .why-choose, .steps, .trusted, .cta { padding-top: 80px; padding-bottom: 80px; }
+    .comparison-cards, .features { gap: 20px; }
+    .card { padding: 45px 28px; }
+    .feature-card { padding: 40px 30px; }
+    .steps-grid { gap: 30px; }
+    .testimonial { width: 360px; padding: 32px; }
+    .footer-grid { gap: 25px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container { padding-left: 18px; padding-right: 18px; }
+
+    /* Navbar */
+    .navbar-wrapper { top: 12px; padding: 0 12px; }
+    .navbar {
+        border-radius: 24px;
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+    .logo { font-size: 1.25rem; }
+    .nav-actions { gap: 12px; }
+    .nav-actions .login-link { display: none; }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 16px;
+        padding-top: 4px;
+        border-top: 1px solid #eee;
+        font-size: 0.82rem;
+        flex-wrap: wrap;
+    }
+    .nav-divider { display: none; }
+
+    /* Hero */
+    .hero { padding: 155px 0 55px; }
+    .hero-content { flex-direction: column; gap: 40px; }
+    .hero-text { max-width: 100%; width: 100%; text-align: center; }
+    .hero-label { margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(2.4rem, 9vw, 3.2rem); margin-bottom: 28px; }
+    .hero-buttons { justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-btn { font-size: 1rem; padding: 11px 18px; }
+    .hero-image-wrapper { width: 100%; justify-content: center; }
+    .hero-image { width: min(420px, 100%); border-width: 8px; }
+    .hero-stats { justify-content: center; flex-wrap: wrap; gap: 22px 36px; }
+    .hero-stats .stat h3 { font-size: 1.8rem; }
+
+    /* Sections */
+    .old-way, .why-choose, .steps, .trusted, .cta { padding: 65px 18px; }
+    .old-way h2, .why-choose h2, .steps h2, .trusted h2, .cta h2 { font-size: 2rem; }
+    .section-desc { margin-bottom: 38px; }
+
+    .comparison-cards, .features, .steps-grid { flex-direction: column; align-items: stretch; }
+    .comparison-cards, .features { gap: 20px; }
+    .card, .feature-card { max-width: none; width: 100%; }
+    .card { padding: 45px 24px 30px; }
+    .feature-card { padding: 35px 25px; }
+    .feature-card h3 { font-size: 1.55rem; margin-bottom: 24px; }
+
+    .chain { flex-wrap: wrap; gap: 10px; }
+    .chain-item { min-width: 65px; }
+
+    .steps h2 { margin-bottom: 50px; }
+    .steps-grid { align-items: center; gap: 42px; }
+    .step-item { max-width: 360px; width: 100%; }
+
+    .trust-badges { flex-direction: column; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .testimonial { width: min(400px, 86vw); padding: 28px; }
+
+    .cta p { font-size: 1rem; }
+    .cta-buttons { flex-direction: column; align-items: stretch; max-width: 420px; margin: 0 auto; }
+    .cta-buttons .btn { width: 100%; text-align: center; }
+
+    /* Footer */
+    footer { padding: 60px 18px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 38px; margin-bottom: 40px; text-align: center; }
+    .brand-col p { max-width: 100%; margin-left: auto; margin-right: auto; }
+    .social-links { justify-content: center; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .navbar { border-radius: 20px; }
+    .logo { font-size: 1.1rem; }
+    .nav-actions { gap: 9px; }
+    .nav-actions i { width: 18px; height: 18px; }
+    .nav-links { gap: 11px; font-size: 0.76rem; }
+
+    .hero { padding-top: 145px; }
+    .hero h1 { font-size: 2.15rem; }
+    .hero-label { font-size: 0.78rem; padding: 7px 12px; }
+    .hero-buttons { flex-direction: column; align-items: stretch; }
+    .hero-btn { width: 100%; justify-content: center; }
+    .hero-image { max-width: 320px; }
+    .hero-stats { gap: 18px 26px; }
+    .hero-stats .stat h3 { font-size: 1.55rem; }
+    .hero-stats .stat { font-size: 0.85rem; }
+
+    .old-way, .why-choose, .steps, .trusted, .cta { padding: 55px 14px; }
+    .old-way h2, .why-choose h2, .steps h2, .trusted h2, .cta h2 { font-size: 1.7rem; }
+    .card { padding: 42px 18px 26px; }
+    .feature-card { padding: 30px 20px; }
+    .feature-card h3 { font-size: 1.4rem; }
+    .check-list li { font-size: 0.92rem; }
+
+    .chain { flex-direction: column; }
+    .arrow { transform: rotate(90deg); }
+
+    .testimonial { width: 88vw; padding: 24px; }
+    .quote { font-size: 1rem; }
+    .copyright { font-size: 0.8rem; }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    .nav-links { gap: 8px; font-size: 0.7rem; }
+    .hero h1 { font-size: 1.9rem; }
+    .hero-stats { gap: 14px; }
+    .hero-stats .stat h3 { font-size: 1.4rem; }
+    .btn { padding-left: 18px; padding-right: 18px; }
+}
+
+/* Better touch targets and reduced motion */
+@media (hover: none) and (pointer: coarse) {
+    .btn, .hero-btn, .nav-links a, .login-link, .social-links a { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
