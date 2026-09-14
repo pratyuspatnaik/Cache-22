@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLink - Orders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="orders.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="logo">
+                <i data-lucide="leaf" class="text-green"></i>
+                <span><strong class="text-dark-blue">Agri</strong><strong class="text-green">Link</strong></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Marketplace</a></li>
+                <li><a href="#" class="nav-link">Delivery</a></li>
+                <li><a href="#" class="nav-link active">Orders</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="icon-badge cart-icon">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="badge green-badge">2</span>
+                </div>
+                <div class="icon-badge bell-icon">
+                    <i data-lucide="bell"></i>
+                    <span class="badge yellow-badge">3</span>
+                </div>
+                <div class="nav-divider"></div>
+                <a href="#" class="login-link">Log In</a>
+                <a href="#" class="btn btn-dark">Sign Up</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="orders-page">
+        <div class="container">
+            <!-- Current Orders -->
+            <section class="orders-section">
+                <div class="section-title">
+                    <div class="section-icon"><i data-lucide="truck"></i></div>
+                    <h2>Current Orders</h2>
+                    <span class="orders-badge">1 Active Delivery</span>
+                </div>
+
+                <div class="order-card active-order">
+                    <!-- Header -->
+                    <div class="order-card-header">
+                        <div class="order-info">
+                            <div class="order-number-row">
+                                <h3>Order #AG-98421</h3>
+                                <span class="status-badge transit">
+                                    In Transit
+                                </span>
+                            </div>
+                            <p class="order-meta">Placed today, September 12 at 8:30 AM · Paid via Agri Link Direct Pay</p>
+                        </div>
+                        <div class="order-delivery-time">
+                            <span class="label">Estimated Delivery</span>
+                            <strong>Today, 4:00 PM - 6:00 PM</strong>
+                        </div>
+                    </div>
+
+                    <!-- Tracker -->
+                    <div class="order-tracker">
+                        <div class="track-line"><div class="track-progress" style="width: 66%;"></div></div>
+                        
+                        <div class="track-step completed">
+                            <div class="step-icon"><i data-lucide="check"></i></div>
+                            <div class="step-text">
+                                <h4>Harvested & Packed</h4>
+                                <p>Today, 9:15 AM</p>
+                            </div>
+                        </div>
+
+                        <div class="track-step completed">
+                            <div class="step-icon"><i data-lucide="check"></i></div>
+                            <div class="step-text">
+                                <h4>Dispatched</h4>
+                                <p>Today, 11:30 AM</p>
+                            </div>
+                        </div>
+
+                        <div class="track-step current">
+                            <div class="step-icon active"><i data-lucide="truck"></i></div>
+                            <div class="step-text">
+                                <h4 class="transit-text">In Transit</h4>
+                                <p class="text-green">On its way</p>
+                            </div>
+                        </div>
+
+                        <div class="track-step pending">
+                            <div class="step-icon pending"><i data-lucide="home"></i></div>
+                            <div class="step-text">
+                                <h4>Delivered</h4>
+                                <p>Pending arrival</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Split -->
+                    <div class="order-details-split" style="gap: 32px;">
+                        
+                        <!-- Left Half: Items Card -->
+                        <div class="route-map-panel" style="justify-content: flex-start; gap: 16px;">
+                            <h3 style="font-size: 1.1rem; margin: 0; color: var(--color-dark-blue);">Items in this Delivery</h3>
+                            
+                            <div class="order-items-list">
+                                <div class="order-item">
+                                    <div class="order-item-img">
+                                        <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet_corn-1789221950327-9lwsmi7hnn.png" alt="Sweet Corn">
+                                    </div>
+                                    <div class="item-details">
+                                        <h4>Organic Sweet Corn (Dozen)</h4>
+                                        <p>Farmer: <strong>Green Valley Farm</strong></p>
+                                    </div>
+                                    <div class="item-price">
+                                        <span>Qty: 2</span>
+                                        <strong>$18.00</strong>
+                                    </div>
+                                </div>
+
+                                <div class="order-item">
+                                    <div class="order-item-img">
+                                        <img src="https://uxmagic.blob.core.windows.net/public/agent-images/heirloom_tomatoes-1789221960637-kmjejslo7ip.png" alt="Tomatoes">
+                                    </div>
+                                    <div class="item-details">
+                                        <h4>Assorted Heirloom Tomatoes (3 lbs)</h4>
+                                        <p>Farmer: <strong>Sunny Acres</strong></p>
+                                    </div>
+                                    <div class="item-price">
+                                        <span>Qty: 3</span>
+                                        <strong>$34.20</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Half: Courier & Summary -->
+                        <div class="order-summary-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                            
+                            <!-- Courier Info Card -->
+                            <div class="courier-info-card" style="background: var(--color-off-white); border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); padding: 16px;">
+                                <span style="font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--color-dark-blue); display: block; margin-bottom: 12px;">DELIVERY PARTNER</span>
+                                <div class="courier-profile" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(47,158,68,0.15); color: var(--color-green); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <i data-lucide="user"></i>
+                                        </div>
+                                        <div>
+                                            <h5 style="font-size: 0.9rem; margin: 0;">Praveen Dash</h5>
+                                            <p style="font-size: 0.75rem; color: #666;">Agri Link Eco-Courier</p>
+                                        </div>
+                                    </div>
+                                    <div class="courier-actions" style="display: flex; gap: 8px;">
+                                        <button class="icon-btn"><i data-lucide="message-circle"></i></button>
+                                        <button class="icon-btn"><i data-lucide="phone"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Summary Footer -->
+                            <div class="order-summary-footer" style="border-top: none; padding-top: 16px; margin-top: 16px; display: flex; flex-direction: column; gap: 24px; display: block;">
+                                <div class="summary-col" style="margin-bottom: 24px;">
+                                    <span class="label">DELIVERING TO</span>
+                                    <strong>Home Address</strong>
+                                    <p>1428 Maple Leaf Avenue, Apt 4B, Portland, OR</p>
+                                </div>
+                                <div class="summary-col">
+                                    <span class="label">TOTAL CHARGED</span>
+                                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 4px 0;">
+                                        <div>
+                                            <strong class="total-price" style="margin: 0 !important; font-size: 1.8rem !important;">$52.20</strong>
+                                            <p style="margin-top: 0; font-size: 0.8rem; color: #666;">Tax & Delivery included</p>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                                            <button style="border: 1.5px solid var(--color-dark-blue); color: var(--color-dark-blue); background: transparent; padding: 6px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Contact Us</button>
+                                            <button class="btn-outline-danger" style="margin-top: 0; padding: 6px 20px; font-size: 0.85rem;">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Past Orders -->
+            <section class="orders-section">
+                <div class="section-title">
+                    <div class="section-icon calendar"><i data-lucide="calendar"></i></div>
+                    <h2>Order History</h2>
+                </div>
+
+                <div class="history-controls" style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
+                    <div class="search-box" style="flex: 1; min-width: 250px; position: relative;">
+                        <i data-lucide="search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #999;"></i>
+                        <input type="text" placeholder="Search by item or farm..." style="width: 100%; padding: 10px 16px 10px 42px; border: 1px solid rgba(0,0,0,0.1); border-radius: 24px; font-family: inherit; font-size: 0.9rem; outline: none;">
+                    </div>
+                    
+                    <div class="filter-controls" style="display: flex; gap: 12px; flex: 1; justify-content: flex-end; min-width: 250px;">
+                        <select class="history-filter-select">
+                            <option>Ordered Before</option>
+                            <option>Last 30 Days</option>
+                            <option>Last 6 Months</option>
+                            <option>2025</option>
+                        </select>
+                        <select class="history-filter-select">
+                            <option>Status: All</option>
+                            <option>Delivered</option>
+                            <option>Returned</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="past-orders-list">
+                    <!-- Past Order 1 -->
+                    <div class="order-card past-order">
+                        <div class="past-header">
+                            <div class="past-info">
+                                <h3>Order #AG-97305</h3>
+                                <span class="date">Delivered on Sep 10, 2026</span>
+                                <span class="status-badge delivered"><i data-lucide="check"></i> Delivered</span>
+                            </div>
+                            <div class="past-actions">
+                                <span class="total">Total: <strong>$28.40</strong></span>
+                                <button class="btn-outline-danger" style="margin-top: 0;">Return</button>
+                                <button class="btn-outline-primary">Buy Again</button>
+                            </div>
+                        </div>
+                        <div class="past-body">
+                            <div class="past-items">
+                                <div class="image-stack">
+                                    <div class="stack-img"><img src="https://uxmagic.blob.core.windows.net/public/agent-images/raw_honey-1789221970029-tzyleuko56a.png" alt="Honey"></div>
+                                    <div class="stack-img"><img src="https://uxmagic.blob.core.windows.net/public/agent-images/carrots-1789226324156-2dfdzrjmiji.png" alt="Carrots"></div>
+                                </div>
+                                <div class="past-item-desc">
+                                    <h4>Raw Wildflower Honey & Heirloom Carrots</h4>
+                                    <p>Purchased from Buzzing Pines API and Sunny Acres</p>
+                                </div>
+                            </div>
+                            <a href="#" class="view-invoice"><i data-lucide="file-text"></i> View Invoice</a>
+                        </div>
+                    </div>
+
+                    <!-- Past Order 2 -->
+                    <div class="order-card past-order">
+                        <div class="past-header">
+                            <div class="past-info">
+                                <h3>Order #AG-96112</h3>
+                                <span class="date">Delivered on Aug 28, 2026</span>
+                                <span class="status-badge delivered"><i data-lucide="check"></i> Delivered</span>
+                            </div>
+                            <div class="past-actions">
+                                <span class="total">Total: <strong>$14.50</strong></span>
+                                <button class="btn-outline-danger" style="margin-top: 0;">Return</button>
+                                <button class="btn-outline-primary">Buy Again</button>
+                            </div>
+                        </div>
+                        <div class="past-body">
+                            <div class="past-items">
+                                <div class="image-stack">
+                                    <div class="stack-img"><img src="https://uxmagic.blob.core.windows.net/public/agent-images/strawberries-1789226313555-91qur6aka5m.png" alt="Strawberries"></div>
+                                </div>
+                                <div class="past-item-desc">
+                                    <h4>Fresh Organic Strawberries (Crate)</h4>
+                                    <p>Purchased from Berry Ridge Farm</p>
+                                </div>
+                            </div>
+                            <a href="#" class="view-invoice"><i data-lucide="file-text"></i> View Invoice</a>
+                        </div>
+                    </div>
+
+                    <!-- Past Order 3 -->
+                    <div class="order-card past-order">
+                        <div class="past-header">
+                            <div class="past-info">
+                                <h3>Order #AG-95041</h3>
+                                <span class="date">Delivered on Aug 12, 2026</span>
+                                <span class="status-badge delivered"><i data-lucide="check"></i> Delivered</span>
+                            </div>
+                            <div class="past-actions">
+                                <span class="total">Total: <strong>$18.20</strong></span>
+                                <button class="btn-outline-danger" style="margin-top: 0;">Return</button>
+                                <button class="btn-outline-primary">Buy Again</button>
+                            </div>
+                        </div>
+                        <div class="past-body">
+                            <div class="past-items">
+                                <div class="image-stack">
+                                    <div class="stack-img"><img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet_corn-1789221950327-9lwsmi7hnn.png" alt="Corn"></div>
+                                    <div class="stack-img"><img src="https://uxmagic.blob.core.windows.net/public/agent-images/heirloom_tomatoes-1789221960637-kmjejslo7ip.png" alt="Tomatoes"></div>
+                                </div>
+                                <div class="past-item-desc">
+                                    <h4>Organic Sweet Corn & Assorted Heirloom Tomatoes</h4>
+                                    <p>Purchased from Green Valley Farm and Sunny Acres</p>
+                                </div>
+                            </div>
+                            <a href="#" class="view-invoice"><i data-lucide="file-text"></i> View Invoice</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="orders.js"></script>
+</body>
+</html>
