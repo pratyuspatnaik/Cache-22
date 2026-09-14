@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLink - Shopping Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Navbar (Same as index.html) -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="logo">
+                <i data-lucide="leaf" class="text-green"></i>
+                <span><strong class="text-dark-blue">Agri</strong><strong class="text-green">Link</strong></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Marketplace</a></li>
+                <li><a href="#" class="nav-link">Delivery</a></li>
+                <li><a href="#" class="nav-link">Orders</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="icon-badge cart-icon active">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="badge green-badge">2</span>
+                </div>
+                <div class="icon-badge bell-icon">
+                    <i data-lucide="bell"></i>
+                    <span class="badge yellow-badge">3</span>
+                </div>
+                <div class="nav-divider"></div>
+                <a href="#" class="login-link">Log In</a>
+                <a href="#" class="btn btn-dark">Sign Up</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Cart Content -->
+    <main class="cart-page">
+        <div class="container">
+            <div class="cart-header">
+                <div class="cart-title-row">
+                    <h1>Your Cart</h1>
+                    <span class="cart-badge circle-badge">6</span>
+                </div>
+            </div>
+
+            <div class="cart-grid">
+                <!-- Left Column: Items & Delivery -->
+                <div class="cart-items-section">
+                    
+                    <!-- Item 1 -->
+                    <div class="cart-item-card" data-price="9.00">
+                        <div class="cart-item-img">
+                            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet_corn-1789221950327-9lwsmi7hnn.png" alt="Sweet Corn">
+                            <span class="cart-item-tag">Fresh Harvest</span>
+                        </div>
+                        <div class="cart-item-details">
+                            <div>
+                                <div class="cart-item-header">
+                                    <div>
+                                        <h3 class="cart-item-title">Organic Sweet Corn (Dozen)</h3>
+                                        <div class="cart-item-farmer">
+                                            Farmer: <strong>Green Valley Farm</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item-price">$9.00</div>
+                                </div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="qty-control">
+                                    <button class="qty-btn minus-btn"><i data-lucide="minus"></i></button>
+                                    <span class="qty-value">2</span>
+                                    <button class="qty-btn plus-btn"><i data-lucide="plus"></i></button>
+                                </div>
+                                <button class="remove-btn"><i data-lucide="trash-2"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="cart-item-card" data-price="11.40">
+                        <div class="cart-item-img">
+                            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/heirloom_tomatoes-1789221960637-kmjejslo7ip.png" alt="Heirloom Tomatoes">
+                            <span class="cart-item-tag green">Best Seller</span>
+                        </div>
+                        <div class="cart-item-details">
+                            <div>
+                                <div class="cart-item-header">
+                                    <div>
+                                        <h3 class="cart-item-title">Assorted Heirloom Tomatoes (3 lbs)</h3>
+                                        <div class="cart-item-farmer">
+                                            Farmer: <strong>Sunny Acres</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item-price">$11.40</div>
+                                </div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="qty-control">
+                                    <button class="qty-btn minus-btn"><i data-lucide="minus"></i></button>
+                                    <span class="qty-value">3</span>
+                                    <button class="qty-btn plus-btn"><i data-lucide="plus"></i></button>
+                                </div>
+                                <button class="remove-btn"><i data-lucide="trash-2"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="cart-item-card" data-price="12.00">
+                        <div class="cart-item-img">
+                            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/raw_honey-1789221970029-tzyleuko56a.png" alt="Raw Honey">
+                            <span class="cart-item-tag accent">Artisanal</span>
+                        </div>
+                        <div class="cart-item-details">
+                            <div>
+                                <div class="cart-item-header">
+                                    <div>
+                                        <h3 class="cart-item-title">Raw Wildflower Honey (16 oz Jar)</h3>
+                                        <div class="cart-item-farmer">
+                                            Farmer: <strong>Buzzing Pines API</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item-price">$12.00</div>
+                                </div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="qty-control">
+                                    <button class="qty-btn minus-btn"><i data-lucide="minus"></i></button>
+                                    <span class="qty-value">1</span>
+                                    <button class="qty-btn plus-btn"><i data-lucide="plus"></i></button>
+                                </div>
+                                <button class="remove-btn"><i data-lucide="trash-2"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Section -->
+                    <div class="delivery-section">
+                        <div class="delivery-header">
+                            <div class="delivery-title">
+                                <div class="delivery-icon"><i data-lucide="map-pin"></i></div>
+                                <div>
+                                    <h2>Delivery Address</h2>
+                                </div>
+                            </div>
+                            <button class="add-address-btn"><i data-lucide="plus"></i> Add New</button>
+                        </div>
+
+                        <div class="address-grid">
+                            <div class="address-card selected">
+                                <i data-lucide="circle-check" class="address-check"></i>
+                                <div class="address-type">
+                                    Home <span class="address-tag">Default</span>
+                                </div>
+                                <p class="address-text">
+                                    1428 Maple Leaf Avenue, Apt 4B<br>
+                                    Portland, OR 97201
+                                </p>
+                                <div class="address-phone"><i data-lucide="phone"></i> (503) 555-0184</div>
+                            </div>
+                            
+                            <div class="address-card">
+                                <i data-lucide="circle-check" class="address-check"></i>
+                                <div class="address-type">Office (Work)</div>
+                                <p class="address-text">
+                                    900 S.W. Fifth Avenue, Suite 1200<br>
+                                    Portland, OR 97204
+                                </p>
+                                <div class="address-phone"><i data-lucide="phone"></i> (503) 555-0199</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Summary -->
+                <div class="summary-sticky">
+                    <div class="summary-card">
+                        <h2>Order Summary</h2>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span class="val" id="subtotal-val">$32.40</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Fee</span>
+                            <span class="val">$5.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Estimated Tax</span>
+                            <span class="val" id="tax-val">$1.62</span>
+                        </div>
+
+                        <div class="promo-section">
+                            <label class="promo-label">Promo Code</label>
+                            <div class="promo-input-group">
+                                <input type="text" class="promo-input" placeholder="e.g. FRESH10">
+                                <button class="promo-btn">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="summary-total">
+                            <span class="total-label">Total</span>
+                            <div class="total-price-wrap">
+                                <div class="total-price" id="total-val">$39.02</div>
+                                <span class="total-desc">Includes all farmer payouts</span>
+                            </div>
+                        </div>
+
+                        <button class="checkout-btn">
+                            Proceed to Checkout <i data-lucide="arrow-right"></i>
+                        </button>
+
+                        <div class="trust-features">
+                            <div class="trust-feature">
+                                <i data-lucide="shield"></i>
+                                <div class="trust-text">
+                                    <h4>100% Direct Payout</h4>
+                                    <p>Farmers receive the majority of your purchase price directly.</p>
+                                </div>
+                            </div>
+                            <div class="trust-feature">
+                                <i data-lucide="truck"></i>
+                                <div class="trust-text">
+                                    <h4>Carbon-Neutral Shipping</h4>
+                                    <p>Delivered in eco-friendly packaging straight from local farms.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-widget">
+                        <div class="support-icon"><i data-lucide="phone"></i></div>
+                        <div class="support-text">
+                            <h4>Need help with your order?</h4>
+                            <p>Call Agri Link Support: (800) 555-AGRI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="cart.js"></script>
+</body>
+</html>
