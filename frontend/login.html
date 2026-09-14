@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLink - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="login.js" defer></script>
+</head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <!-- Left Column: Image -->
+            <div class="login-left">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1000&auto=format&fit=crop" alt="Lush Green Farm" class="bg-img">
+                <div class="bg-overlay"></div>
+                <div class="brand-logo">
+                    <div class="logo-icon"><i data-lucide="sprout"></i></div>
+                    <span>Agri Link</span>
+                </div>
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="login-right">
+                <div class="login-header">
+                    <div class="mobile-logo" style="display: none;">
+                        <i data-lucide="sprout"></i>
+                        <span>Agri Link</span>
+                    </div>
+                    <h1>Welcome to Agri Link</h1>
+                    <p>Sign in to buy fresh, premium crops directly from local farmers.</p>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="input-row">
+                            <span class="prefix">+91</span>
+                            <input type="tel" id="phoneInput" placeholder="98765 43210" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-icon-row">
+                            <i data-lucide="lock" class="input-icon"></i>
+                            <input type="password" id="passwordInput" placeholder="Enter your password" style="font-family: inherit; letter-spacing: normal; padding-right: 44px;" required>
+                            <span id="togglePasswordBtn" class="input-icon" style="left: auto; right: 12px; cursor: pointer; pointer-events: auto; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                                <i data-lucide="eye"></i>
+                            </span>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
+                            <a href="#" class="btn-text" style="text-transform: none; font-weight: 500; font-size: 0.75rem; text-decoration: none;">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Keep me signed in</span>
+                        </label>
+                        <a href="#" class="help-link">Need help signing in?</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn" disabled>
+                        <span>Sign In</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span class="line"></span>
+                    <span class="text">New to Agri Link?</span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="register-options">
+                    <button type="button" class="btn-outline">
+                        <i data-lucide="user"></i>
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
