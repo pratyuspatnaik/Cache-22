@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartIcon = document.querySelector('.cart-icon');
     if (cartIcon) {
         cartIcon.addEventListener('click', () => {
-            cartIcon.classList.toggle('active');
+            window.location.href = 'cart.html';
         });
     }
 
