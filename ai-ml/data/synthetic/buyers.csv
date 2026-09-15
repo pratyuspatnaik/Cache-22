@@ -1,0 +1,21 @@
+buyer_id,buyer_name,buyer_type,latitude,longitude,commodity,variety,grade,min_quantity_qtl,max_quantity_qtl,offered_price_per_qtl,reliability_score
+B001,Buyer_1_Kitchens,Food Processor,20.1952,85.6388,Cauliflower,FAQ,FAQ,16,147,2757,7.9
+B002,Buyer_2_Mart,Food Processor,20.2648,85.9673,Cauliflower,Other,FAQ,8,170,2732,9.2
+B003,Buyer_3_Mart,Food Processor,20.4606,85.6775,Tomato,Local,FAQ,14,164,2407,9.1
+B004,Buyer_4_Mart,Food Processor,20.4782,85.8601,Cauliflower,Other,FAQ,9,197,2410,8.3
+B005,Buyer_5_Mart,Food Processor,20.3721,85.8442,Cauliflower,FAQ,FAQ,9,59,2914,10.0
+B006,Buyer_6_Foods,Food Processor,20.2184,86.0006,Tomato,Local,FAQ,9,82,2306,9.3
+B007,Buyer_7_Mart,Restaurant Chain,20.2131,85.9957,Paddy(Common),Other,FAQ,18,190,2043,8.4
+B008,Buyer_8_Kitchens,Restaurant Chain,20.4084,85.7002,Tomato,Hybrid,FAQ,7,87,2723,9.2
+B009,Buyer_9_Kitchens,Kirana Aggregator,20.323,85.8885,Tomato,Local,FAQ,12,91,2129,9.2
+B010,Buyer_10_Mart,Kirana Aggregator,20.2514,85.9516,Cauliflower,Other,FAQ,6,115,2869,9.7
+B011,Buyer_11_Mart,Food Processor,20.389,85.7846,Cauliflower,FAQ,FAQ,9,85,1813,8.0
+B012,Buyer_12_Mart,Restaurant Chain,20.2779,85.7309,Paddy(Common),Other,FAQ,18,102,2444,7.8
+B013,Buyer_13_Foods,Restaurant Chain,20.1718,85.9646,Cauliflower,Other,FAQ,9,184,2344,8.2
+B014,Buyer_14_Mart,Restaurant Chain,20.4684,85.7213,Paddy(Common),Other,FAQ,18,85,2007,8.7
+B015,Buyer_15_Kitchens,Kirana Aggregator,20.2942,86.0121,Paddy(Common),Other,FAQ,11,161,2052,9.3
+B016,Buyer_16_Mart,Food Processor,20.3384,85.6574,Cauliflower,FAQ,FAQ,8,103,2519,8.8
+B017,Buyer_17_Foods,Food Processor,20.4029,85.899,Tomato,Local,FAQ,14,87,2061,9.4
+B018,Buyer_18_Foods,Food Processor,20.2431,85.8928,Cauliflower,Other,FAQ,20,195,2609,9.9
+B019,Buyer_19_Kitchens,Restaurant Chain,20.2854,85.6707,Paddy(Common),Other,FAQ,6,96,1912,9.8
+B020,Buyer_20_Mart,Restaurant Chain,20.1625,85.8604,Cauliflower,Other,FAQ,6,171,2081,7.8

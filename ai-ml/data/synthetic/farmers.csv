@@ -1,0 +1,51 @@
+farmer_id,name,latitude,longitude,commodity,variety,grade,quantity_qtl,expected_price_per_qtl
+F001,Farmer_1,20.1866,85.9634,Tomato,Local,FAQ,70,1754
+F002,Farmer_2,19.8769,85.573,Paddy(Common),B P T,FAQ,65,1793
+F003,Farmer_3,20.4056,86.231,Cauliflower,FAQ,FAQ,45,2308
+F004,Farmer_4,20.1314,86.1937,Tomato,Hybrid,FAQ,82,1830
+F005,Farmer_5,20.404,85.3721,Paddy(Common),B P T,FAQ,16,2193
+F006,Farmer_6,20.1797,86.0863,Cauliflower,Other,FAQ,87,1632
+F007,Farmer_7,20.4867,85.3742,Tomato,Local,FAQ,41,1716
+F008,Farmer_8,20.1644,85.6298,Paddy(Common),B P T,FAQ,67,1802
+F009,Farmer_9,20.1678,86.2433,Tomato,Hybrid,FAQ,85,1880
+F010,Farmer_10,20.77,86.1606,Cauliflower,FAQ,FAQ,69,1687
+F011,Farmer_11,20.2161,86.056,Paddy(Common),Other,FAQ,12,2420
+F012,Farmer_12,20.2258,85.7809,Paddy(Common),Other,FAQ,38,1637
+F013,Farmer_13,19.927,85.9178,Cauliflower,Other,FAQ,59,1761
+F014,Farmer_14,20.1345,85.8649,Tomato,Hybrid,FAQ,82,2341
+F015,Farmer_15,20.2576,86.22,Tomato,Hybrid,FAQ,41,1999
+F016,Farmer_16,20.4791,86.2296,Tomato,Hybrid,FAQ,21,1622
+F017,Farmer_17,20.2634,86.3099,Tomato,Hybrid,FAQ,13,1894
+F018,Farmer_18,20.1846,86.2683,Cauliflower,FAQ,FAQ,84,2429
+F019,Farmer_19,20.0872,86.197,Tomato,Local,FAQ,67,1836
+F020,Farmer_20,20.3653,85.7328,Cauliflower,Other,FAQ,74,2396
+F021,Farmer_21,20.4089,85.8458,Paddy(Common),B P T,FAQ,34,1934
+F022,Farmer_22,20.4526,86.1354,Tomato,Hybrid,FAQ,18,1705
+F023,Farmer_23,20.3512,86.2136,Cauliflower,FAQ,FAQ,65,2386
+F024,Farmer_24,20.4384,85.3633,Paddy(Common),B P T,FAQ,45,2326
+F025,Farmer_25,20.4917,86.1798,Cauliflower,Other,FAQ,26,2132
+F026,Farmer_26,20.5124,85.9412,Tomato,Local,FAQ,68,1892
+F027,Farmer_27,20.3716,85.585,Paddy(Common),Other,FAQ,71,1692
+F028,Farmer_28,20.139,85.3328,Cauliflower,Other,FAQ,10,1700
+F029,Farmer_29,20.3894,86.0429,Paddy(Common),B P T,FAQ,42,2495
+F030,Farmer_30,20.111,86.1443,Tomato,Hybrid,FAQ,98,1782
+F031,Farmer_31,19.9083,85.7463,Paddy(Common),B P T,FAQ,23,1616
+F032,Farmer_32,20.4254,85.7257,Paddy(Common),Other,FAQ,89,1922
+F033,Farmer_33,20.1754,86.2158,Cauliflower,Other,FAQ,89,2345
+F034,Farmer_34,20.0238,85.8448,Paddy(Common),Other,FAQ,47,1766
+F035,Farmer_35,20.1022,85.6349,Cauliflower,FAQ,FAQ,79,1854
+F036,Farmer_36,20.2757,86.0143,Paddy(Common),B P T,FAQ,24,1609
+F037,Farmer_37,20.5705,85.4423,Cauliflower,FAQ,FAQ,77,1871
+F038,Farmer_38,20.5965,86.297,Tomato,Hybrid,FAQ,98,2073
+F039,Farmer_39,20.1749,85.3946,Paddy(Common),B P T,FAQ,64,2237
+F040,Farmer_40,20.5997,85.4364,Cauliflower,FAQ,FAQ,42,1845
+F041,Farmer_41,20.1367,85.7086,Cauliflower,Other,FAQ,55,1888
+F042,Farmer_42,20.5873,86.0526,Cauliflower,FAQ,FAQ,18,2188
+F043,Farmer_43,20.639,86.3001,Paddy(Common),B P T,FAQ,78,2236
+F044,Farmer_44,20.6028,86.2033,Paddy(Common),B P T,FAQ,81,1861
+F045,Farmer_45,20.7737,86.314,Cauliflower,FAQ,FAQ,24,2250
+F046,Farmer_46,19.9441,85.9052,Cauliflower,Other,FAQ,75,2237
+F047,Farmer_47,19.9805,85.354,Paddy(Common),B P T,FAQ,43,1929
+F048,Farmer_48,20.2721,85.6213,Tomato,Local,FAQ,25,1622
+F049,Farmer_49,20.2533,86.3006,Cauliflower,Other,FAQ,20,2350
+F050,Farmer_50,20.4036,85.8608,Paddy(Common),Other,FAQ,21,1841
