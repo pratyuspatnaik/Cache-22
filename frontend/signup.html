@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLink - Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="signup.js" defer></script>
+</head>
+<body class="signup-page">
+    <!-- Top Nav/Back -->
+    <div class="signup-header">
+        <a href="index.html" class="back-link">
+            <i data-lucide="arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="signup-wrapper">
+        <div class="signup-card">
+            
+            <div class="signup-card-header" style="display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; margin-bottom: 40px;">
+                <!-- Logo at top left -->
+                <div style="display: flex; justify-content: flex-start; width: 100%; margin-bottom: 12px;">
+                    <div class="logo" style="margin-bottom: 0;">
+                        <i data-lucide="leaf" class="text-green"></i>
+                        <span><strong class="text-dark-blue">Agri</strong><strong class="text-green">Link</strong></span>
+                    </div>
+                </div>
+                <!-- Welcome centered below -->
+                <div style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--color-dark-blue); text-align: center; margin: 0; margin-bottom: 24px;">Welcome</div>
+                
+                <!-- Stepper -->
+                <div class="stepper" style="margin: 0;">
+                    <div class="step active">
+                        <div class="step-circle">1</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-circle">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1 Content -->
+            <div id="step1Content" class="signup-content">
+                <!-- Left: Form Details -->
+                <div class="form-section">
+                    <form id="signupForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>First Name*</label>
+                                    <span id="firstNameError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="firstNameInput" placeholder="e.g. Abhishek" maxlength="50" required>
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Last Name*</label>
+                                    <span id="lastNameError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="lastNameInput" placeholder="e.g. Behera" maxlength="50" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Phone No.*</label>
+                                <span id="phoneNoError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <div class="input-row">
+                                <span class="prefix">+91</span>
+                                <input type="tel" id="phoneInput" placeholder="9876543210" required>
+                                <button type="button" class="btn-inside" id="sendOtpBtn">Send OTP</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>OTP*</label>
+                                <span id="oTPError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="otpInput" placeholder="123456" disabled required>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Email</label>
+                                <span id="emailError" style="color: #dc3545; font-size: 0.75rem; display: none;">Invalid format</span>
+                            </div>
+                            <input type="email" id="emailInput" placeholder="sairath@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label style="display: flex; align-items: center; gap: 6px;">
+                                    Password*
+                                    <div class="info-tooltip-wrapper">
+                                        <i data-lucide="info" class="info-icon"></i>
+                                        <div class="tooltip-content">
+                                            Must be at least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.
+                                        </div>
+                                    </div>
+                                </label>
+                                <span id="passwordError" style="color: #dc3545; font-size: 0.75rem; display: none;">Weak password format</span>
+                            </div>
+                            <div class="input-icon-row">
+                                <input type="password" id="passwordInput" placeholder="••••••••" minlength="8" maxlength="50" required>
+                                <span class="toggle-password" id="togglePasswordBtn">
+                                    <i data-lucide="eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: Role Selection & Additional Info -->
+                <div class="role-selection" style="display: flex; flex-direction: column; height: 100%;">
+                    <label style="font-size: 0.8rem; font-weight: 500; color: var(--color-dark-blue); margin-bottom: -9px; display: block; margin-top: -25px;">Select Account Type</label>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="role-card active" data-role="buyer">
+                            <i data-lucide="shopping-bag"></i>
+                            <span>Buyer</span>
+                        </div>
+                        <div class="role-card" data-role="farmer">
+                            <i data-lucide="tractor"></i>
+                            <span>Seller</span>
+                        </div>
+                        <div class="role-card" data-role="transporter">
+                            <i data-lucide="truck"></i>
+                            <span>Transporter</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 4px;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <label>Aadhar*</label>
+                            <span id="aadharError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                        </div>
+                        <input type="text" id="aadharInput" placeholder="0000 0000 0000" form="signupForm" required>
+                    </div>
+
+                    <div class="nav-btn-container">
+                        <button type="submit" form="signupForm" class="btn-next" id="nextBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 Content -->
+            <div id="step2Content" class="signup-content" style="display: none;">
+                <!-- Left: Address Info -->
+                <div class="form-section">
+                    <form id="step2Form" novalidate>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Full Address*</label>
+                                <span id="fullAddressError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="addressInput" placeholder="e.g. 123 Farm Lane, Block A" required>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Landmark</label>
+                                <span id="landmarkError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="landmarkInput" placeholder="e.g. Near Big Banyan Tree">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>State*</label>
+                                <span id="stateError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <div class="custom-state-dropdown" id="stateDropdownContainer">
+                                <div class="state-selected" id="stateSelectedText">Select State</div>
+                                <div class="state-items state-hide" id="stateDropdownList">
+                                    <div>Andhra Pradesh</div>
+                                    <div>Arunachal Pradesh</div>
+                                    <div>Assam</div>
+                                    <div>Bihar</div>
+                                    <div>Chhattisgarh</div>
+                                    <div>Goa</div>
+                                    <div>Gujarat</div>
+                                    <div>Haryana</div>
+                                    <div>Himachal Pradesh</div>
+                                    <div>Jharkhand</div>
+                                    <div>Karnataka</div>
+                                    <div>Kerala</div>
+                                    <div>Madhya Pradesh</div>
+                                    <div>Maharashtra</div>
+                                    <div>Manipur</div>
+                                    <div>Meghalaya</div>
+                                    <div>Mizoram</div>
+                                    <div>Nagaland</div>
+                                    <div>Odisha</div>
+                                    <div>Punjab</div>
+                                    <div>Rajasthan</div>
+                                    <div>Sikkim</div>
+                                    <div>Tamil Nadu</div>
+                                    <div>Telangana</div>
+                                    <div>Tripura</div>
+                                    <div>Uttar Pradesh</div>
+                                    <div>Uttarakhand</div>
+                                    <div>West Bengal</div>
+                                    <div>Andaman and Nicobar Islands (UT)</div>
+                                    <div>Chandigarh (UT)</div>
+                                    <div>Dadra & Nagar Haveli and Daman & Diu (UT)</div>
+                                    <div>Delhi (UT)</div>
+                                    <div>Jammu and Kashmir (UT)</div>
+                                    <div>Ladakh (UT)</div>
+                                    <div>Lakshadweep (UT)</div>
+                                    <div>Puducherry (UT)</div>
+                                </div>
+                            </div>
+                            <!-- Hidden input for form submission & validation -->
+                            <input type="hidden" id="stateInput" required form="step2Form">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>City/Village*</label>
+                                <span id="cityVillageError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="cityInput" placeholder="e.g. Pune" required>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Pincode*</label>
+                                <span id="pincodeError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="pincodeInput" placeholder="e.g. 400001" maxlength="6" form="step2Form" required>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: Organization Info -->
+                <div class="form-section" style="display: flex; flex-direction: column; height: 100%;">
+                    
+                    <!-- Buyer Right Fields -->
+                    <div id="buyerRightFields" style="display: flex; flex-direction: column; gap: 8px;">
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Bulk?*</label>
+                                    <span id="bulkError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <div class="custom-state-dropdown" id="bulkDropdownContainer">
+                                    <div class="state-selected" id="bulkSelectedText">Select Yes/No</div>
+                                    <div class="state-items state-hide" id="bulkDropdownList">
+                                        <div>Yes</div>
+                                        <div>No</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="bulkInput" required form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Food-Processing?*</label>
+                                    <span id="foodProcessingError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <div class="custom-state-dropdown" id="foodDropdownContainer">
+                                    <div class="state-selected" id="foodSelectedText">Select Yes/No</div>
+                                    <div class="state-items state-hide" id="foodDropdownList">
+                                        <div>Yes</div>
+                                        <div>No</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="foodInput" required form="step2Form">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Org. Name</label>
+                                <span id="orgNameError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="orgNameInput" placeholder="e.g. Fresh Foods Ltd" form="step2Form">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Org. Email</label>
+                                <span id="orgEmailError" style="color: #dc3545; font-size: 0.75rem; display: none;">Invalid format</span>
+                            </div>
+                            <input type="email" id="orgEmailInput" placeholder="contact@freshfoods.com" form="step2Form">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>GSTIN</label>
+                                    <span id="gSTINError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="gstinInput" placeholder="e.g. 22AAAAA0000A1Z5" form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>FSSAI License?</label>
+                                    <span id="fSSAILicenseError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="fssaiInput" placeholder="e.g. 10012011000001" form="step2Form">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seller Right Fields -->
+                    <div id="sellerRightFields" style="display: none; flex-direction: column; gap: 8px;">
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Land Record No.</label>
+                                    <span id="landRecordNoError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="landRecordInput" placeholder="e.g. 12345/67" form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Land Dimension</label>
+                                    <span id="landDimensionError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="landDimensionInput" placeholder="e.g. 5 Acres" form="step2Form">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>FPO? Y/N*</label>
+                                    <span id="fPOYNError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <div class="custom-state-dropdown" id="fpoDropdownContainer">
+                                    <div class="state-selected" id="fpoSelectedText">Select Yes/No</div>
+                                    <div class="state-items state-hide" id="fpoDropdownList">
+                                        <div>Yes</div>
+                                        <div>No</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="fpoInput" required form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;" id="storageFieldContainer">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Storage?*</label>
+                                    <span id="storageError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <div class="custom-state-dropdown" id="storageDropdownContainer">
+                                    <div class="state-selected" id="storageSelectedText">Select Yes/No</div>
+                                    <div class="state-items state-hide" id="storageDropdownList">
+                                        <div>Yes</div>
+                                        <div>No</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="storageInput" required form="step2Form">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>FPO Name</label>
+                                <span id="fPONameError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="fpoNameInput" placeholder="e.g. Green Valley FPO" form="step2Form">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>FPO Reg. No.</label>
+                                    <span id="fPORegNoError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="fpoRegInput" placeholder="e.g. FPO12345" form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>FPO Email</label>
+                                    <span id="fPOEmailError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="email" id="fpoEmailInput" placeholder="contact@fpo.com" form="step2Form">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transporter Right Fields -->
+                    <div id="transporterRightFields" style="display: none; flex-direction: column; gap: 8px;">
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Vehicle Name*</label>
+                                    <span id="vehicleNameError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="vehicleNameInput" placeholder="e.g. Tata Ace" form="step2Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Vehicle No.*</label>
+                                    <span id="vehicleNoError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="vehicleNoInput" placeholder="e.g. MH 01 AB 1234" form="step2Form">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Vehicle Capacity*</label>
+                                <span id="vehicleCapacityError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="vehicleCapacityInput" placeholder="e.g. 2 Tons" form="step2Form">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Vehicle Documents*</label>
+                                <span id="vehicleDocsError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <label for="vehicleDocsInput" class="upload-btn" id="vehicleDocsLabel" style="height: 44px; border: 1px dashed rgba(0,0,0,0.2); border-radius: 8px; padding: 0 16px; background: #fdfdfd; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; color: #555; width: 100%; transition: all 0.2s;">
+                                <i data-lucide="upload" style="width: 18px; height: 18px;"></i>
+                                <span>Upload Document</span>
+                            </label>
+                            <input type="file" id="vehicleDocsInput" style="display: none;" form="step2Form">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>DL*</label>
+                                <span id="dlError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <label for="dlInput" class="upload-btn" id="dlLabel" style="height: 44px; border: 1px dashed rgba(0,0,0,0.2); border-radius: 8px; padding: 0 16px; background: #fdfdfd; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; color: #555; width: 100%; transition: all 0.2s;">
+                                <i data-lucide="upload" style="width: 18px; height: 18px;"></i>
+                                <span>Upload Document</span>
+                            </label>
+                            <input type="file" id="dlInput" style="display: none;" form="step2Form">
+                        </div>
+                    </div>
+                    
+                    <div class="nav-btn-container">
+                        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 24px;">
+                            <button type="button" id="prevBtnStep2" style="font-weight: 600; color: var(--color-green); background: transparent; border: 1px solid var(--color-green); cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 0 12px; height: 45px; border-radius: 8px; font-family: inherit; font-size: 1rem;">
+                                <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                                Previous
+                            </button>
+                            <button type="submit" form="step2Form" class="btn-next" id="continueBtn">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3 Content -->
+            <div id="step3Content" class="signup-content" style="display: none;">
+                <!-- Left: Payment Method -->
+                <div class="form-section">
+                    <form id="step3Form" novalidate>
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <div style="margin-bottom: 16px; font-size: 0.9rem; color: #555; font-weight: 500;">Select Payment Method</div>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div class="payment-card active" data-method="upi" id="upiCard">
+                                    <i data-lucide="shield" style="width: 20px; height: 20px;"></i>
+                                    <span>UPI</span>
+                                </div>
+                                <div class="payment-card" data-method="netbanking" id="netbankingCard">
+                                    <i data-lucide="shield" style="width: 20px; height: 20px;"></i>
+                                    <span>Netbanking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: Dynamic Payment Info -->
+                <div class="form-section" style="display: flex; flex-direction: column; height: 100%;">
+                    <!-- UPI Fields -->
+                    <div id="upiFields" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>UPI ID*</label>
+                                <span id="upiIdError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="upiIdInput" placeholder="e.g. name@okhdfcbank" form="step3Form">
+                        </div>
+                    </div>
+
+                    <!-- Netbanking Fields -->
+                    <div id="netbankingFields" style="display: none; flex-direction: column; gap: 16px;">
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Owner name*</label>
+                                <span id="ownerNamePayError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="ownerNamePayInput" placeholder="e.g. John Doe" form="step3Form">
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Bank Name*</label>
+                                <span id="bankNamePayError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="bankNamePayInput" placeholder="e.g. State Bank of India" form="step3Form">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>Branch Code*</label>
+                                    <span id="branchCodePayError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="branchCodePayInput" placeholder="e.g. 12345" form="step3Form">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                    <label>IFSC*</label>
+                                    <span id="ifscPayError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                                </div>
+                                <input type="text" id="ifscPayInput" placeholder="e.g. SBIN0001234" form="step3Form">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <label>Account Number*</label>
+                                <span id="accNumberPayError" class="field-error" style="color: #dc3545; font-size: 0.75rem; display: none;">Required</span>
+                            </div>
+                            <input type="text" id="accNumberPayInput" placeholder="e.g. 10001234567" form="step3Form">
+                        </div>
+                    </div>
+
+                    <div class="nav-btn-container">
+                        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 24px;">
+                            <button type="button" id="prevBtnStep3" style="font-weight: 600; color: var(--color-green); background: transparent; border: 1px solid var(--color-green); cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 0 12px; height: 45px; border-radius: 8px; font-family: inherit; font-size: 1rem;">
+                                <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                                Previous
+                            </button>
+                            <button type="submit" form="step3Form" class="btn-next" id="doneBtn">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Content -->
+            <div id="successContent" style="display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 100%;">
+                <div style="margin-bottom: 24px;">
+                    <i data-lucide="check" style="width: 80px; height: 80px; color: white;"></i>
+                </div>
+                <div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.5rem; color: white;">Account Created Successfully</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
