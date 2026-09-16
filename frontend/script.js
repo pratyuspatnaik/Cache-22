@@ -37,4 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = 'index.html';
         });
     });
+
+    // Redirect hero buttons to signup page
+    const signupButtons = document.querySelectorAll('.btn-farmer, .btn-buyer');
+    signupButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.location.href = 'signup.html';
+        });
+    });
 });
