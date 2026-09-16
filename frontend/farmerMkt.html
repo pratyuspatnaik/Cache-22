@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link id="theme-fonts" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="farmerMkt.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative font-sans text-foreground">
+  <!-- FLOATING NAVIGATION PILL -->
+  <header class="w-full max-w-7xl mx-auto px-4 pt-4 sticky top-0 z-50">
+    <div class="bg-card text-card-foreground rounded-3xl md:rounded-full shadow-lg border border-border px-4 md:px-6 py-3 flex flex-wrap items-center justify-between transition-all">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2 order-1">
+        <div class="bg-primary/10 p-2 rounded-full flex items-center justify-center">
+          <iconify-icon icon="lucide:zap" class="text-primary text-2xl"></iconify-icon>
+        </div>
+        <span class="font-heading font-bold text-xl tracking-tight text-foreground flex items-center">
+          Agri<span class="text-primary ml-0.5">Link</span>
+        </span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center justify-center gap-4 md:gap-6 w-full md:w-auto order-3 md:order-2 mt-3 md:mt-0 pt-3 md:pt-0 border-t md:border-t-0 border-border/50 overflow-x-auto">
+        <a href="page1.html" data-uxm-link="Farmer Marketplace - Listed" class="text-sm font-semibold text-primary flex items-center gap-1.5 shrink-0">
+          <span class="h-2 w-2 rounded-full bg-primary"></span>
+          Marketplace
+        </a>
+        <a href="#" data-uxm-link="Buyer Marketplace" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors shrink-0">Orders</a>
+        <a href="#" data-uxm-link="Orders" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors shrink-0">Contact Us</a>
+        
+      </nav>
+
+      <!-- Utility Icons & User Actions -->
+      <div class="flex items-center gap-3 md:gap-4 order-2 md:order-3">
+        <!-- Notification Icon with Badge -->
+        <button class="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
+          <iconify-icon icon="lucide:bell" class="text-xl"></iconify-icon>
+          <span class="absolute top-1.5 right-1.5 h-4 w-4 bg-secondary text-secondary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+        </button>
+
+        <!-- Cart Icon with Badge -->
+        <a href="#" data-uxm-link="Cart" class="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
+          <iconify-icon icon="lucide:shopping-cart" class="text-xl"></iconify-icon>
+          <span class="absolute top-1.5 right-1.5 h-4 w-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">2</span>
+        </a>
+
+        <!-- Divider -->
+        <div class="h-6 w-px bg-border"></div>
+
+        <!-- User Profile Info -->
+        <div class="flex items-center gap-3">
+          <div class="text-right hidden sm:block">
+            <p class="text-xs font-semibold text-foreground leading-tight">Sukhdev Singh</p>
+            <p class="text-[10px] text-primary font-medium">Verified Farmer</p>
+          </div>
+          <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Sukhdev Singh" class="h-9 w-9 rounded-full border-2 border-primary object-cover">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE CONTAINER -->
+  <main class="w-full max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    
+    <!-- LEFT SIDEBAR: STICKY PRICES SECTION -->
+    <aside class="lg:col-span-3 lg:sticky lg:top-24 bg-card rounded-xl border border-border shadow-sm p-4 flex flex-col gap-4">
+      <div class="flex items-center justify-between border-b border-border pb-3">
+        <h2 class="font-heading font-bold text-base text-foreground flex items-center gap-2">
+          <iconify-icon icon="lucide:activity" class="text-primary"></iconify-icon>
+          Live APMC Prices
+        </h2>
+        <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-primary/10 text-primary-text animate-pulse">
+          Live Updates
+        </span>
+      </div>
+
+      <!-- Search Inside Price Section -->
+      <div class="relative">
+        <input type="text" placeholder="Search crop rates..." class="w-full text-xs bg-background border border-border rounded-lg pl-8 pr-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary">
+        <iconify-icon icon="lucide:search" class="absolute left-2.5 top-2.5 text-muted-foreground text-sm"></iconify-icon>
+      </div>
+
+      <!-- Crop Price List -->
+      <div class="flex flex-col gap-3">
+        <!-- Potato -->
+        <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-background transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-secondary"></span>
+            <div>
+              <p class="text-xs font-semibold text-foreground">Jyoti Potato</p>
+              <p class="text-[10px] text-muted-foreground">Kalyan Mandi</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold text-foreground">₹1,850/Qtl</p>
+            <p class="text-[10px] text-primary font-medium flex items-center gap-0.5 justify-end">
+              <iconify-icon icon="lucide:arrow-left" class="rotate-45"></iconify-icon> +4.2%
+            </p>
+          </div>
+        </div>
+
+        <!-- Tomato -->
+        <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-background transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-primary"></span>
+            <div>
+              <p class="text-xs font-semibold text-foreground">Heirloom Tomato</p>
+              <p class="text-[10px] text-muted-foreground">Pune Mandi</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold text-foreground">₹3,200/Qtl</p>
+            <p class="text-[10px] text-destructive font-medium flex items-center gap-0.5 justify-end">
+              <iconify-icon icon="lucide:arrow-left" class="-rotate-45"></iconify-icon> -2.5%
+            </p>
+          </div>
+        </div>
+
+        <!-- Wheat -->
+        <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-background transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-secondary"></span>
+            <div>
+              <p class="text-xs font-semibold text-foreground">Sujata Wheat</p>
+              <p class="text-[10px] text-muted-foreground">Indore Mandi</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold text-foreground">₹2,450/Qtl</p>
+            <p class="text-[10px] text-primary font-medium flex items-center gap-0.5 justify-end">
+              <iconify-icon icon="lucide:arrow-left" class="rotate-45"></iconify-icon> +1.8%
+            </p>
+          </div>
+        </div>
+
+        <!-- Sweet Corn -->
+        <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-background transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-primary"></span>
+            <div>
+              <p class="text-xs font-semibold text-foreground">Sweet Corn</p>
+              <p class="text-[10px] text-muted-foreground">Nashik Mandi</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold text-foreground">₹2,100/Qtl</p>
+            <p class="text-[10px] text-primary font-medium flex items-center gap-0.5 justify-end">
+              <iconify-icon icon="lucide:arrow-left" class="rotate-45"></iconify-icon> +5.0%
+            </p>
+          </div>
+        </div>
+
+        <!-- Onion -->
+        <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-background transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-secondary"></span>
+            <div>
+              <p class="text-xs font-semibold text-foreground">Red Onion</p>
+              <p class="text-[10px] text-muted-foreground">Lasalgaon Mandi</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold text-foreground">₹2,800/Qtl</p>
+            <p class="text-[10px] text-muted-foreground font-medium justify-end">0.0%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mandi Insight Card -->
+      <div class="bg-accent/30 p-3 rounded-lg border border-accent flex flex-col gap-1.5 mt-2">
+        <p class="text-xs font-bold text-foreground flex items-center gap-1">
+          <iconify-icon icon="lucide:info" class="text-primary"></iconify-icon>
+          Sourcing Insight
+        </p>
+        <p class="text-[11px] text-muted-foreground leading-relaxed">
+          Sweet Corn prices are up 5% this week due to high demand in urban retail centers. List your harvest to capture premium offers.
+        </p>
+      </div>
+    </aside>
+
+    <!-- RIGHT COLUMN: MAIN WORKSPACE -->
+    <section class="lg:col-span-9 flex flex-col gap-6">
+      
+      <!-- HEADER WITH ADD LISTING TRIGGER -->
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 class="font-heading font-bold text-2xl text-foreground">Farmer Marketplace Workspace</h1>
+            <p class="text-sm text-muted-foreground">Monitor live APMC prices, list your fresh harvest, and accept premium buyer bids.</p>
+          </div>
+          
+          <!-- Add Listing Trigger -->
+          <button id="listNewCropBtn" class="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-sm px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center gap-2 self-start sm:self-auto">
+            <iconify-icon icon="lucide:plus" class="text-lg"></iconify-icon>
+            List New Crop
+          </button>
+        </div>
+
+        <!-- DOWNWARD-EXPANDING LIST CROPS FORM -->
+        <div id="newCropForm" style="display: none;" class="bg-card rounded-xl border-2 border-primary shadow-md p-6 flex flex-col gap-5 transition-all duration-300">
+          <div class="flex items-center gap-2 pb-3 border-b border-border">
+            <div class="h-6 w-1 bg-primary rounded-full"></div>
+            <h3 class="font-heading font-bold text-base text-foreground">New Crop Listing Details</h3>
+            <span class="text-xs text-muted-foreground ml-auto">* Indicates compulsory fields</span>
+          </div>
+
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Crop Name Dropdown (Compulsory) -->
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-foreground flex items-center gap-1">
+                Crop Name <span class="text-destructive">*</span>
+              </label>
+              <div class="relative">
+                <select class="w-full text-sm bg-background border border-border rounded-lg px-3 py-2.5 text-foreground focus:outline-none focus:ring-1 focus:ring-primary appearance-none">
+                  <option value="" disabled="" selected="">Select Crop Name</option>
+                  <option value="sweet-corn">Organic Sweet Corn</option>
+                  <option value="heirloom-tomatoes">Assorted Heirloom Tomatoes</option>
+                  <option value="sujata-wheat">Sujata Premium Wheat</option>
+                  <option value="jyoti-potatoes">Jyoti Organic Potatoes</option>
+                  <option value="basmati-rice">Basmati Rice (Pusa-1121)</option>
+                </select>
+                <iconify-icon icon="lucide:funnel" class="absolute right-3 top-3 text-muted-foreground pointer-events-none"></iconify-icon>
+              </div>
+            </div>
+
+            <!-- Crop Species / Variety (Optional) -->
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-foreground flex items-center gap-1">
+                Crop Species / Variety <span class="text-muted-foreground font-normal text-[10px]">(Optional)</span>
+              </label>
+              <input type="text" placeholder="e.g. Sugar-7, Kalyan Sona, Pusa-1121" class="w-full text-sm bg-background border border-border rounded-lg px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary">
+            </div>
+
+            <!-- Quantity (Compulsory) -->
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-foreground flex items-center gap-1">
+                Quantity <span class="text-destructive">*</span>
+              </label>
+              <div class="flex gap-2">
+                <input type="number" placeholder="e.g. 5.5" class="w-full text-sm bg-background border border-border rounded-lg px-3 py-2.5 text-foreground focus:outline-none focus:ring-1 focus:ring-primary">
+                <select class="bg-background border border-border rounded-lg px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+                  <option value="tons">Tons</option>
+                  <option value="quintals">Quintals</option>
+                  <option value="kg">kg</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Expected Price (Compulsory) -->
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-foreground flex items-center gap-1">
+                Expected Price per Unit <span class="text-destructive">*</span>
+              </label>
+              <div class="relative">
+                <span class="absolute left-3 top-2.5 text-muted-foreground text-sm font-semibold">₹</span>
+                <input type="number" placeholder="e.g. 24000" class="w-full text-sm bg-background border border-border rounded-lg pl-7 pr-3 py-2.5 text-foreground focus:outline-none focus:ring-1 focus:ring-primary">
+              </div>
+            </div>
+
+            <!-- Upload Pictures (Compulsory) -->
+            <div class="md:col-span-2 flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-foreground flex items-center gap-1">
+                Upload Harvest Pictures <span class="text-destructive">*</span>
+              </label>
+              <div class="border-2 border-dashed border-border hover:border-primary rounded-lg p-5 flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors bg-background/50">
+                <iconify-icon icon="lucide:camera" class="text-muted-foreground text-2xl"></iconify-icon>
+                <div class="text-center">
+                  <p class="text-xs font-semibold text-foreground">Drag and drop or click to upload</p>
+                  <p class="text-[10px] text-muted-foreground">PNG, JPG or JPEG up to 5MB (Max 3 photos)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="md:col-span-2 flex justify-end gap-3 mt-2">
+              <button id="cancelNewCropBtn" type="button" class="px-4 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors">Cancel</button>
+              <button type="submit" class="bg-primary hover:bg-primary/95 text-primary-foreground font-semibold text-xs px-5 py-2.5 rounded-lg transition-all shadow-sm">
+                Publish Listing
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+            <!-- TABBED NAVIGATION BAR FOR DASHBOARD STATES -->
+      <div class="border-b border-border flex items-center gap-2">
+        <!-- Tab: Listed -->
+        <a href="#" id="tabListed" data-uxm-link="Farmer Marketplace - Listed" class="border-b-2 border-primary text-primary font-bold text-sm px-4 py-3 flex items-center gap-2 transition-all cursor-pointer">
+          <iconify-icon icon="lucide:list" class="text-base"></iconify-icon>
+          Listed Crops
+          <span class="bg-primary/10 text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
+        </a>
+        <!-- Tab: Ordered -->
+        <a href="#" id="tabOrdered" data-uxm-link="Farmer Marketplace - Ordered" class="border-b-2 border-transparent text-muted-foreground hover:text-foreground font-medium text-sm px-4 py-3 flex items-center gap-2 transition-all cursor-pointer">
+          <iconify-icon icon="lucide:shopping-cart" class="text-base"></iconify-icon>
+          Ordered
+          <span class="bg-muted text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+        </a>
+        <!-- Tab: Delivered -->
+        <a href="#" id="tabDelivered" data-uxm-link="Farmer Marketplace - Delivered" class="border-b-2 border-transparent text-muted-foreground hover:text-foreground font-medium text-sm px-4 py-3 flex items-center gap-2 transition-all cursor-pointer">
+          <iconify-icon icon="lucide:circle-check" class="text-base"></iconify-icon>
+          Delivered
+          <span class="bg-muted text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+        </a>
+      </div>
+
+      <div id="listedCropsView">
+  <!-- LISTED VIEW CARDS -->
+        <div class="flex flex-col gap-6">
+          
+          <!-- CARD 1: Organic Sweet Corn -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet-corn-1789535379831-bsers4hvh4l.png" alt="Organic Sweet Corn" class="absolute inset-0 w-full h-full object-cover object-[50%_0%]" width="1024" height="1536">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                Active Listing
+              </div>
+            </div>
+  
+            <!-- Listing Details & Buyer Offers -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Organic Sweet Corn</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Sugar-7</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Total Available</p>
+                  <p class="text-lg font-extrabold text-primary">8.5 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Expected Price & Sourcing Spec -->
+              <div class="grid grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div>
+                  <p class="text-[10px] text-muted-foreground">My Expected Price</p>
+                  <p class="text-sm font-bold text-foreground">₹24,000 / Ton</p>
+                </div>
+                <div>
+                  <p class="text-[10px] text-muted-foreground">Quality Rating</p>
+                  <p class="text-sm font-bold text-foreground flex items-center gap-1">
+                    <iconify-icon icon="lucide:star" class="text-secondary fill-secondary"></iconify-icon>
+                    A-Grade (Premium)
+                  </p>
+                </div>
+              </div>
+  
+              <!-- Buyer Offers Section -->
+              <div class="flex flex-col gap-3">
+                <h4 class="text-xs font-bold text-foreground uppercase tracking-wider flex items-center gap-1.5">
+                  <iconify-icon icon="lucide:thumbs-up" class="text-primary"></iconify-icon>
+                  Incoming Buyer Offers (2 Bids)
+                </h4>
+  
+                <div class="flex flex-col gap-3">
+                  <!-- Offer 1 -->
+                  <div class="border border-border rounded-lg p-3 bg-card flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary transition-colors">
+                    <div class="flex items-start gap-3">
+                      <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border">
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <p class="text-xs font-bold text-foreground">Reliance Retail Logistics</p>
+                          <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-semibold bg-accent text-accent-foreground">
+                            4.9 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                          </span>
+                        </div>
+                        <p class="text-[10px] text-muted-foreground flex items-center gap-1">
+                          <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                          Sourcing Hub: Mumbai Corporate Warehouse
+                        </p>
+                        <p class="text-[11px] text-primary-text font-medium mt-1 italic">"Require premium grading, ready to lift within 48 hours."</p>
+                      </div>
+                    </div>
+                    <div class="flex sm:flex-col items-end justify-between sm:justify-start gap-2 border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                      <div class="text-left sm:text-right">
+                        <p class="text-[10px] text-muted-foreground">Offered Price</p>
+                        <p class="text-sm font-extrabold text-foreground">₹23,500 <span class="text-[10px] font-normal text-muted-foreground">/ Ton</span></p>
+                        <p class="text-xs font-bold text-primary-text">Payout: ₹1,99,750</p>
+                      </div>
+                      <div class="flex gap-1.5">
+                        <button class="px-2.5 py-1.5 border border-border hover:bg-destructive/10 hover:text-destructive hover:border-destructive text-[11px] font-bold rounded-lg transition-colors">
+                          Decline
+                        </button>
+                        <button class="bg-primary hover:bg-primary/95 text-primary-foreground px-3 py-1.5 text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1">
+                          Accept Offer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!-- Offer 2 -->
+                  <div class="border border-border rounded-lg p-3 bg-card flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary transition-colors">
+                    <div class="flex items-start gap-3">
+                      <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border">
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <p class="text-xs font-bold text-foreground">Asha Organics Co-op</p>
+                          <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-semibold bg-accent text-accent-foreground">
+                            4.7 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                          </span>
+                        </div>
+                        <p class="text-[10px] text-muted-foreground flex items-center gap-1">
+                          <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                          Processing Plant: Pune Mandi Area
+                        </p>
+                        <p class="text-[11px] text-primary-text font-medium mt-1 italic">"Prefer bio-certified. Can handle self-pickup from farm gate."</p>
+                      </div>
+                    </div>
+                    <div class="flex sm:flex-col items-end justify-between sm:justify-start gap-2 border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                      <div class="text-left sm:text-right">
+                        <p class="text-[10px] text-muted-foreground">Offered Price</p>
+                        <p class="text-sm font-extrabold text-foreground">₹22,800 <span class="text-[10px] font-normal text-muted-foreground">/ Ton</span></p>
+                        <p class="text-xs font-bold text-primary-text">Payout: ₹1,93,800</p>
+                      </div>
+                      <div class="flex gap-1.5">
+                        <button class="px-2.5 py-1.5 border border-border hover:bg-destructive/10 hover:text-destructive hover:border-destructive text-[11px] font-bold rounded-lg transition-colors">
+                          Decline
+                        </button>
+                        <button class="bg-primary hover:bg-primary/95 text-primary-foreground px-3 py-1.5 text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1">
+                          Accept Offer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- CARD 2: Heirloom Tomatoes -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/heirloom-tomatoes-1789535393297-iy9oqv0w6dr.png" alt="Assorted Heirloom Tomatoes" class="absolute inset-0 w-full h-full object-cover" width="1024" height="1024">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                Active Listing
+              </div>
+            </div>
+  
+            <!-- Listing Details & Buyer Offers -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Assorted Heirloom Tomatoes</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Multi-Color Heirloom</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Total Available</p>
+                  <p class="text-lg font-extrabold text-primary">3.2 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Expected Price & Sourcing Spec -->
+              <div class="grid grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div>
+                  <p class="text-[10px] text-muted-foreground">My Expected Price</p>
+                  <p class="text-sm font-bold text-foreground">₹35,000 / Ton</p>
+                </div>
+                <div>
+                  <p class="text-[10px] text-muted-foreground">Quality Rating</p>
+                  <p class="text-sm font-bold text-foreground flex items-center gap-1">
+                    <iconify-icon icon="lucide:star" class="text-secondary fill-secondary"></iconify-icon>
+                    Premium Grade A
+                  </p>
+                </div>
+              </div>
+  
+              <!-- Buyer Offers Section -->
+              <div class="flex flex-col gap-3">
+                <h4 class="text-xs font-bold text-foreground uppercase tracking-wider flex items-center gap-1.5">
+                  <iconify-icon icon="lucide:thumbs-up" class="text-primary"></iconify-icon>
+                  Incoming Buyer Offers (1 Bid)
+                </h4>
+  
+                <div class="flex flex-col gap-3">
+                  <!-- Offer 1 -->
+                  <div class="border border-border rounded-lg p-3 bg-card flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary transition-colors">
+                    <div class="flex items-start gap-3">
+                      <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border">
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <p class="text-xs font-bold text-foreground">BigBasket Sourcing</p>
+                          <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-semibold bg-accent text-accent-foreground">
+                            4.8 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                          </span>
+                        </div>
+                        <p class="text-[10px] text-muted-foreground flex items-center gap-1">
+                          <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                          Sourcing Hub: Bengaluru Distribution Center
+                        </p>
+                        <p class="text-[11px] text-primary-text font-medium mt-1 italic">"Accepting immediate dispatch. Cold storage transport ready."</p>
+                      </div>
+                    </div>
+                    <div class="flex sm:flex-col items-end justify-between sm:justify-start gap-2 border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                      <div class="text-left sm:text-right">
+                        <p class="text-[10px] text-muted-foreground">Offered Price</p>
+                        <p class="text-sm font-extrabold text-foreground">₹34,500 <span class="text-[10px] font-normal text-muted-foreground">/ Ton</span></p>
+                        <p class="text-xs font-bold text-primary-text">Payout: ₹1,10,400</p>
+                      </div>
+                      <div class="flex gap-1.5">
+                        <button class="px-2.5 py-1.5 border border-border hover:bg-destructive/10 hover:text-destructive hover:border-destructive text-[11px] font-bold rounded-lg transition-colors">
+                          Decline
+                        </button>
+                        <button class="bg-primary hover:bg-primary/95 text-primary-foreground px-3 py-1.5 text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1">
+                          Accept Offer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        </div>
+
+      <div id="orderedCropsView" style="display: none;">
+  <!-- ACTIVE ORDERS CONTENT -->
+        <div class="flex flex-col gap-6">
+          
+          <!-- ORDER 1: Organic Sweet Corn -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet-corn-1789535379831-bsers4hvh4l.png" alt="Organic Sweet Corn" class="absolute inset-0 w-full h-full object-cover object-[50%_0%]" width="1024" height="1536">
+              <div class="absolute top-3 left-3 bg-secondary text-secondary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                In Transit
+              </div>
+            </div>
+  
+            <!-- Order Details, Buyer Profile, and Progress -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Organic Sweet Corn</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Sugar-7</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Ordered Quantity</p>
+                  <p class="text-lg font-extrabold text-primary">8.5 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Buyer Details & Price -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div class="flex items-start gap-2.5">
+                  <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border mt-0.5">
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Buyer Identity &amp; Rating</p>
+                    <div class="flex items-center gap-1">
+                      <p class="text-xs font-bold text-foreground">Reliance Retail Logistics</p>
+                      <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-secondary-text">
+                        4.9 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <iconify-icon icon="lucide:map-pin"></iconify-icon> Mumbai Hub
+                    </p>
+                  </div>
+                </div>
+                <div class="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                  <p class="text-[10px] text-muted-foreground">Ordered Price &amp; Value</p>
+                  <p class="text-sm font-extrabold text-foreground">₹23,500 <span class="text-xs font-normal text-muted-foreground">/ Ton</span></p>
+                  <p class="text-sm font-bold text-primary-text">Total Contract: ₹1,99,750</p>
+                </div>
+              </div>
+  
+              <!-- Shipment Progress Tracker -->
+              <div class="flex flex-col gap-2 pt-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-foreground">Shipment Progress</span>
+                  <span class="font-semibold text-primary">65% Completed (In Transit)</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-muted rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-primary h-2.5 rounded-full" style="width: 65%;"></div>
+                </div>
+  
+                <!-- Milestones -->
+                <div class="grid grid-cols-4 text-[10px] text-muted-foreground font-semibold pt-1">
+                  <div class="flex flex-col items-start text-primary gap-0.5">
+                    <iconify-icon icon="lucide:circle-check" class="text-xs ml-3"></iconify-icon>
+                    <span>Accepted</span>
+                  </div>
+                  <div class="flex flex-col items-center text-primary gap-0.5">
+                    <iconify-icon icon="lucide:circle-check" class="text-xs"></iconify-icon>
+                    <span>Picked Up</span>
+                  </div>
+                  <div class="flex flex-col items-center text-primary font-bold gap-0.5">
+                    <iconify-icon icon="lucide:loader" class="text-xs animate-spin"></iconify-icon>
+                    <span>In Transit</span>
+                  </div>
+                  <div class="flex flex-col items-end justify-end gap-0.5">
+                    <span>Delivered</span>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Action Buttons -->
+              <div class="flex justify-end gap-2.5 border-t border-border pt-3 mt-1">
+                <button class="px-4 py-2 border border-border hover:bg-background text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 text-foreground">
+                  <iconify-icon icon="lucide:message-circle"></iconify-icon>
+                  Contact Buyer
+                </button>
+                <button class="bg-primary hover:bg-primary/95 text-primary-foreground px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shadow-sm">
+                  <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                  Track Live Location
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- ORDER 2: Sujata Premium Wheat -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sujata-wheat-1789535401407-2sfwrvarhnv.png" alt="Sujata Premium Wheat" class="absolute inset-0 w-full h-full object-cover" width="1536" height="1024">
+              <div class="absolute top-3 left-3 bg-secondary text-secondary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                Harvest Picked Up
+              </div>
+            </div>
+  
+            <!-- Order Details, Buyer Profile, and Progress -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Sujata Premium Wheat</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Sujata A-Grade</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Ordered Quantity</p>
+                  <p class="text-lg font-extrabold text-primary">15.0 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Buyer Details & Price -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div class="flex items-start gap-2.5">
+                  <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border mt-0.5">
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Buyer Identity &amp; Rating</p>
+                    <div class="flex items-center gap-1">
+                      <p class="text-xs font-bold text-foreground">ITC Agri Business</p>
+                      <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-secondary-text">
+                        4.8 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <iconify-icon icon="lucide:map-pin"></iconify-icon> Indore Hub
+                    </p>
+                  </div>
+                </div>
+                <div class="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                  <p class="text-[10px] text-muted-foreground">Ordered Price &amp; Value</p>
+                  <p class="text-sm font-extrabold text-foreground">₹24,200 <span class="text-xs font-normal text-muted-foreground">/ Ton</span></p>
+                  <p class="text-sm font-bold text-primary-text">Total Contract: ₹3,63,000</p>
+                </div>
+              </div>
+  
+              <!-- Shipment Progress Tracker -->
+              <div class="flex flex-col gap-2 pt-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-foreground">Shipment Progress</span>
+                  <span class="font-semibold text-primary">35% Completed (Picked Up)</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-muted rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-primary h-2.5 rounded-full" style="width: 35%;"></div>
+                </div>
+  
+                <!-- Milestones -->
+                <div class="grid grid-cols-4 text-[10px] text-muted-foreground font-semibold pt-1">
+                  <div class="flex flex-col items-start text-primary gap-0.5">
+                    <iconify-icon icon="lucide:circle-check" class="text-xs ml-3"></iconify-icon>
+                    <span>Accepted</span>
+                  </div>
+                  <div class="flex flex-col items-center text-primary font-bold gap-0.5">
+                    <iconify-icon icon="lucide:loader" class="text-xs animate-spin"></iconify-icon>
+                    <span>Picked Up</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-end gap-0.5">
+                    <span>In Transit</span>
+                  </div>
+                  <div class="flex flex-col items-end justify-end gap-0.5">
+                    <span>Delivered</span>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Action Buttons -->
+              <div class="flex justify-end gap-2.5 border-t border-border pt-3 mt-1">
+                <button class="px-4 py-2 border border-border hover:bg-background text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 text-foreground">
+                  <iconify-icon icon="lucide:message-circle"></iconify-icon>
+                  Contact Buyer
+                </button>
+                <button class="bg-primary hover:bg-primary/95 text-primary-foreground px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shadow-sm">
+                  <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                  Track Live Location
+                </button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        </div>
+
+      <div id="deliveredCropsView" style="display: none;">
+  <!-- COMPLETED DELIVERIES CONTENT -->
+        <div class="flex flex-col gap-6">
+          
+          <!-- DELIVERY 1: Organic Sweet Corn -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/sweet-corn-1789535379831-bsers4hvh4l.png" alt="Organic Sweet Corn" class="absolute inset-0 w-full h-full object-cover object-[50%_0%]" width="1024" height="1536">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                <iconify-icon icon="lucide:circle-check"></iconify-icon> Delivered
+              </div>
+            </div>
+  
+            <!-- Delivery Details, Buyer Profile, and Payment -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Organic Sweet Corn</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Sugar-7</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Delivered Quantity</p>
+                  <p class="text-lg font-extrabold text-primary">8.5 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Buyer Details & Price -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div class="flex items-start gap-2.5">
+                  <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border mt-0.5">
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Buyer Identity &amp; Rating</p>
+                    <div class="flex items-center gap-1">
+                      <p class="text-xs font-bold text-foreground">Reliance Retail Logistics</p>
+                      <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-secondary-text">
+                        4.9 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <iconify-icon icon="lucide:map-pin"></iconify-icon> Mumbai Hub
+                    </p>
+                  </div>
+                </div>
+                <div class="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                  <p class="text-[10px] text-muted-foreground">Final Settlement Rate</p>
+                  <p class="text-sm font-extrabold text-foreground">₹23,500 <span class="text-xs font-normal text-muted-foreground">/ Ton</span></p>
+                  <p class="text-sm font-bold text-primary-text">Total Paid: ₹1,99,750</p>
+                </div>
+              </div>
+  
+              <!-- Delivery Timestamp & Payment Status -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-accent/10 border border-accent/40 p-3 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:calendar" class="text-primary text-lg"></iconify-icon>
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Received Date &amp; Time</p>
+                    <p class="text-xs font-bold text-foreground">Oct 12, 2026 at 04:30 PM</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="text-right hidden sm:block">
+                    <p class="text-[10px] text-muted-foreground">Payment Status</p>
+                    <p class="text-xs font-bold text-primary-text flex items-center gap-0.5 justify-end">
+                      <iconify-icon icon="lucide:circle-check" class="text-primary"></iconify-icon> Payout Released
+                    </p>
+                  </div>
+                  <span class="bg-primary/20 text-primary-foreground text-xs font-extrabold px-3 py-1.5 rounded-lg border border-primary/30 flex items-center gap-1">
+                    <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+                    PAID
+                  </span>
+                </div>
+              </div>
+  
+              <!-- Transaction Reference -->
+              <div class="flex items-center justify-between text-[10px] text-muted-foreground font-mono">
+                <span>TXN REF: #AL-987254-CON</span>
+                <span>Settled to: SBI A/C *******5412</span>
+              </div>
+            </div>
+          </div>
+  
+          <!-- DELIVERY 2: Assorted Heirloom Tomatoes -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/heirloom-tomatoes-1789535393297-iy9oqv0w6dr.png" alt="Assorted Heirloom Tomatoes" class="absolute inset-0 w-full h-full object-cover" width="1024" height="1024">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                <iconify-icon icon="lucide:circle-check"></iconify-icon> Delivered
+              </div>
+            </div>
+  
+            <!-- Delivery Details, Buyer Profile, and Payment -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Assorted Heirloom Tomatoes</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Multi-Color Heirloom</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Delivered Quantity</p>
+                  <p class="text-lg font-extrabold text-primary">3.2 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Buyer Details & Price -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div class="flex items-start gap-2.5">
+                  <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border mt-0.5">
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Buyer Identity &amp; Rating</p>
+                    <div class="flex items-center gap-1">
+                      <p class="text-xs font-bold text-foreground">BigBasket Sourcing</p>
+                      <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-secondary-text">
+                        4.8 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <iconify-icon icon="lucide:map-pin"></iconify-icon> Bengaluru Center
+                    </p>
+                  </div>
+                </div>
+                <div class="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                  <p class="text-[10px] text-muted-foreground">Final Settlement Rate</p>
+                  <p class="text-sm font-extrabold text-foreground">₹34,500 <span class="text-xs font-normal text-muted-foreground">/ Ton</span></p>
+                  <p class="text-sm font-bold text-primary-text">Total Paid: ₹1,10,400</p>
+                </div>
+              </div>
+  
+              <!-- Delivery Timestamp & Payment Status -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-accent/10 border border-accent/40 p-3 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:calendar" class="text-primary text-lg"></iconify-icon>
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Received Date &amp; Time</p>
+                    <p class="text-xs font-bold text-foreground">Oct 08, 2026 at 11:15 AM</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="text-right hidden sm:block">
+                    <p class="text-[10px] text-muted-foreground">Payment Status</p>
+                    <p class="text-xs font-bold text-primary-text flex items-center gap-0.5 justify-end">
+                      <iconify-icon icon="lucide:circle-check" class="text-primary"></iconify-icon> Payout Released
+                    </p>
+                  </div>
+                  <span class="bg-primary/20 text-primary-foreground text-xs font-extrabold px-3 py-1.5 rounded-lg border border-primary/30 flex items-center gap-1">
+                    <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+                    PAID
+                  </span>
+                </div>
+              </div>
+  
+              <!-- Transaction Reference -->
+              <div class="flex items-center justify-between text-[10px] text-muted-foreground font-mono">
+                <span>TXN REF: #AL-986110-CON</span>
+                <span>Settled to: SBI A/C *******5412</span>
+              </div>
+            </div>
+          </div>
+  
+          <!-- DELIVERY 3: Jyoti Organic Potatoes -->
+          <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Thumbnail Crop Image -->
+            <div class="md:w-1/3 relative min-h-[160px] bg-muted">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/jyoti-potatoes-1789535472256-w4azy8e0ojj.png" alt="Jyoti Organic Potatoes" class="absolute inset-0 w-full h-full object-cover" width="1024" height="1024">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                <iconify-icon icon="lucide:circle-check"></iconify-icon> Delivered
+              </div>
+            </div>
+  
+            <!-- Delivery Details, Buyer Profile, and Payment -->
+            <div class="md:w-2/3 p-5 flex flex-col gap-4">
+              <!-- Crop Meta -->
+              <div class="flex items-start justify-between gap-2 border-b border-border pb-3">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-foreground">Jyoti Organic Potatoes</h3>
+                  <p class="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                    <iconify-icon icon="lucide:tag" class="text-primary"></iconify-icon>
+                    Variety: <span class="font-semibold text-foreground">Jyoti Premium</span>
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] text-muted-foreground uppercase font-bold">Delivered Quantity</p>
+                  <p class="text-lg font-extrabold text-primary">5.0 Tons</p>
+                </div>
+              </div>
+  
+              <!-- Buyer Details & Price -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-background/50 p-3 rounded-lg border border-border/60">
+                <div class="flex items-start gap-2.5">
+                  <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Buyer" class="h-9 w-9 rounded-full object-cover border border-border mt-0.5">
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Buyer Identity &amp; Rating</p>
+                    <div class="flex items-center gap-1">
+                      <p class="text-xs font-bold text-foreground">Asha Organics Co-op</p>
+                      <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-secondary-text">
+                        4.7 <iconify-icon icon="lucide:star" class="text-[9px] fill-current"></iconify-icon>
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <iconify-icon icon="lucide:map-pin"></iconify-icon> Pune Mandi Area
+                    </p>
+                  </div>
+                </div>
+                <div class="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-border">
+                  <p class="text-[10px] text-muted-foreground">Final Settlement Rate</p>
+                  <p class="text-sm font-extrabold text-foreground">₹18,500 <span class="text-xs font-normal text-muted-foreground">/ Ton</span></p>
+                  <p class="text-sm font-bold text-primary-text">Total Paid: ₹92,500</p>
+                </div>
+              </div>
+  
+              <!-- Delivery Timestamp & Payment Status -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-accent/10 border border-accent/40 p-3 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:calendar" class="text-primary text-lg"></iconify-icon>
+                  <div>
+                    <p class="text-[10px] text-muted-foreground">Received Date &amp; Time</p>
+                    <p class="text-xs font-bold text-foreground">Oct 05, 2026 at 02:40 PM</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="text-right hidden sm:block">
+                    <p class="text-[10px] text-muted-foreground">Payment Status</p>
+                    <p class="text-xs font-bold text-primary-text flex items-center gap-0.5 justify-end">
+                      <iconify-icon icon="lucide:circle-check" class="text-primary"></iconify-icon> Payout Released
+                    </p>
+                  </div>
+                  <span class="bg-primary/20 text-primary-foreground text-xs font-extrabold px-3 py-1.5 rounded-lg border border-primary/30 flex items-center gap-1">
+                    <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+                    PAID
+                  </span>
+                </div>
+              </div>
+  
+              <!-- Transaction Reference -->
+              <div class="flex items-center justify-between text-[10px] text-muted-foreground font-mono">
+                <span>TXN REF: #AL-984411-CON</span>
+                <span>Settled to: SBI A/C *******5412</span>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </section>
+
+  </main>
+</div>
+
+    <script src="farmerMkt.js"></script>
+</body></html>
