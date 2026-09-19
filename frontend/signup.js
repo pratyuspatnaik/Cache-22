@@ -633,6 +633,9 @@ document.addEventListener("DOMContentLoaded", () => {
             showStep3Errors();
             return;
         }
+
+        const activeRoleCard = document.querySelector('.role-card.active');
+        const selectedRole = activeRoleCard ? activeRoleCard.dataset.role : '';
         
         const step3Content = document.getElementById("step3Content");
         const successContent = document.getElementById("successContent");
@@ -659,5 +662,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         successContent.style.display = "flex";
         lucide.createIcons();
+
+        // Redirect after showing Account Created success message
+        setTimeout(() => {
+            if (selectedRole === "farmer" || selectedRole === "seller") {
+                window.location.href = "farmerMkt.html";
+            } else {
+                window.location.href = "index.html";
+            }
+        }, 1500);
     });
 });
