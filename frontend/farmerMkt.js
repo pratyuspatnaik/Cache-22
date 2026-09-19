@@ -1,19 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ---- List New Crop Form Toggle ----
     const listNewCropBtn = document.getElementById('listNewCropBtn');
     const newCropForm = document.getElementById('newCropForm');
     const cancelNewCropBtn = document.getElementById('cancelNewCropBtn');
 
-    if (listNewCropBtn && newCropForm && cancelNewCropBtn) {
+    const trackIncomeBtn = document.getElementById('trackIncomeBtn');
+    const incomeTrackerCard = document.getElementById('incomeTrackerCard');
+    const cancelIncomeBtn = document.getElementById('cancelIncomeBtn');
+
+    // ---- List New Crop Form Toggle ----
+    if (listNewCropBtn && newCropForm) {
         listNewCropBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            newCropForm.style.display = 'flex';
+            if (newCropForm.style.display === 'flex') {
+                newCropForm.style.display = 'none';
+            } else {
+                newCropForm.style.display = 'flex';
+                if (incomeTrackerCard) {
+                    incomeTrackerCard.style.display = 'none';
+                }
+            }
         });
 
-        cancelNewCropBtn.addEventListener('click', (e) => {
+        if (cancelNewCropBtn) {
+            cancelNewCropBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                newCropForm.style.display = 'none';
+            });
+        }
+    }
+
+    // ---- Track Income Box Toggle ----
+    if (trackIncomeBtn && incomeTrackerCard) {
+        trackIncomeBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            newCropForm.style.display = 'none';
+            if (incomeTrackerCard.style.display === 'flex') {
+                incomeTrackerCard.style.display = 'none';
+            } else {
+                incomeTrackerCard.style.display = 'flex';
+                if (newCropForm) {
+                    newCropForm.style.display = 'none';
+                }
+            }
         });
+
+        if (cancelIncomeBtn) {
+            cancelIncomeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                incomeTrackerCard.style.display = 'none';
+            });
+        }
     }
 
     // ---- SPA Tab Switching Logic ----
@@ -34,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const inactiveBadgeClasses = ['bg-muted', 'text-muted-foreground'];
 
     function updateTabStyles(activeTab, inactiveTabs) {
-        // Remove old classes and add new ones for the active tab
         activeTab.classList.remove(...inactiveTabClasses);
         activeTab.classList.add(...activeTabClasses);
 
@@ -44,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activeBadge.classList.add(...activeBadgeClasses);
         }
 
-        // Reset inactive tabs
         inactiveTabs.forEach(inactiveTab => {
             inactiveTab.classList.remove(...activeTabClasses);
             inactiveTab.classList.add(...inactiveTabClasses);
@@ -82,4 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTabStyles(tabDelivered, [tabListed, tabOrdered]);
         });
     }
+    
+    // ---- Buyer Offers Accordion Toggle ----
+    const buyerOfferToggles = document.querySelectorAll('.buyer-offers-toggle');
+    buyerOfferToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const container = this.closest('.buyer-offers-container');
+            const list = container.querySelector('.buyer-offers-list');
+            const chevron = this.querySelector('iconify-icon[icon="lucide:chevron-down"]');
+            
+            list.classList.toggle('hidden');
+            
+            if (list.classList.contains('hidden')) {
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
 });
